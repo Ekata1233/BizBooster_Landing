@@ -9,8 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-import playstore from '../../assets/playstore-removebg-preview.png'
-import appstore from '../../assets/appstore-removebg-preview.png'
+
 function Footer() {
     return (
         <div className='text-white bg-dark '>

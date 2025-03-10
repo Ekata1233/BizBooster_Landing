@@ -8,6 +8,7 @@ import Partner from "../Partner/Partner";
 import AboutOurServices from "../AboutOurServices/AboutOurServices";
 import Benifits from "../Benifits/Benifits";
 import StepsEarning from "../StepsEarning/StepsEarning";
+import Testimonial from "../Testimonial/Testimonial";
 
 function Home() {
   return (
@@ -35,6 +36,7 @@ function Home() {
     <AboutOurServices/>
     <Benifits/>
     <StepsEarning/>
+    <Testimonial/>
       </Container>
      
     </div>

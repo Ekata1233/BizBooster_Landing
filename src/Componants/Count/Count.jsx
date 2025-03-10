@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../Count/count.css"; // Import external CSS
 import { Col, Container, Row } from "react-bootstrap";
 import Partner from "../Partner/Partner";
+import '../Count/count.css'
 import { motion } from "framer-motion"; // Import motion
 function Counter({ endValue }) {
   const [count, setCount] = useState(0);
