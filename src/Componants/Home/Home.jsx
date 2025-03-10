@@ -9,6 +9,7 @@ import AboutOurServices from "../AboutOurServices/AboutOurServices";
 import Benifits from "../Benifits/Benifits";
 import StepsEarning from "../StepsEarning/StepsEarning";
 import Testimonial from "../Testimonial/Testimonial";
+import Contact from "../Contact/Contact"
 
 function Home() {
   return (
@@ -37,6 +38,7 @@ function Home() {
     <Benifits/>
     <StepsEarning/>
     <Testimonial/>
+    <Contact />
       </Container>
      
     </div>
