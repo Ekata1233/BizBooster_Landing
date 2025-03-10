@@ -61,8 +61,8 @@ function Header() {
 
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3 my-2">
-                            <Nav.Link href="#home" className='nav-link-animated me-3' style={{ fontWeight: "600", color: " #E5EAEE" }}>Home</Nav.Link>
-                            <Nav.Link href="#about" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>About Us</Nav.Link>
+                            <Nav.Link href="/       " className='nav-link-animated me-3' style={{ fontWeight: "600", color: " #E5EAEE" }}>Home</Nav.Link>
+                            <Nav.Link href="/about" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>About Us</Nav.Link>
                             <Nav.Link href="#services" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Meet Our Team</Nav.Link>
                             <NavDropdown style={{ fontWeight: "600", color: " #E5EAEE" }} title="Services" id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown" >
                             <NavDropdown.Item href="#action1">Onboarding</NavDropdown.Item>
