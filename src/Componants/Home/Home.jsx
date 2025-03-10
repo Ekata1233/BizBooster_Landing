@@ -6,10 +6,12 @@ import OurPartner from "../OurPartner/OurPartner";
 import Count from "../Count/Count";
 import Partner from "../Partner/Partner";
 import AboutOurServices from "../AboutOurServices/AboutOurServices";
+import Benifits from "../Benifits/Benifits";
+import StepsEarning from "../StepsEarning/StepsEarning";
 
 function Home() {
   return (
-    <div>
+    <div className="bg-white">
       <Container fluid className="position-relative p-0">
         {/* Header positioned absolutely on top */}
         <div className="position-absolute top-0 start-0 w-100 z-3">
@@ -31,6 +33,8 @@ function Home() {
     {/* <Partner/> */}
     <Partner/>
     <AboutOurServices/>
+    <Benifits/>
+    <StepsEarning/>
       </Container>
      
     </div>
