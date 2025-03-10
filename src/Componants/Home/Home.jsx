@@ -12,7 +12,7 @@ import Testimonial from "../Testimonial/Testimonial";
 
 function Home() {
   return (
-    <div className="bg-white">
+    <div className="">
       <Container fluid className="position-relative p-0">
         {/* Header positioned absolutely on top */}
         <div className="position-absolute top-0 start-0 w-100 z-3">

@@ -13,7 +13,7 @@ const StepsEarning = () => {
   ];
 
   return (
-    <div className="div-bg ">
+    <div className="bg-white ">
         <Container className="flex flex-col items-center py-5">
       <h1 className="text-center fw-bold blue pb-4">
         Start your Step towards Earning
