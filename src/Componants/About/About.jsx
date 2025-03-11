@@ -3,6 +3,7 @@ import Hero from "../../assets/business-success-1.png";
 import { Container } from 'react-bootstrap';
 import Header from '../Header/Header';
 import WelcomeBizBooster from '../WelcomeBizbooster/WelcomeBizBooster';
+import OurMession from '../OurMession/OurMession';
 
 function About() {
   return (
@@ -19,6 +20,7 @@ function About() {
   </div>
 </div>
    <WelcomeBizBooster/>
+   <OurMession/>
 </div>
   )
 }
