@@ -3,6 +3,12 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import "../Contact/Contact.css";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const Contact = () => {
   return (
@@ -10,75 +16,122 @@ const Contact = () => {
       <div className="contact-background"></div>
       <div className="count-overlay">
         <Container>
-          <h2 className="text-center text-white fw-bold py-5">
+          <motion.h2
+            className="text-center text-white fw-bold py-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.5 }}
+            variants={fadeInUp}
+          >
             Know About Business Model
-          </h2>
+          </motion.h2>
 
-          {/* Name Fields */}
           <Row className="my-4">
-            <Col xs={12} sm={6} md={4}>
-              <Form.Control type="text" placeholder="First Name" className="rounded-0 py-2" />
-            </Col>
-            <Col xs={12} sm={6} md={4}>
-              <Form.Control type="text" placeholder="Middle Name" className="rounded-0 py-2" />
-            </Col>
-            <Col xs={12} md={4}>
-              <Form.Control type="text" placeholder="Last Name" className="rounded-0 py-2" />
-            </Col>
+            {["First Name", "Middle Name", "Last Name"].map((placeholder, index) => (
+              <Col key={index} xs={12} sm={6} md={4}>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.5 }}
+                  variants={fadeInUp}
+                >
+                  <Form.Control type="text" placeholder={placeholder} className="rounded-0 py-2" />
+                </motion.div>
+              </Col>
+            ))}
           </Row>
 
-          {/* Phone Number */}
           <Row className="my-4">
             <Col xs={12} sm={8} md={6}>
-              <Form.Control type="text" placeholder="Phone/Mobile No" className="rounded-0 py-2" />
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={fadeInUp}
+              >
+                <Form.Control type="text" placeholder="Phone/Mobile No" className="rounded-0 py-2" />
+              </motion.div>
             </Col>
           </Row>
 
-          {/* Address Fields */}
           <Row className="my-4">
-            <Col xs={12} sm={6} md={4}>
-              <Form.Control type="text" placeholder="City" className="rounded-0 py-2" />
-              <p className="my-2 text-white">0 of 50 max characters.</p>
-            </Col>
-            <Col xs={12} sm={6} md={4}>
-              <Form.Control type="text" placeholder="State/Province" className="rounded-0 py-2" />
-              <p className="my-2 text-white">0 of 50 max characters.</p>
-            </Col>
-            <Col xs={12} md={4}>
-              <Form.Control type="text" placeholder="Pincode/Zipcode" className="rounded-0 py-2" />
-              <p className="my-2 text-white">0 of 6 max characters.</p>
-            </Col>
+            {["City", "State/Province", "Pincode/Zipcode"].map((placeholder, index) => (
+              <Col key={index} xs={12} sm={6} md={4}>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.5 }}
+                  variants={fadeInUp}
+                >
+                  <Form.Control type="text" placeholder={placeholder} className="rounded-0 py-2" />
+                  <p className="my-2 text-white">0 of 50 max characters.</p>
+                </motion.div>
+              </Col>
+            ))}
           </Row>
 
-          {/* Business Model Selection */}
-          <div>
-            <Form>
-              <Row className="d-flex flex-column flex-md-row align-items-start text-white">
-                <p className="text-white fw-bold">Business Model</p>
-                <Stack direction="horizontal" gap={3} className="flex-wrap">
-                  <Form.Check type="radio" id="radio-1" label="Premium Partner" name="exampleRadio" />
-                  <Form.Check type="radio" id="radio-2" label="Distributor Partner" name="exampleRadio" />
-                  <Form.Check type="radio" id="radio-3" label="Franchise" name="exampleRadio" />
-                </Stack>
-              </Row>
-            </Form>
-          </div>
+          <Form>
+            <Row className="d-flex flex-column flex-md-row align-items-start text-white">
+              <motion.p
+                className="text-white fw-bold"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={fadeInUp}
+              >
+                Business Model
+              </motion.p>
+              <Stack direction="horizontal" gap={3} className="flex-wrap">
+                {["Premium Partner", "Distributor Partner", "Franchise"].map((label, index) => (
+                  <motion.div
+                    key={index}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, amount: 0.5 }}
+                    variants={fadeInUp}
+                  >
+                    <Form.Check type="radio" id={`radio-${index}`} label={label} name="exampleRadio" />
+                  </motion.div>
+                ))}
+              </Stack>
+            </Row>
+          </Form>
 
-          {/* Remarks */}
           <Row>
-            <p className="text-white fw-bold my-3">Remarks</p>
+            <motion.p
+              className="text-white fw-bold my-3"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.5 }}
+              variants={fadeInUp}
+            >
+              Remarks
+            </motion.p>
             <Form>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" rows={3} placeholder="Enter remark" className="rounded-0" />
-              </Form.Group>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={fadeInUp}
+              >
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                  <Form.Control as="textarea" rows={3} placeholder="Enter remark" className="rounded-0" />
+                </Form.Group>
+                <p className="my-2 text-white">0 of 1000 max characters.</p>
+              </motion.div>
             </Form>
-            <p className="my-2 text-white">0 of 1000 max characters.</p>
           </Row>
 
-          {/* Submit Button */}
-          <Button variant="light" className="rounded-0 px-3 mt-3">
-            Submit
-          </Button>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.5 }}
+            variants={fadeInUp}
+          >
+            <Button variant="light" className="rounded-0 px-3 mt-3">
+              Submit
+            </Button>
+          </motion.div>
         </Container>
       </div>
     </div>

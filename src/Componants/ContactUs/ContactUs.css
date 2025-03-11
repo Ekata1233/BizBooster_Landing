@@ -1,38 +1,37 @@
-.awards-container {
+.contact-container {
     position: relative;
     width: 100%;
-  }
-  
-  .awards-background {
+}
+
+.contact-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../assets//testimonials-bg.jpg');    background-size: cover;
+    background-image: url('../../assets/contact.jpg');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-  }
-  
-  .awards-overlay {
- 
+}
+
+.contact-overlay {
+
     align-items: center;
     justify-content: center;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.521); 
+    background-color: #0a1d2e8a;
     color: white;
-  }
-  .award-img {
+}
+
+.award-img {
     width: 100%;
-    
+
     object-fit: contain;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-
-  
- 
-
-  
+}
+.custom-margin {
+    margin-top: 2.5rem;
+}

@@ -6,6 +6,9 @@ import Footer from './Componants/Footer/Footer';
 import About from './Componants/About/About';
 import Header from './Componants/Header/Header';
 import Gallery from './Componants/Gallery/Gallery';
+import ContactUs from './Componants/ContactUs/ContactUs';
+import ServiceProvider from './Componants/ServiceProvider/ServiceProvider';
+import BecomeOurPartner from './Componants/BecomeOurPartner/BecomeOurPartner';
 
 function App() {
 
@@ -19,8 +22,11 @@ function App() {
           <Route path='/' element={<Home /> } />
           <Route path='/about' element={<About /> } />
           <Route path='/gallery' element={<Gallery /> } />
+          <Route path='/contactus' element={<ContactUs /> } />
+          <Route path='/serviceprovider' element={<ServiceProvider /> } />
 
-         
+          <Route path='/becomeourpartner' element={<BecomeOurPartner /> } />
+
         </Routes>
        
     <Footer/>

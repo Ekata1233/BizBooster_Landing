@@ -63,7 +63,7 @@ function Header() {
                         <Nav className="justify-content-end flex-grow-1 pe-3 my-2">
                             <Nav.Link href="/       " className='nav-link-animated me-3' style={{ fontWeight: "600", color: " #E5EAEE" }}>Home</Nav.Link>
                             <Nav.Link href="/about" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>About Us</Nav.Link>
-                            <Nav.Link href="#services" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Meet Our Team</Nav.Link>
+                           
                             <NavDropdown style={{ fontWeight: "600", color: " #E5EAEE" }} title="Services" id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown" >
                             <NavDropdown.Item href="#action1">Onboarding</NavDropdown.Item>
                                 <NavDropdown.Item href="#action2">Business</NavDropdown.Item>
@@ -76,13 +76,12 @@ function Header() {
                                 <NavDropdown.Item href="#action9">Franchise</NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Join Us" id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown">
-                                <NavDropdown.Item href="#action1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action2">Another Action</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action3">Something Else</NavDropdown.Item>
+                                <NavDropdown.Item href="/serviceprovider">Service Provider</NavDropdown.Item>
+                                <NavDropdown.Item href="/becomeourpartner">Become Our Partner</NavDropdown.Item>
+                               
                             </NavDropdown>
                             <Nav.Link href="/gallery" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Gallery</Nav.Link>
-                            <Nav.Link href="#contact" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Contact Us</Nav.Link>
+                            <Nav.Link href="/contactus" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Contact Us</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
