@@ -81,7 +81,7 @@ function Header() {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action3">Something Else</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#about" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Gallery</Nav.Link>
+                            <Nav.Link href="/gallery" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Gallery</Nav.Link>
                             <Nav.Link href="#contact" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>Contact Us</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>

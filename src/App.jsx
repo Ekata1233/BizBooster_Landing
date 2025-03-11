@@ -5,6 +5,7 @@ import Home from './Componants/Home/Home';
 import Footer from './Componants/Footer/Footer';
 import About from './Componants/About/About';
 import Header from './Componants/Header/Header';
+import Gallery from './Componants/Gallery/Gallery';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
         
           <Route path='/' element={<Home /> } />
           <Route path='/about' element={<About /> } />
-
+          <Route path='/gallery' element={<Gallery /> } />
 
          
         </Routes>

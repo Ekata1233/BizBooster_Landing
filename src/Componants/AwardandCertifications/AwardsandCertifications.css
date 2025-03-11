@@ -1,0 +1,9 @@
+.container-img {
+    background-image: url('/src/assets/testimonials-bg.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+  }
+  
