@@ -1,3 +1,10 @@
-.contact-container {
-   background-color: black;
+.count-overlay {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+}
+
+.count-text {
+   color: white;
 }
