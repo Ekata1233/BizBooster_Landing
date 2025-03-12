@@ -9,7 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-
+import playstrore from '../../assets/Google Play (1).png'
 function Footer() {
     return (
         <div className='text-white bg-dark '>
@@ -75,8 +75,8 @@ function Footer() {
                     </Col>
                     <Col> <div>
                         <h4>Download</h4>
-                        {/* <img src={playstore} className=' img-fluid'/>
-                        <img src={appstore}/> */}
+                        <img src={playstrore} className=' img-fluid my-3'/>
+                        {/* <img src={appstore}/> */}
                     </div>
                     </Col>
                 </Row>

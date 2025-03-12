@@ -3,7 +3,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Col, Container, Row } from "react-bootstrap";
 import videoFile from '../../assets/vecteezy_man-scrolling-on-social-media-and-giving-love-react-to-posts_8249817.mp4';
-import playstrore from "../../assets/Google Play.png";
+import playstrore from "../../assets/Google Play (1).png";
 
 const StepsEarning = () => {
   const steps = [
