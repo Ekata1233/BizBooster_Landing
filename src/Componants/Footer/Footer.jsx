@@ -88,16 +88,16 @@ function Footer() {
 
                             <Nav className="flex-column text-start">
                                 <h4>Quick Links</h4>
-                                <Nav.Link href="#" className="text-white">
+                                <Nav.Link href="/contactus" className="text-white">
                                     <MdOutlineKeyboardDoubleArrowRight className="" /> Contact Us
                                 </Nav.Link>
-                                <Nav.Link href="#" className="text-white">
+                                <Nav.Link href="/privacypolicy" className="text-white">
                                     <MdOutlineKeyboardDoubleArrowRight className="" /> Privacy Policy
                                 </Nav.Link>
-                                <Nav.Link href="#" className="text-white">
-                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Refund Policy
+                                <Nav.Link href="/returnandrefundpolicy" className="text-white">
+                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Return & Refund Policy
                                 </Nav.Link>
-                                <Nav.Link href="#" className="text-white">
+                                <Nav.Link href="/termsandcondition" className="text-white">
                                     <MdOutlineKeyboardDoubleArrowRight className="" /> Terms & Conditions
                                 </Nav.Link>
                             </Nav>

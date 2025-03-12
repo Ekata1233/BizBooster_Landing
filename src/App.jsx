@@ -9,6 +9,9 @@ import Gallery from './Componants/Gallery/Gallery';
 import ContactUs from './Componants/ContactUs/ContactUs';
 import ServiceProvider from './Componants/ServiceProvider/ServiceProvider';
 import BecomeOurPartner from './Componants/BecomeOurPartner/BecomeOurPartner';
+import PrivacyPolicy from './Componants/PrivacyPolicy/PrivacyPolicy';
+import ReturnandRefundPolicy from './Componants/ReturnandRefundPolicy/ReturnandRefundPolicy';
+import Termsandcondition from './Componants/TermsandCondition/Termsandcondition';
 
 function App() {
 
@@ -26,6 +29,10 @@ function App() {
           <Route path='/serviceprovider' element={<ServiceProvider /> } />
 
           <Route path='/becomeourpartner' element={<BecomeOurPartner /> } />
+          <Route path='/privacypolicy' element={<PrivacyPolicy /> } />
+          <Route path='/returnandrefundpolicy' element={<ReturnandRefundPolicy /> } />
+          <Route path='/termsandcondition' element={<Termsandcondition /> } />
+
 
         </Routes>
        
