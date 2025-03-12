@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Partner from "../Partner/Partner";
 import { motion } from "framer-motion"; // Import motion
+import '../Count/count.css'
 
 // Counter Component
 function Counter({ endValue }) {
@@ -9,7 +10,7 @@ function Counter({ endValue }) {
 
   useEffect(() => {
     let start = 0;
-    const duration = 2000; // Animation duration (2 seconds)
+    const duration = 5000; // Animation duration (2 seconds)
     const incrementTime = 50; // Update every 50ms
     const steps = duration / incrementTime;
     const stepSize = endValue / steps;
@@ -92,19 +93,16 @@ function Count() {
                     variants={scrollVariants}
                     transition={{ duration: 1 }}
                     viewport={{ once: false }}
+
                   >
-                    <div className="blue-bg-transpernt text-center p-lg-5">
-                      {/* Use data.count directly with a fallback */}
+                    <div className="blue-bg-transpernt text-center py-sm-2 py-lg-5 my-4 custom-responsive-div">
                       <Counter
-                        endValue={parseInt(
-                          (box.count || "0").replace("+", "")
-                        )}
+                        endValue={parseInt((box.count || "0").replace("+", ""))}
                       />
-                      {/* Use data.title directly with a fallback */}
                       <p className="text">{box.title || "N/A"}</p>
-                      {/* Use data.description directly with a fallback */}
                       <p className="text">{box.description || "N/A"}</p>
                     </div>
+
                   </motion.div>
                 </Col>
               ))}

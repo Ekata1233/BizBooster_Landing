@@ -30,13 +30,19 @@
    
     color: white;
   }
+  .custom-responsive-div{
+    height: 300px;
+  }
   @media (max-width: 320px) {
     body {
       font-size: 14px;
     }
     .count-overlay {
       
-      height: 140vh;
+      height: 160vh !important;
+    }
+    .custom-responsive-div{
+      height: 170px;
     }
   }
   
@@ -47,6 +53,9 @@
       
       height: 130vh;
     }
+    .custom-responsive-div{
+      height: 180px;
+    }
   }
   @media (min-width: 376px) and (max-width: 425px) {
     /* Styles for devices between 600px and 1200px */
@@ -54,7 +63,9 @@
       
       height: 120vh;
     }
-    
+    .custom-responsive-div{
+      height: 170px;
+    }
   }
   @media (min-width: 426px) and (max-width: 768px) {
     /* Styles for devices between 600px and 1200px */
@@ -75,7 +86,9 @@
       height: 100vh;
      
     }
-    
+    .custom-responsive-div{
+      height: 200px;
+    }
   
   }
   @media (min-width: 769px) and (max-width: 1024px) {
