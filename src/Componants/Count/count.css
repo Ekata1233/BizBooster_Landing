@@ -10,11 +10,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../../assets/count-bg.jpg"); /* Make sure the path is correct */
+    background-image: url("../../assets/count-bg.jpg");  
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1; /* Moves the background behind content */
+    z-index: -1;
   }
   
   .count-overlay {
@@ -22,7 +22,8 @@
     align-items: center;
     justify-content: center;
     height: 70vh;
-    background-color: rgba(126, 126, 126, 0.418); /* Adds a dark overlay */
+    background-color: rgba(0, 0, 0, 0.466); 
+
   }
   
   .count-text {
@@ -41,9 +42,7 @@
   
   @media (min-width: 321px) and (max-width: 375px) {
     /* Styles for devices between 600px and 1200px */
-    body {
-      background-color: lightblue;
-    }
+  
     .count-overlay {
       
       height: 130vh;

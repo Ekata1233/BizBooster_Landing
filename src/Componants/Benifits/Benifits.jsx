@@ -116,7 +116,7 @@ function Benifits() {
                                     <h5 className='fw-bold'>Boost Sales Effortlessly</h5>
                                     <p className='text-secondary text'>Receive daily reward points for continuous value,
                                         ensuring ongoing benefits and greater savings over time,
-                                        while enjoying exclusive perks and special discounts.</p>
+                                        while enjoying exclusive perks .</p>
                                 </div>
                             </div>
                         </motion.div>

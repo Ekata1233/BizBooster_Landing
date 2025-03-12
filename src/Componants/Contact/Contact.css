@@ -1,0 +1,31 @@
+.count-overlay {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+}
+
+.count-text {
+   color: white;
+}
+@media (max-width: 320px){
+   .count-overlay {
+     
+      height: 160vh;
+   }
+
+}
+@media (min-width: 321px) and (max-width: 375px) 
+{
+   .count-overlay {
+     
+      height: 160vh;
+   }
+}
+@media (min-width: 376px) and (max-width: 425px) 
+{
+   .count-overlay {
+     
+      height: 160vh;
+   }
+}

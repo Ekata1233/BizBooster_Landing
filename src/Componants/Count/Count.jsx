@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../Count/count.css"; // Import external CSS
 import { Col, Container, Row } from "react-bootstrap";
+import Partner from "../Partner/Partner";
 import { motion } from "framer-motion"; // Import motion
 
 // Counter Component
