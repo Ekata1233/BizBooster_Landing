@@ -2,7 +2,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   height: 100vh;
+   height: 120vh;
 }
 
 .count-text {
@@ -27,5 +27,12 @@
    .count-overlay {
      
       height: 160vh;
+   }
+}
+@media (min-width: 426px) and (max-width: 768px) 
+{
+   .count-overlay {
+     
+      height: 120vh;
    }
 }

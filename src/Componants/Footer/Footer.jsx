@@ -12,7 +12,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import playstrore from '../../assets/Google Play (1).png'
 function Footer() {
     return (
-        <div className='text-white bg-dark '>
+        <div className='text-white bg-dark pb-2'>
             <Container className='text-white bg-dark py-5'>
                 <Row >
 
@@ -110,8 +110,11 @@ function Footer() {
                         {/* <img src={appstore}/> */}
                     </div>
                     </Col>
+                   
                 </Row>
+                
             </Container>
+            <p className='text-center'>2023 © All rights Reserved | BizBooster2X</p>
         </div>
     )
 }

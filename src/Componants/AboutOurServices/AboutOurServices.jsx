@@ -11,6 +11,7 @@ import servicesicon7 from "../../assets/education_icon.png";
 import servicesicon8 from "../../assets/finance_icon.png";
 import servicesicon9 from "../../assets/franchise_icon.png";
 import { motion, useInView } from "framer-motion";
+import '../AboutOurServices/AboutOurServices.css'
 
 function AboutOurServices() {
   const ref = useRef(null);
@@ -42,14 +43,26 @@ function AboutOurServices() {
                     { icon: servicesicon9, title: "Franchise" },
                   ].map((service, index) => (
                     <Col key={index} xs={6} sm={6} md={4} lg={4} xl={4} xx={4}>
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="rounded rounded-4 mb-2"
-                        style={{ border: "1px solid #D9D9D9" }}
-                      >
-                        <img src={service.icon} className="img-fluid" alt={service.title} />
-                        <p className="text-center" style={{ fontWeight: "600" }}>{service.title}</p>
-                      </motion.div>
+                      <div className="hover-card position-relative rounded rounded-4 mb-2">
+                        <motion.div
+                          whileHover={{ scale: 1 }}
+                          className="background-overlay"
+                        />
+                        <img
+                          src={service.icon}
+                          className="img-fluid position-relative"
+                          alt={service.title}
+                          style={{ zIndex: 2 }}
+                        />
+                        <p
+                          className="text-center position-relative"
+                          style={{ fontWeight: "600", zIndex: 2 }}
+                        >
+                          {service.title}
+                        </p>
+                      </div>
+
+
                     </Col>
                   ))}
                 </Row>

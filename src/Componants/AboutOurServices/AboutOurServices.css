@@ -1,0 +1,24 @@
+.hover-card {
+    border: 1px solid #D9D9D9;
+    overflow: hidden;
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: #00509D;
+    border-radius: 50%;
+    z-index: 1;
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+  }
+  
+  .hover-card:hover .background-overlay {
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+  }
+  

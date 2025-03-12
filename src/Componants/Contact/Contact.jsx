@@ -14,8 +14,8 @@ const Contact = () => {
   return (
     <div className="contact-container">
       <div className="contact-background"></div>
-      <div className="count-overlay">
-        <Container>
+      <div className="count-overlay ">
+        <Container className="py-5">
           <motion.h2
             className="text-center text-white fw-bold py-5"
             initial="hidden"
@@ -26,7 +26,7 @@ const Contact = () => {
             Know About Business Model
           </motion.h2>
 
-          <Row className="my-4">
+          <Row className="my-2">
             {["First Name", "Middle Name", "Last Name"].map((placeholder, index) => (
               <Col key={index} xs={12} sm={6} md={4}>
                 <motion.div
@@ -35,7 +35,7 @@ const Contact = () => {
                   viewport={{ once: false, amount: 0.5 }}
                   variants={fadeInUp}
                 >
-                  <Form.Control type="text" placeholder={placeholder} className="rounded-0 py-2" />
+                  <Form.Control type="text" placeholder={placeholder} className="rounded-0 py-2 mt-3" />
                 </motion.div>
               </Col>
             ))}
