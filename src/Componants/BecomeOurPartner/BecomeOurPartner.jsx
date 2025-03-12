@@ -7,6 +7,7 @@ import image1 from '../../assets/amico.png'
 import image2 from '../../assets/cuate.png'
 import image3 from '../../assets/premium.png'
 import { motion } from "framer-motion";
+import NationWide from '../NationWide/NationWide';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -107,18 +108,16 @@ function BecomeOurPartner() {
                 <div className='my-5  text-white py-5' style={{ backgroundColor: " #00509D" }}>
                     <Container>
                         <Row>
-                        <motion.h3 className='fw-bold blue' initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.5 }}
-              variants={fadeInUp}>Super Growth Partner (SGP)</motion.h3>
+                        
                             <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5} className='d-flex align-items-center'>
+                            
                                 <motion.img src={image2} className='w-100 img-fluid ' initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={fadeInUp} />
                             </Col>
                             <Col xs={12} sm={12} md={12} lg={7} xl={7} xxl={7}>
-                                <motion.h3 className='fw-bold blue' initial="hidden"
+                                <motion.h3 className='fw-bold text-white' initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={fadeInUp}>Super Growth Partner (SGP)</motion.h3>
@@ -265,6 +264,7 @@ function BecomeOurPartner() {
 
                 </Container>
             </div>
+           
             <BecomePartnerContact />
         </div>
     )

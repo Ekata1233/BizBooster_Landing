@@ -4,6 +4,7 @@ import "../../Contact/Contact.css";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { motion } from "framer-motion";
+import NationWide from "../../NationWide/NationWide";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -14,7 +15,9 @@ function BecomePartnerContact() {
     return (
         <div className="contact-container">
         <div className="contact-background"></div>
+        <NationWide/>
         <div className="count-overlay">
+         
           <Container>
             <motion.h2
               className="text-center text-white fw-bold py-5"
