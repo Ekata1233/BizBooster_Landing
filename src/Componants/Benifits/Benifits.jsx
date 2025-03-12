@@ -16,6 +16,7 @@ function Benifits() {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0 },
     };
+    
     return (
         <div className='bg-white text-dark  w-100 py-5 '>
             <h3 className='fw-bold blue text-center'>Benefits of</h3>
