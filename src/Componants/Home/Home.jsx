@@ -10,6 +10,7 @@ import Benifits from "../Benifits/Benifits";
 import StepsEarning from "../StepsEarning/StepsEarning";
 import Testimonial from "../Testimonial/Testimonial";
 import Contact from "../Contact/Contact"
+import NationWide from "../NationWide/NationWide";
 
 function Home() {
   return (
@@ -36,7 +37,9 @@ function Home() {
     <Partner/>
     <AboutOurServices/>
     <Benifits/>
+    <NationWide/>
     <StepsEarning/>
+   
     <Testimonial/>
     <Contact />
       </Container>

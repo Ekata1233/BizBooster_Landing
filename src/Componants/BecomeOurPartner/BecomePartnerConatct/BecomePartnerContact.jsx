@@ -4,6 +4,7 @@ import "../../Contact/Contact.css";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { motion } from "framer-motion";
+import NationWide from "../../NationWide/NationWide";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -14,7 +15,9 @@ function BecomePartnerContact() {
     return (
         <div className="contact-container">
         <div className="contact-background"></div>
+        <NationWide/>
         <div className="count-overlay">
+         
           <Container>
             <motion.h2
               className="text-center text-white fw-bold py-5"
@@ -35,7 +38,7 @@ function BecomePartnerContact() {
                     viewport={{ once: false, amount: 0.5 }}
                     variants={fadeInUp}
                   >
-                    <Form.Control type="text" placeholder={placeholder} className="rounded-0 py-2 my-3" />
+                    <Form.Control type="text" placeholder={placeholder} className="rounded-3 py-2 my-3" />
                   </motion.div>
                 </Col>
               ))}
@@ -49,7 +52,7 @@ function BecomePartnerContact() {
                   viewport={{ once: false, amount: 0.5 }}
                   variants={fadeInUp}
                 >
-                  <Form.Control type="text" placeholder="Phone/Mobile No" className="rounded-0 py-2 my-4" />
+                  <Form.Control type="text" placeholder="Phone/Mobile No" className="rounded-3 py-2 my-4" />
                 </motion.div>
               </Col>
               <Col xs={12} sm={8} md={6}>
@@ -59,7 +62,7 @@ function BecomePartnerContact() {
                   viewport={{ once: false, amount: 0.5 }}
                   variants={fadeInUp}
                 >
-                  <Form.Control type="email" placeholder="name@example.com" className="rounded-0 py-2 my-4" />
+                  <Form.Control type="email" placeholder="name@example.com" className="rounded-3 py-2 my-4" />
                 </motion.div>
               </Col>
             </Row>
@@ -111,7 +114,7 @@ function BecomePartnerContact() {
                   variants={fadeInUp}
                 >
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Control as="textarea" rows={3} placeholder="Enter remark" className="rounded-0" />
+                    <Form.Control as="textarea" rows={3} placeholder="Enter remark" className="rounded-3" />
                   </Form.Group>
                   <p className="my-2 text-white">0 of 1000 max characters.</p>
                 </motion.div>
@@ -124,7 +127,7 @@ function BecomePartnerContact() {
               viewport={{ once: false, amount: 0.5 }}
               variants={fadeInUp}
             >
-              <Button  className="rounded-0 px-3 my-lg-5 w-100 fw-bold py-2  text-white" style={{backgroundColor:" #00509D"}}>
+              <Button  className="rounded-3 px-3 my-lg-5 w-100 fw-bold py-2  text-white" style={{backgroundColor:" #00509D"}}>
                 Submit
               </Button>
             </motion.div>

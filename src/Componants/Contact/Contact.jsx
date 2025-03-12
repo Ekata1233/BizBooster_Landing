@@ -128,7 +128,7 @@ const Contact = () => {
             viewport={{ once: false, amount: 0.5 }}
             variants={fadeInUp}
           >
-            <Button variant="light" className="rounded-0 px-3 mt-3">
+            <Button  className="rounded-3 px-3 my-lg-5 w-100 fw-bold py-2  text-white">
               Submit
             </Button>
           </motion.div>
