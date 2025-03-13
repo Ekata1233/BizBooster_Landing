@@ -12,6 +12,7 @@ import BecomeOurPartner from './Componants/BecomeOurPartner/BecomeOurPartner';
 import PrivacyPolicy from './Componants/PrivacyPolicy/PrivacyPolicy';
 import ReturnandRefundPolicy from './Componants/ReturnandRefundPolicy/ReturnandRefundPolicy';
 import Termsandcondition from './Componants/TermsandCondition/Termsandcondition';
+import ModuleSecriptions from './Componants/ModuleDescriptions/ModuleSecriptions';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/privacypolicy' element={<PrivacyPolicy /> } />
           <Route path='/returnandrefundpolicy' element={<ReturnandRefundPolicy /> } />
           <Route path='/termsandcondition' element={<Termsandcondition /> } />
+          <Route path='/moduledescription' element={<ModuleSecriptions    /> } />
 
 
         </Routes>

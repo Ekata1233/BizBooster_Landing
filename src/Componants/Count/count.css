@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: auto !important;
     background-color: rgba(0, 0, 0, 0.466); 
 
   }
@@ -39,7 +39,7 @@
     }
     .count-overlay {
       
-      height: 160vh !important;
+      height: auto !important;
     }
     .custom-responsive-div{
       height: 170px;
@@ -51,7 +51,7 @@
   
     .count-overlay {
       
-      height: 130vh;
+      height: auto !important;
     }
     .custom-responsive-div{
       height: 180px;
@@ -61,7 +61,7 @@
     /* Styles for devices between 600px and 1200px */
     .count-overlay {
       
-      height: 120vh;
+      height: 120vh !important;
     }
     .custom-responsive-div{
       height: 170px;

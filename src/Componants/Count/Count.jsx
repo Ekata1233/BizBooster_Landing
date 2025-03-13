@@ -70,7 +70,7 @@ function Count() {
 
       {/* Overlay Content */}
       <div className="count-overlay">
-        <Container>
+        <Container className="py-5">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -83,7 +83,7 @@ function Count() {
             </h2>
           </motion.div>
 
-          <div className="count-text">
+          <div className="count-text py-3">
             <Row>
               {boxData.map((box, index) => (
                 <Col key={index} xs={12} sm={12} md={6} lg={3} xl={3} xxl={3}>
@@ -95,7 +95,7 @@ function Count() {
                     viewport={{ once: false }}
 
                   >
-                    <div className="blue-bg-transpernt text-center py-sm-2 py-lg-5 my-4 custom-responsive-div">
+                    <div className="blue-bg-transpernt text-center py-sm-2   custom-responsive-div">
                       <Counter
                         endValue={parseInt((box.count || "0").replace("+", ""))}
                       />
