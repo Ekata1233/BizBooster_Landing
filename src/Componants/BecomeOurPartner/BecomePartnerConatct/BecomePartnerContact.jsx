@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "../../Contact/Contact.css";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { motion } from "framer-motion";
 import NationWide from "../../NationWide/NationWide";
+import { useLocation } from "react-router-dom";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -12,13 +13,20 @@ const fadeInUp = {
 };
 
 function BecomePartnerContact() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#contact-form") {
+      document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
     return (
         <div className="contact-container">
         <div className="contact-background"></div>
         <NationWide/>
         <div className="count-overlay">
          
-          <Container>
+          <Container  id="contact-form">
             <motion.h2
               className="text-center text-white fw-bold py-5"
               initial="hidden"

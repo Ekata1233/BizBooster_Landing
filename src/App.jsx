@@ -35,9 +35,11 @@ function App() {
           <Route path='/termsandcondition' element={<Termsandcondition /> } />
           <Route path='/moduledescription' element={<ModuleSecriptions    /> } />
 
+          <Route path='/refund&returnpolicy' element={<ReturnandRefundPolicy   /> } />
+          <Route path='/termsandcondition' element={<Termsandcondition   /> } />
 
         </Routes>
-       
+        
     <Footer/>
     </BrowserRouter>
     </>

@@ -94,7 +94,7 @@ function Footer() {
                                 <Nav.Link href="/privacypolicy" className="text-white">
                                     <MdOutlineKeyboardDoubleArrowRight className="" /> Privacy Policy
                                 </Nav.Link>
-                                <Nav.Link href="/returnandrefundpolicy" className="text-white">
+                                <Nav.Link href="/refund&returnpolicy" className="text-white">
                                     <MdOutlineKeyboardDoubleArrowRight className="" /> Return & Refund Policy
                                 </Nav.Link>
                                 <Nav.Link href="/termsandcondition" className="text-white">

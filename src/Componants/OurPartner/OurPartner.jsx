@@ -3,10 +3,12 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import investment from '../../assets/investnment11.png';
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 function OurPartner() {
     const [isVisible, setIsVisible] = useState(false);
     const [data, setData] = useState(null);
+    const navigate=useNavigate()
 
     useEffect(() => {
         // Fetch data from the API
@@ -72,7 +74,9 @@ function OurPartner() {
                                     <MdOutlineKeyboardDoubleArrowRight /> {text}
                                 </p>
                             ))}
-                            <Button className="btn-border bg-white text-dark rounded rounded-pill px-5 mt-5 py-2">
+                            <Button className="btn-border bg-white text-dark rounded rounded-pill px-5 mt-5 py-2"
+                            onClick={() => navigate("/becomeourpartner#contact-form")}
+                            >
                                 Apply Now
                             </Button>
                         </motion.div>
