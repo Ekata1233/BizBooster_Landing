@@ -5,18 +5,76 @@ import { motion } from 'framer-motion';
 import '../ServiceProvider/ServiceProvider.css';
 
 function ServiceProvider() {
-    const [file, setFile] = useState(null);
+    const [formData, setFormData] = useState({
+        firstName: '',
+        middleName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: '',
+        address: '',
+        module: '',
+        message: '',
+        file: null,
+    });
+    const [loading, setLoading] = useState(false);
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, file: e.target.files[0] });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (file) {
-            console.log('File uploaded:', file.name);
-        } else {
-            console.log('No file selected');
+        setLoading(true);
+
+        const data = new FormData();
+        data.append('firstName', formData.firstName);
+        data.append('middleName', formData.middleName);
+        data.append('lastName', formData.lastName);
+        data.append('phoneNumber', formData.phoneNumber);
+        data.append('email', formData.email);
+        data.append('address', formData.address);
+        data.append('module', formData.module);
+        data.append('message', formData.message);
+        if (formData.file) {
+            data.append('file', formData.file);
+        }
+
+        try {
+            const response = await fetch('https://biz-booster-landingpage-backend.vercel.app/api/service/submit-service', {
+                method: 'POST',
+                body: data,
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            console.log('Success:', result);
+            alert('Form submitted successfully!');
+
+            // Reset the form after successful submission
+            setFormData({
+                firstName: '',
+                middleName: '',
+                lastName: '',
+                phoneNumber: '',
+                email: '',
+                address: '',
+                module: '',
+                message: '',
+                file: null,
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to submit form.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -45,12 +103,18 @@ function ServiceProvider() {
                         <h1 className='text-center fw-bold'>Connect with Our Service Team</h1>
                         <Form className='py-5' onSubmit={handleSubmit}>
                             <Row>
-                                {['First Name', 'Middle Name', 'Last Name'].map((label, idx) => (
+                                {['firstName', 'middleName', 'lastName'].map((field, idx) => (
                                     <Col xs={12} sm={6} md={12} lg={4} xl={4} xxl={4} className='mb-4' key={idx}>
                                         <motion.div initial="hidden" animate="visible" variants={inputVariant}>
-                                            <Form.Group controlId={`input-${label.replace(' ', '').toLowerCase()}`}>
-                                                <Form.Label className='text'>{label}</Form.Label>
-                                                <Form.Control type="text" placeholder={`Enter ${label.toLowerCase()}`} />
+                                            <Form.Group controlId={`input-${field}`}>
+                                                <Form.Label className='text'>{field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1').trim()}</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    name={field}
+                                                    placeholder={`Enter ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`}
+                                                    value={formData[field]}
+                                                    onChange={handleChange}
+                                                />
                                             </Form.Group>
                                         </motion.div>
                                     </Col>
@@ -59,7 +123,13 @@ function ServiceProvider() {
                                     <motion.div initial="hidden" animate="visible" variants={inputVariant}>
                                         <Form.Group>
                                             <Form.Label className='text'>Email address</Form.Label>
-                                            <Form.Control type="email" placeholder="name@example.com" />
+                                            <Form.Control
+                                                type="email"
+                                                name="email"
+                                                placeholder="name@example.com"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                            />
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -67,7 +137,13 @@ function ServiceProvider() {
                                     <motion.div initial="hidden" animate="visible" variants={inputVariant}>
                                         <Form.Group>
                                             <Form.Label className='text'>Phone No.</Form.Label>
-                                            <Form.Control type="text" placeholder="Enter phone number" />
+                                            <Form.Control
+                                                type="text"
+                                                name="phoneNumber"
+                                                placeholder="Enter phone number"
+                                                value={formData.phoneNumber}
+                                                onChange={handleChange}
+                                            />
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -77,7 +153,13 @@ function ServiceProvider() {
                                     <motion.div initial="hidden" animate="visible" variants={inputVariant}>
                                         <Form.Group>
                                             <Form.Label className='text'>Address</Form.Label>
-                                            <Form.Control type="text" placeholder="Enter address" />
+                                            <Form.Control
+                                                type="text"
+                                                name="address"
+                                                placeholder="Enter address"
+                                                value={formData.address}
+                                                onChange={handleChange}
+                                            />
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -85,17 +167,21 @@ function ServiceProvider() {
                                     <motion.div initial="hidden" animate="visible" variants={inputVariant}>
                                         <Form.Group>
                                             <Form.Label className='text'>Modules</Form.Label>
-                                            <Form.Select>
-                                                <option>Select Modules</option>
-                                                <option value="1">Onboarding</option>
-                                                <option value="2">Business</option>
-                                                <option value="3">Branding/Marketing</option>
-                                                <option value="4">Legal Services</option>
-                                                <option value="5">Home Services</option>
-                                                <option value="6">IT Services</option>
-                                                <option value="7">Education</option>
-                                                <option value="8">Finance Services</option>
-                                                <option value="9">Franchise</option>
+                                            <Form.Select
+                                                name="module"
+                                                value={formData.module}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="">Select Modules</option>
+                                                <option value="Onboarding">Onboarding</option>
+                                                <option value="Business">Business</option>
+                                                <option value="Branding/Marketing">Branding/Marketing</option>
+                                                <option value="Legal Services">Legal Services</option>
+                                                <option value="Home Services">Home Services</option>
+                                                <option value="IT Services">IT Services</option>
+                                                <option value="Education">Education</option>
+                                                <option value="Finance Services">Finance Services</option>
+                                                <option value="Franchise">Franchise</option>
                                             </Form.Select>
                                         </Form.Group>
                                     </motion.div>
@@ -108,6 +194,7 @@ function ServiceProvider() {
                                             <Form.Label>Upload File</Form.Label>
                                             <Form.Control
                                                 type="file"
+                                                name="file"
                                                 onChange={handleFileChange}
                                                 accept=".jpg,.jpeg,.png,.pdf"
                                             />
@@ -118,11 +205,22 @@ function ServiceProvider() {
                             <motion.div initial="hidden" animate="visible" variants={inputVariant}>
                                 <Form.Group>
                                     <Form.Label className='text'>Message</Form.Label>
-                                    <Form.Control as="textarea" rows={3} />
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                    />
                                 </Form.Group>
                             </motion.div>
-                            <Button type="submit" className='w-100 mt-5 py-2 text-white fw-bold' style={{ backgroundColor: "#00509D" }}>
-                                Submit
+                            <Button
+                                type="submit"
+                                className='w-100 mt-5 py-2 text-white fw-bold'
+                                style={{ backgroundColor: "#00509D" }}
+                                disabled={loading}
+                            >
+                                {loading ? 'Submitting...' : 'Submit'}
                             </Button>
                         </Form>
                     </Container>
