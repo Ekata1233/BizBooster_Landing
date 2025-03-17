@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: auto !important;
     background-color: rgba(0, 0, 0, 0.466); 
 
   }
@@ -30,13 +30,19 @@
    
     color: white;
   }
+  .custom-responsive-div{
+    height: 300px;
+  }
   @media (max-width: 320px) {
     body {
       font-size: 14px;
     }
     .count-overlay {
       
-      height: 140vh;
+      height: auto !important;
+    }
+    .custom-responsive-div{
+      height: 170px;
     }
   }
   
@@ -45,16 +51,21 @@
   
     .count-overlay {
       
-      height: 130vh;
+      height: auto !important;
+    }
+    .custom-responsive-div{
+      height: 180px;
     }
   }
   @media (min-width: 376px) and (max-width: 425px) {
     /* Styles for devices between 600px and 1200px */
     .count-overlay {
       
-      height: 120vh;
+      height: 120vh !important;
     }
-    
+    .custom-responsive-div{
+      height: 170px;
+    }
   }
   @media (min-width: 426px) and (max-width: 768px) {
     /* Styles for devices between 600px and 1200px */
@@ -75,7 +86,9 @@
       height: 100vh;
      
     }
-    
+    .custom-responsive-div{
+      height: 200px;
+    }
   
   }
   @media (min-width: 769px) and (max-width: 1024px) {

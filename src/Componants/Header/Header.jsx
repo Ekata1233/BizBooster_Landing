@@ -65,15 +65,15 @@ function Header() {
                             <Nav.Link href="/about" className="nav-link-animated me-3 " style={{ fontWeight: "600", color: " #E5EAEE" }}>About Us</Nav.Link>
                            
                             <NavDropdown style={{ fontWeight: "600", color: " #E5EAEE" }} title="Services" id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown" >
-                            <NavDropdown.Item href="#action1">Onboarding</NavDropdown.Item>
-                                <NavDropdown.Item href="#action2">Business</NavDropdown.Item>
-                                <NavDropdown.Item href="#action3">Branding/Marketing</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Legal Services</NavDropdown.Item>
-                                <NavDropdown.Item href="#action5">Home Services</NavDropdown.Item>
-                                <NavDropdown.Item href="#action6">IT Services</NavDropdown.Item>
-                                <NavDropdown.Item href="#action7">Education</NavDropdown.Item>
-                                <NavDropdown.Item href="#action8">Finance Services</NavDropdown.Item>
-                                <NavDropdown.Item href="#action9">Franchise</NavDropdown.Item>
+                            <NavDropdown.Item href="/moduledescription">Onboarding</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Business</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Branding/Marketing</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Legal Services</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Home Services</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">IT Services</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Education</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Finance Services</NavDropdown.Item>
+                                <NavDropdown.Item href="/moduledescription">Franchise</NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Join Us" id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown">
                                 <NavDropdown.Item href="/serviceprovider">Service Provider</NavDropdown.Item>
