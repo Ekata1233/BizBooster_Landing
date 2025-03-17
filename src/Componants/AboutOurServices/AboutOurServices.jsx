@@ -1,16 +1,45 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import srives from "../../assets/4.-BFSI-Services-1270x755.jpg";
 import { motion, useInView } from "framer-motion";
-import '../AboutOurServices/AboutOurServices.css'
+import '../AboutOurServices/AboutOurServices.css';
+
+// Import your service icons here
+import servicesicon1 from "../../assets/icons/onboarding-icon.png";
+import servicesicon2 from "../../assets/icons/business-icon.png";
+import servicesicon3 from "../../assets/icons/branding-marketing-icon.png";
+import servicesicon4 from "../../assets/icons/legal-services-icon.png";
+import servicesicon5 from "../../assets/icons/home-services-icon.png";
+import servicesicon6 from "../../assets/icons/it-services-icon.png";
+import servicesicon7 from "../../assets/icons/education-icon.png";
+import servicesicon8 from "../../assets/icons/finance-services-icon.png";
+import servicesicon9 from "../../assets/icons/franchise-icon.png";
 
 function AboutOurServices() {
   const ref = useRef(null);
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      // Handle scroll logic here if needed
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const services = [
+    { icon: servicesicon1, title: "Onboarding" },
+    { icon: servicesicon2, title: "Business" },
+    { icon: servicesicon3, title: "Branding/Marketing" },
+    { icon: servicesicon4, title: "Legal Services" },
+    { icon: servicesicon5, title: "Home Services" },
+    { icon: servicesicon6, title: "IT Services" },
+    { icon: servicesicon7, title: "Education" },
+    { icon: servicesicon8, title: "Finance Services" },
+    { icon: servicesicon9, title: "Franchise" },
+  ];
+
   return (
     <div className="bg-white" id="about-services">
       <div className="div-bg py-5">
@@ -25,21 +54,11 @@ function AboutOurServices() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <Row>
-                  {[
-                    { icon: servicesicon1, title: "Onboarding" },
-                    { icon: servicesicon2, title: "Business" },
-                    { icon: servicesicon3, title: "Branding/Marketing" },
-                    { icon: servicesicon4, title: "Legal Services" },
-                    { icon: servicesicon5, title: "Home Services" },
-                    { icon: servicesicon6, title: "IT Services" },
-                    { icon: servicesicon7, title: "Education" },
-                    { icon: servicesicon8, title: "Finance Services" },
-                    { icon: servicesicon9, title: "Franchise" },
-                  ].map((service, index) => (
-                    <Col key={index} xs={6} sm={6} md={4} lg={4} xl={4} xx={4}>
+                  {services.map((service, index) => (
+                    <Col key={index} xs={6} sm={6} md={4} lg={4} xl={4} xxl={4}>
                       <div className="hover-card position-relative rounded rounded-4 mb-2">
                         <motion.div
-                          whileHover={{ scale: 1 }}
+                          whileHover={{ scale: 1.1 }}
                           className="background-overlay"
                         />
                         <img
@@ -55,8 +74,6 @@ function AboutOurServices() {
                           {service.title}
                         </p>
                       </div>
-
-
                     </Col>
                   ))}
                 </Row>
@@ -81,7 +98,3 @@ function AboutOurServices() {
 }
 
 export default AboutOurServices;
-
-
-
-
