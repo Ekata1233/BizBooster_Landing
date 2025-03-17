@@ -1,78 +1,45 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import srives from "../../assets/4.-BFSI-Services-1270x755.jpg";
+import servicesImage from "../../assets/4.-BFSI-Services-1270x755.jpg";
 import { motion, useInView } from "framer-motion";
-
 import '../AboutOurServices/AboutOurServices.css';
-
-// Import your service icons here
-import servicesicon1 from "../../assets/icons/onboarding-icon.png";
-import servicesicon2 from "../../assets/icons/business-icon.png";
-import servicesicon3 from "../../assets/icons/branding-marketing-icon.png";
-import servicesicon4 from "../../assets/icons/legal-services-icon.png";
-import servicesicon5 from "../../assets/icons/home-services-icon.png";
-import servicesicon6 from "../../assets/icons/it-services-icon.png";
-import servicesicon7 from "../../assets/icons/education-icon.png";
-import servicesicon8 from "../../assets/icons/finance-services-icon.png";
-import servicesicon9 from "../../assets/icons/franchise-icon.png";
-import '../AboutOurServices/AboutOurServices.css'
 import { useNavigate } from "react-router-dom";
 
-
-
+// Import service icons
+import servicessicon1 from '../../assets/onboarding_icon.png';
+import servicessicon2 from "../../assets/business_icon.png";
+import servicessicon3 from "../../assets/brand_marketing_icon.png";
+import servicessicon4 from "../../assets/legal_services_icon.png";
+import servicessicon5 from "../../assets/home_service_icon.png";
+import servicessicon6 from "../../assets/it _services_icon.png";
+import servicessicon7 from "../../assets/education_icon.png";
+import servicessicon8 from "../../assets/finance_icon.png";
+import servicessicon9 from "../../assets/franchise_icon.png";
 
 function AboutOurServices() {
   const ref = useRef(null);
-  const navigate=useNavigate()
-   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
-  useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 300) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Handle scroll logic here if needed
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const services = [
-    { icon: servicesicon1, title: "Onboarding" },
-    { icon: servicesicon2, title: "Business" },
-    { icon: servicesicon3, title: "Branding/Marketing" },
-    { icon: servicesicon4, title: "Legal Services" },
-    { icon: servicesicon5, title: "Home Services" },
-    { icon: servicesicon6, title: "IT Services" },
-    { icon: servicesicon7, title: "Education" },
-    { icon: servicesicon8, title: "Finance Services" },
-    { icon: servicesicon9, title: "Franchise" },
+    { icon: servicessicon1, title: "Onboarding" },
+    { icon: servicessicon2, title: "Business" },
+    { icon: servicessicon3, title: "Branding/Marketing" },
+    { icon: servicessicon4, title: "Legal Services" },
+    { icon: servicessicon5, title: "Home Services" },
+    { icon: servicessicon6, title: "IT Services" },
+    { icon: servicessicon7, title: "Education" },
+    { icon: servicessicon8, title: "Finance Services" },
+    { icon: servicessicon9, title: "Franchise" },
   ];
 
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
   return (
     <div className="bg-white" id="about-services">
       <div className="div-bg py-5">
         <Container>
           <h2 className="fw-bold text-center mb-5">About Our Services</h2>
           <Row className="align-items-center">
-            {/* Left Column - Services List (Animate from Left) */}
-            <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6} ref={ref}>
+            <Col xs={12} md={6} ref={ref}>
               <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
@@ -80,12 +47,9 @@ function AboutOurServices() {
               >
                 <Row>
                   {services.map((service, index) => (
-                    <Col key={index} xs={6} sm={6} md={4} lg={4} xl={4} xxl={4}>
+                    <Col key={index} xs={6} md={4}>
                       <div className="hover-card position-relative rounded rounded-4 mb-2">
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          className="background-overlay"
-                        />
+                        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
                         <img
                           src={service.icon}
                           className="img-fluid position-relative"
@@ -105,14 +69,13 @@ function AboutOurServices() {
               </motion.div>
             </Col>
 
-            {/* Right Column - Image (Animate from Right) */}
-            <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6} ref={ref}>
+            <Col xs={12} md={6} ref={ref}>
               <motion.div
                 initial={{ x: 100, opacity: 0 }}
                 animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <img src={srives} alt="Services" className="img-fluid my-2" />
+                <img src={servicesImage} alt="Services" className="img-fluid my-2" />
               </motion.div>
             </Col>
           </Row>
