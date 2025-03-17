@@ -34,9 +34,7 @@ function Footer() {
                                     </a>
 
                                 </div>
-                                <div className='me-4 fs-4'>
-                                    <FaXTwitter />
-                                </div>
+                               
                                 <div className='me-4 fs-4'>
                                 <a
                                         href="https://www.instagram.com/biz.booster.2x?igsh=MXRmcmViYWVjNXE2YQ==" target="_blank" rel="noopener noreferrer"
@@ -61,14 +59,20 @@ function Footer() {
                                         <FaWhatsapp />
                                     </a>
                                 </div>
+                                <div className='me-4 fs-4'>
+                                <a
+                                        href=" https://youtube.com/@bizbooster2x?si=jAlIAVgAD1A80oLu" target="_blank" rel="noopener noreferrer"
+                                          className='text-white'
+                                    >
+                                       <FaYoutube />
+                                    </a>
+                                </div>
                                 
-                                
-                                <div className='me-4 fs-4'> <FaYoutube /></div>
+                                <div className='me-4 fs-4'> </div>
                             </div>
 
 
-
-
+                           
                         </div>
                     </Col>
 

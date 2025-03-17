@@ -11,27 +11,30 @@ import servicesicon7 from "../../assets/education_icon.png";
 import servicesicon8 from "../../assets/finance_icon.png";
 import servicesicon9 from "../../assets/franchise_icon.png";
 import { motion, useInView } from "framer-motion";
-import '../AboutOurServices/AboutOurServices.css'
+import '../AboutOurServices/AboutOurServices.css';
 import { useNavigate } from "react-router-dom";
+
 
 function AboutOurServices() {
   const ref = useRef(null);
-  const navigate=useNavigate()
-   const [isVisible, setIsVisible] = useState(false);
-  const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
-  useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 300) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  // Optional: Remove if not needed
+  const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsVisible(scrollPosition > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <div className="bg-white" id="about-services">
       <div className="div-bg py-5">
