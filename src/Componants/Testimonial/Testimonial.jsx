@@ -4,54 +4,41 @@ import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
 import '../Testimonial/Testimonial.css';
-import testimg from '../../assets/it_services_icon.png';
 
 function Testimonial() {
   const [activeButton, setActiveButton] = useState('');
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchTestimonials();
   }, []);
 
-  const testimonial = [
-    {
-      para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, ",
-      src: testimg,
-      title: "Johan Abraham",
-      text1: "New York, USA",
-      text2: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
-    },
-    {
-      para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, ",
-      src: testimg,
-      title: "Johan Abraham",
-      text1: "New York, USA",
-      text2: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
-    },
-    {
-      para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, ",
-      src: testimg,
-      title: "Johan Abraham",
-      text1: "New York, USA",
-      text2: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
-    },
-    {
-      para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, ",
-      src: testimg,
-      title: "Johan Abraham",
-      text1: "New York, USA",
-      text2: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>
+  const fetchTestimonials = async () => {
+    try {
+      const response = await fetch('https://biz-booster-landingpage-backend.vercel.app/api/testimonial/get');
+      const data = await response.json();
+      const formattedTestimonials = data.map(testimonial => ({
+        para: testimonial.description,
+        src: testimonial.image,
+        title: testimonial.name,
+        text1: testimonial.location,
+        text2: Array.from({ length: testimonial.rating }, (_, i) => <FaStar key={i} />)
+      }));
+      setTestimonials(formattedTestimonials);
+    } catch (error) {
+      console.error('Error fetching testimonials:', error);
     }
-  ];
+  };
 
-  const extendedCards = [...testimonial, ...testimonial.slice(0, 3)];
+  const extendedCards = [...testimonials, ...testimonials.slice(0, 3)];
 
   const handleButtonClick = (direction) => {
     if (isTransitioning) {
       if (direction === 'LeftArrow') {
-        setVisibleIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : testimonial.length - 1));
+        setVisibleIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : testimonials.length - 1));
       } else if (direction === 'RightArrow') {
         setVisibleIndex(prevIndex => prevIndex + 1);
       }
@@ -78,7 +65,7 @@ function Testimonial() {
     }
   }, [visibleIndex, extendedCards.length]);
 
-  const centerIndex = (visibleIndex + 1) % testimonial.length;
+  const centerIndex = (visibleIndex + 1) % testimonials.length;
 
   return (
     <div className="testi pb-5 bg-white">
@@ -97,12 +84,12 @@ function Testimonial() {
         >
           {extendedCards.map((testi, index) => (
             <Card
-              className={`packCard1 mx-3 my-5 ${index % testimonial.length === centerIndex ? 'center-card' : ''}`}
+              className={`packCard1 mx-3 my-5 ${index % testimonials.length === centerIndex ? 'center-card' : ''}`}
               style={{ width: '450px', border: "none" }}
               key={index}
             >
               <Card.Body>
-                <div className={`testiDiv pb-5 ${index % testimonial.length === centerIndex ? 'center-background' : ''}`}>
+                <div className={`testiDiv pb-5 ${index % testimonials.length === centerIndex ? 'center-background' : ''}`}>
                   <Card.Text className="p-3">
                     {testi.para}
                   </Card.Text>
