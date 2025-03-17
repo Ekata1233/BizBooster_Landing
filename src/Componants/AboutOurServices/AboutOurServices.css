@@ -23,4 +23,6 @@
     left: -100%;
     background: rgba(0, 80, 157, 0.3); /* Slightly darker on hover for visibility */
   }
-  
+
+  /* Ensure all icons have the same height and width */
+

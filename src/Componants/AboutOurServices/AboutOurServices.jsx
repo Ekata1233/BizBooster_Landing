@@ -1,33 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import srives from "../../assets/4.-BFSI-Services-1270x755.jpg";
-import servicesicon1 from "../../assets/onboarding_icon.png";
-import servicesicon2 from "../../assets/business_icon.png";
-import servicesicon3 from "../../assets/brand_marketing_icon.png";
-import servicesicon4 from "../../assets/legal_services_icon.png";
-import servicesicon5 from "../../assets/home_service_icon.png";
-import servicesicon6 from "../../assets/it _services_icon.png";
-import servicesicon7 from "../../assets/education_icon.png";
-import servicesicon8 from "../../assets/finance_icon.png";
-import servicesicon9 from "../../assets/franchise_icon.png";
 import { motion, useInView } from "framer-motion";
-import '../AboutOurServices/AboutOurServices.css';
+import '../AboutOurServices/AboutOurServices.css'
 import { useNavigate } from "react-router-dom";
-
 
 function AboutOurServices() {
   const ref = useRef(null);
-  const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Optional: Remove if not needed
+  const navigate=useNavigate()
+   const [isVisible, setIsVisible] = useState(false);
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
-
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsVisible(scrollPosition > 300);
-    };
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -44,9 +35,9 @@ function AboutOurServices() {
             {/* Left Column - Services List (Animate from Left) */}
             <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6} ref={ref}>
               <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+                initial={{ x: -100, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <Row>
                   {[
@@ -61,9 +52,7 @@ function AboutOurServices() {
                     { icon: servicesicon9, title: "Franchise" },
                   ].map((service, index) => (
                     <Col key={index} xs={6} sm={6} md={4} lg={4} xl={4} xx={4}>
-                      <div className="hover-card position-relative rounded rounded-4 mb-2"
-                      onClick={()=>navigate("/moduledescription")}
-                      >
+                      <div className="hover-card position-relative rounded rounded-4 mb-2">
                         <motion.div
                           whileHover={{ scale: 1 }}
                           className="background-overlay"
@@ -107,3 +96,7 @@ function AboutOurServices() {
 }
 
 export default AboutOurServices;
+
+
+
+
