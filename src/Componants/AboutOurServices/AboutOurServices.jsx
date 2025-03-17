@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import srives from "../../assets/4.-BFSI-Services-1270x755.jpg";
 import { motion, useInView } from "framer-motion";
+
 import '../AboutOurServices/AboutOurServices.css';
 
 // Import your service icons here
@@ -14,10 +15,24 @@ import servicesicon6 from "../../assets/icons/it-services-icon.png";
 import servicesicon7 from "../../assets/icons/education-icon.png";
 import servicesicon8 from "../../assets/icons/finance-services-icon.png";
 import servicesicon9 from "../../assets/icons/franchise-icon.png";
+import '../AboutOurServices/AboutOurServices.css'
+import { useNavigate } from "react-router-dom";
 
 function AboutOurServices() {
   const ref = useRef(null);
+  const navigate=useNavigate()
+   const [isVisible, setIsVisible] = useState(false);
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
+  useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 300) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +55,13 @@ function AboutOurServices() {
     { icon: servicesicon9, title: "Franchise" },
   ];
 
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <div className="bg-white" id="about-services">
       <div className="div-bg py-5">
