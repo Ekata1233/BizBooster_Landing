@@ -1,9 +1,20 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import srives from "../../assets/4.-BFSI-Services-1270x755.jpg";
 import { motion, useInView } from "framer-motion";
 import '../AboutOurServices/AboutOurServices.css'
 import { useNavigate } from "react-router-dom";
+
+import servicesicon1 from "../../assets/onboarding_icon.png";
+import servicesicon2 from "../../assets/business_icon.png";
+import servicesicon3 from "../../assets/brand_marketing_icon.png";
+import servicesicon4 from "../../assets/legal_services_icon.png";
+import servicesicon5 from "../../assets/home_service_icon.png";
+import servicesicon6 from "../../assets/it _services_icon.png";
+import servicesicon7 from "../../assets/education_icon.png";
+import servicesicon8 from "../../assets/finance_icon.png";
+import servicesicon9 from "../../assets/franchise_icon.png";
+
 
 function AboutOurServices() {
   const ref = useRef(null);

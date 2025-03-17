@@ -1,7 +1,6 @@
 import React from 'react'
 import Hero from "../../assets/gallery.png";
-import AwardsAndCertifications from "../AwardandCertifications/AwardsAndCertifications";
-
+import AwardsandCertifications from '../AwardandCertifications/AwardsandCertifications'
 function Gallery() {
   return (
     <div>
@@ -17,7 +16,7 @@ function Gallery() {
    
       </div>
     </div>         
-    <AwardsAndCertifications/>
+    <AwardsandCertifications/>
     </div>
   )
 }
