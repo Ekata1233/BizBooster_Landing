@@ -1,10 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Hero from "../../assets/istockphoto-1311934969-612x612.jpg";
-import '../ContactUs/ContactUs.css'
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import '../ContactUs/ContactUs.css';
+import { Button, Col, Container, Row, Spinner, Alert } from 'react-bootstrap';
 import { FaLocationDot } from "react-icons/fa6";
 import Form from 'react-bootstrap/Form';
+import axios from 'axios'; // For making API requests
+
 function ContactUs() {
+    // State for form inputs
+    const [formData, setFormData] = useState({
+        FirstName: "",
+        LastName: "",
+        EmailAddress: "",
+        PhoneNo: "",
+        Services: "",
+        Message: ""
+    });
+
+    // State for loading and error handling
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
+
+    // Handle input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError(null);
+        setSuccess(false);
+
+        try {
+            const response = await axios.post(
+                'https://biz-booster-landingpage-backend.vercel.app/api/contact/submit',
+                formData
+            );
+
+            if (response.status === 201) {
+                setSuccess(true);
+                // Reset form fields
+                setFormData({
+                    FirstName: "",
+                    LastName: "",
+                    EmailAddress: "",
+                    PhoneNo: "",
+                    Services: "",
+                    Message: ""
+                });
+                // Auto-hide success message after 5 seconds
+                setTimeout(() => {
+                    setSuccess(false);
+                }, 5000);
+            }
+        } catch (error) {
+            setError("Failed to submit the form. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div>
             <div className="position-relative">
@@ -16,7 +78,6 @@ function ContactUs() {
                 />
                 <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
                     <h1 className="text-white fw-bold text-start">Contact Us...</h1>
-
                 </div>
             </div>
             <div className='contact-container'>
@@ -28,7 +89,7 @@ function ContactUs() {
                                 <h1 className="fw-bold">Get in touch for any kind of help and information</h1>
                             </Col>
                             <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6}>
-                                <p className=" text">
+                                <p className="text">
                                     We’re glad to discuss your organisation’s situation. So please contact us via the details below, or enter your request.
                                 </p>
                             </Col>
@@ -88,57 +149,115 @@ function ContactUs() {
                                 </div>
                             </Col>
 
-
                             <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6}>
-
-                                <Form className='mt-4'>
-                                    <Row >
-                                    <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} mb-4>
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>First Name</Form.Label>
-                                        <Form.Control type="text" placeholder="enter first name" />
-                                    </Form.Group>
-                                    </Col>
-                                    <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} mb-4>
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Last Name</Form.Label>
-                                        <Form.Control type="text" placeholder="enter last name" />
-                                    </Form.Group>
-                                    </Col>
-                                    <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} mb-4>
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Email address</Form.Label>
-                                        <Form.Control type="email" placeholder="name@example.com" />
-                                    </Form.Group>
-                                    </Col>
-                                    <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} mb-4>
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Phone No.</Form.Label>
-                                        <Form.Control type="text" placeholder="enter phone no." />
-                                    </Form.Group>
-                                    </Col>
+                                <Form onSubmit={handleSubmit}>
+                                    <Row>
+                                        <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} className="mb-4">
+                                            <Form.Group controlId="firstName">
+                                                <Form.Label>First Name</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="FirstName"
+                                                    placeholder="Enter first name"
+                                                    value={formData.FirstName}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                        </Col>
+                                        <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} className="mb-4">
+                                            <Form.Group controlId="lastName">
+                                                <Form.Label>Last Name</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="LastName"
+                                                    placeholder="Enter last name"
+                                                    value={formData.LastName}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                        </Col>
+                                        <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} className="mb-4">
+                                            <Form.Group controlId="email">
+                                                <Form.Label>Email address</Form.Label>
+                                                <Form.Control
+                                                    type="email"
+                                                    name="EmailAddress"
+                                                    placeholder="name@example.com"
+                                                    value={formData.EmailAddress}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                        </Col>
+                                        <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} className="mb-4">
+                                            <Form.Group controlId="phone">
+                                                <Form.Label>Phone No.</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="PhoneNo"
+                                                    placeholder="Enter phone no."
+                                                    value={formData.PhoneNo}
+                                                    onChange={handleInputChange}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                        </Col>
                                     </Row>
-                                    <Col xs={12} sm={6} md={12} lg={12} xl={12} xxl={12} mb-4>
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Services</Form.Label>
-                                        <Form.Control type="text" placeholder="enter services" />
-                                    </Form.Group>
-                                    </Col >
-                                    <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
+                                    <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12} className="mb-4">
+                                        <Form.Group controlId="services">
+                                            <Form.Label>Services</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                name="Services"
+                                                placeholder="Enter services"
+                                                value={formData.Services}
+                                                onChange={handleInputChange}
+                                                required
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Form.Group controlId="message" className="mb-4">
                                         <Form.Label>Message</Form.Label>
-                                        <Form.Control as="textarea" rows={3} />
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={3}
+                                            name="Message"
+                                            placeholder="Enter your message"
+                                            value={formData.Message}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
                                     </Form.Group>
+                                    <Button
+                                        type="submit"
+                                        className='w-100 text-white fw-bold border-none'
+                                        style={{ backgroundColor: "#00509D" }}
+                                        disabled={isLoading}
+                                    >
+                                        {isLoading ? (
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            />
+                                        ) : (
+                                            "Submit"
+                                        )}
+                                    </Button>
+                                    {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+                                    {success && <Alert variant="success" className="mt-3">Form submitted successfully!</Alert>}
                                 </Form>
-                                <Button className='w-100  text-white fw-bold border-none' style={{backgroundColor:" #00509D"}}>Submit</Button>
                             </Col>
                         </Row>
-
                     </Container>
                 </div>
             </div>
         </div>
-
-    )
+    );
 }
 
-export default ContactUs
+export default ContactUs;
