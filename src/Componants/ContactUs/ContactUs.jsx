@@ -5,6 +5,9 @@ import { Button, Col, Container, Row, Spinner, Alert } from 'react-bootstrap';
 import { FaLocationDot } from "react-icons/fa6";
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'; // For making API requests
+import { FaLocationArrow } from 'react-icons/fa';
+import { MdCall } from 'react-icons/md';
+import { IoMdMail } from 'react-icons/io';
 
 function ContactUs() {
     // State for form inputs
@@ -114,7 +117,7 @@ function ContactUs() {
                                         className='p-4'
                                         style={{ backgroundColor: "rgba(255, 255, 255, 0.29)", border: "1px solid white" }}
                                     >
-                                        <FaLocationDot className='fs-3' />
+                                        <FaLocationArrow  className='fs-3' />
                                     </span>
                                     <span>
                                         <h4 className='fw-bold'>Our Presence:</h4>
@@ -127,7 +130,7 @@ function ContactUs() {
                                         className='p-4'
                                         style={{ backgroundColor: "rgba(255, 255, 255, 0.29)", border: "1px solid white" }}
                                     >
-                                        <FaLocationDot className='fs-3' />
+                                        <MdCall className='fs-3' />
                                     </span>
                                     <span>
                                         <h4 className='fw-bold'>Call for help:</h4>
@@ -140,7 +143,7 @@ function ContactUs() {
                                         className='p-4'
                                         style={{ backgroundColor: "rgba(255, 255, 255, 0.29)", border: "1px solid white" }}
                                     >
-                                        <FaLocationDot className='fs-3' />
+                                        <IoMdMail className='fs-3' />
                                     </span>
                                     <span>
                                         <h4 className='fw-bold'>Mail us for information:</h4>
