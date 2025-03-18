@@ -22,54 +22,66 @@ function Footer() {
                             <p>
                                 Welcome to BozBooster Group! We are dedicated to helping you build a secure financial future and make smart investment decisions. Join us on the path to financial success!
                             </p>
-                            <div className='d-flex'>
-                                <div className='me-4 fs-4'>
-                                    <a
-                                        href="https://www.facebook.com/share/1BXEeQnmYF/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className='text-white'
-                                    >
-                                        <FaFacebookF />
-                                    </a>
+                            <h4>Our Social</h4>
+                            <div className='d-flex mb-3'>
+    <div className='me-4 fs-4'>
+        <a
+            href="https://www.facebook.com/share/1BXEeQnmYF/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#1877F2' }} // Facebook Blue
+        >
+            <FaFacebookF />
+        </a>
+    </div>
 
-                                </div>
-                               
-                                <div className='me-4 fs-4'>
-                                <a
-                                        href="https://www.instagram.com/biz.booster.2x?igsh=MXRmcmViYWVjNXE2YQ==" target="_blank" rel="noopener noreferrer"
-                                          className='text-white'
-                                    >
-                                        <FaInstagram />
-                                    </a>
-                                </div>
-                                <div className='me-4 fs-4'>
-                                <a
-                                         href="https://www.linkedin.com/company/ftfl-technology-pvt-ltd/posts?lipi=urn%3Ali%3Apage%3Ad_flagship3_company_admin%3B74v7ipTfSPiXlWl47Q2SSw%3D%3D" target="_blank" rel="noopener noreferrer"
-                                          className='text-white'
-                                    >
-                                        <FaLinkedinIn />
-                                    </a>
-                                </div>
-                                <div className='me-4 fs-4'>
-                                <a
-                                        href=" https://wa.me/919309517500" target="_blank" rel="noopener noreferrer"
-                                          className='text-white'
-                                    >
-                                        <FaWhatsapp />
-                                    </a>
-                                </div>
-                                <div className='me-4 fs-4'>
-                                <a
-                                        href=" https://youtube.com/@bizbooster2x?si=jAlIAVgAD1A80oLu" target="_blank" rel="noopener noreferrer"
-                                          className='text-white'
-                                    >
-                                       <FaYoutube />
-                                    </a>
-                                </div>
-                                
-                                <div className='me-4 fs-4'> </div>
-                            </div>
+    <div className='me-4 fs-4'>
+        <a
+            href="https://www.instagram.com/biz.booster.2x?igsh=MXRmcmViYWVjNXE2YQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#E4405F' }} // Instagram Pink
+        >
+            <FaInstagram />
+        </a>
+    </div>
+
+    <div className='me-4 fs-4'>
+        <a
+            href="https://www.linkedin.com/company/ftfl-technology-pvt-ltd/posts?lipi=urn%3Ali%3Apage%3Ad_flagship3_company_admin%3B74v7ipTfSPiXlWl47Q2SSw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#0A66C2' }} // LinkedIn Blue
+        >
+            <FaLinkedinIn />
+        </a>
+    </div>
+
+    <div className='me-4 fs-4'>
+        <a
+            href="https://wa.me/919309517500"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#25D366' }} // WhatsApp Green
+        >
+            <FaWhatsapp />
+        </a>
+    </div>
+
+    <div className='me-4 fs-4'>
+        <a
+            href="https://youtube.com/@bizbooster2x?si=jAlIAVgAD1A80oLu"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#FF0000' }} // YouTube Red
+        >
+            <FaYoutube />
+        </a>
+    </div>
+
+    <div className='me-4 fs-4'> </div>
+</div>
+
 
 
                            

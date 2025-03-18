@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/Button";
-import Card from 'react-bootstrap/Card';
-import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
-import '../Testimonial/Testimonial.css';
+import Card from "react-bootstrap/Card";
+import { FaArrowLeft, FaArrowRight, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "../Testimonial/Testimonial.css";
 
 function Testimonial() {
-  const [activeButton, setActiveButton] = useState('');
-  const [visibleIndex, setVisibleIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
   const [testimonials, setTestimonials] = useState([]);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,100 +22,115 @@ function Testimonial() {
 
   const fetchTestimonials = async () => {
     try {
-      const response = await fetch('https://biz-booster-landingpage-backend.vercel.app/api/testimonial/get');
+      const response = await fetch(
+        "https://biz-booster-landingpage-backend.vercel.app/api/testimonial/get"
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const data = await response.json();
-      const formattedTestimonials = data.map(testimonial => ({
+
+      const formattedTestimonials = data.map((testimonial, index) => ({
         para: testimonial.description,
         src: testimonial.image,
         title: testimonial.name,
         text1: testimonial.location,
-        text2: Array.from({ length: testimonial.rating }, (_, i) => <FaStar key={i} />)
+        rating: index === 0 ? 3.5 : index === 1 ? 4.5 : testimonial.rating, // First card 3.5, second card 4.5
       }));
+
       setTestimonials(formattedTestimonials);
     } catch (error) {
-      console.error('Error fetching testimonials:', error);
+      console.error("Error fetching testimonials:", error);
     }
   };
 
-  const extendedCards = [...testimonials, ...testimonials.slice(0, 3)];
-
-  const handleButtonClick = (direction) => {
-    if (isTransitioning) {
-      if (direction === 'LeftArrow') {
-        setVisibleIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : testimonials.length - 1));
-      } else if (direction === 'RightArrow') {
-        setVisibleIndex(prevIndex => prevIndex + 1);
+  // Function to render stars correctly (full, half, empty)
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(rating)) {
+        stars.push(<FaStar key={i} style={{ color: "#00509D", fontSize: "18px" }} />); // Full Star
+      } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+        stars.push(<FaStarHalfAlt key={i} style={{ color: "#00509D", fontSize: "18px" }} />); // Half Star
+      } else {
+        stars.push(<FaStar key={i} style={{ color: "#ccc", fontSize: "18px" }} />); // Empty Star
       }
     }
-    setActiveButton(direction);
+    return stars;
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleIndex(prevIndex => prevIndex + 1);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (visibleIndex === extendedCards.length - 3) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setVisibleIndex(0);
-      }, 500);
-      setTimeout(() => {
-        setIsTransitioning(true);
-      }, 600);
-    }
-  }, [visibleIndex, extendedCards.length]);
-
-  const centerIndex = (visibleIndex + 1) % testimonials.length;
 
   return (
     <div className="testi pb-5 bg-white">
-      <Container style={{ overflow: 'hidden' }}>
+      <Container>
         <h4 className="colorBlue pt-5 pb-2 text-center">
           ----- Testimonial -----
         </h4>
         <h1 className="text-center">Our Client Say!!!</h1>
 
-        <div className="card-container d-flex mb-5"
-          style={{
-            display: 'flex',
-            transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
-            transform: `translateX(-${visibleIndex * (100 / 3)}%)`,
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+          onInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }}
+          breakpoints={{
+            576: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            992: { slidesPerView: 3 },
           }}
         >
-          {extendedCards.map((testi, index) => (
-            <Card
-              className={`packCard1 mx-3 my-5 ${index % testimonials.length === centerIndex ? 'center-card' : ''}`}
-              style={{ width: '450px', border: "none" }}
-              key={index}
-            >
-              <Card.Body>
-                <div className={`testiDiv pb-5 ${index % testimonials.length === centerIndex ? 'center-background' : ''}`}>
-                  <Card.Text className="p-3">
-                    {testi.para}
+          {testimonials.map((testi, index) => (
+            <SwiperSlide key={index}>
+              <Card className="packCard1 mx-3 my-5 " style={{ border: "none" }}>
+                <Card.Body>
+                  <div className="testiDiv text pb-5 rounded rounded-4">
+                    <Card.Text className="p-3">{testi.para}</Card.Text>
+                  </div>
+                  <Card.Img
+                    variant="top"
+                    src={testi.src}
+                    className="rounded-circle img-fluid card-img"
+                    style={{
+                      width: "120px", // Adjust size (change 100px to your preference)
+                      height: "120px", // Ensures it remains circular
+                      borderRadius: "50%", // Ensures perfect circle
+                      objectFit: "cover", // Prevents stretching
+                      border: "2px dotted #000", // Keeps dotted border
+                      padding: "15px",
+                      display: "block",
+                      margin: "auto", // Centers it
+                    }}
+                  />
+                  <Card.Title className="mt-5 pt-5 text-center">
+                    {testi.title}
+                  </Card.Title>
+                  <Card.Text className="text-center pt-0">
+                    {testi.text1}
                   </Card.Text>
-                </div>
-                <Card.Img variant="top" src={testi.src} className="rounded rounded-circle" style={{
-                  border: '2px dotted #000',
-                  padding: '5px',
-                  color: "#13357B",
-                }} />
-                <Card.Title className="mt-5 text-center">{testi.title}</Card.Title>
-                <Card.Text className="text-center pt-0">{testi.text1}</Card.Text>
-                <Card.Text className="text-center testi-i">{testi.text2}</Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
 
-        <div className="d-flex justify-content-center ">
-          <Button variant="outline-primary" className="mx-2" onClick={() => handleButtonClick('LeftArrow')}>
+                  {/* ⭐⭐⭐✨⚪  or ⭐⭐⭐⭐✨ */}
+                  <Card.Text className="text-center">{renderStars(testi.rating)}</Card.Text>
+                </Card.Body>
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="d-flex justify-content-center mt-3">
+          <Button ref={prevRef} variant="outline-primary" className="mx-2">
             <FaArrowLeft />
           </Button>
-          <Button variant="outline-primary" className="mx-2" onClick={() => handleButtonClick('RightArrow')}>
+          <Button ref={nextRef} variant="outline-primary" className="mx-2">
             <FaArrowRight />
           </Button>
         </div>

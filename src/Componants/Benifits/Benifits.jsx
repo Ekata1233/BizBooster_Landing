@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import { motion } from "framer-motion";
 
 function Benifits() {
@@ -45,10 +45,15 @@ function Benifits() {
                         return (
                             <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6} className='my-4' key={index}>
                                 <motion.div initial="hidden" whileInView="visible" variants={scrollVariants} transition={{ duration: 1 }} viewport={{ once: false }}>
-                                    <div className='d-flex shadow p-3'>
-                                        <div className='me-4'>
-                                            <img src={benefit.image} className='img-fluid' alt={benefit.heading} />
+                                    <div className='d-lg-flex shadow p-3'>
+                                        <div className="me-4 d-flex justify-content-center">
+                                            <Image
+                                                src={benefit.image}
+                                                className="img-fluid mx-auto d-block  w-sm-50"
+                                                alt={benefit.heading}
+                                            />
                                         </div>
+
                                         <div>
                                             <h5 className='fw-bold'>{benefit.heading}</h5>
                                             <p className='text-secondary text'>{benefit.description}</p>

@@ -17,10 +17,48 @@ function ServiceProvider() {
         file: null,
     });
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
+
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!formData.firstName.trim()) {
+            newErrors.firstName = 'First Name is required';
+        }
+        if (!formData.lastName.trim()) {
+            newErrors.lastName = 'Last Name is required';
+        }
+        if (!formData.phoneNumber.trim()) {
+            newErrors.phoneNumber = 'Phone Number is required';
+        } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+            newErrors.phoneNumber = 'Phone Number must be 10 digits';
+        }
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = 'Email is invalid';
+        }
+        if (!formData.address.trim()) {
+            newErrors.address = 'Address is required';
+        }
+        if (!formData.module.trim()) {
+            newErrors.module = 'Module is required';
+        }
+        if (!formData.message.trim()) {
+            newErrors.message = 'Message is required';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        // Clear the error for the field when it changes
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: '' });
+        }
     };
 
     const handleFileChange = (e) => {
@@ -29,6 +67,9 @@ function ServiceProvider() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
         setLoading(true);
 
         const data = new FormData();
@@ -101,6 +142,7 @@ function ServiceProvider() {
                 <div className='contact-overlay'>
                     <Container className='py-5'>
                         <h1 className='text-center fw-bold'>Connect with Our Service Team</h1>
+                        <p className='text text-center py-4'>Have a question or need support? Our expert service team is ready to assist you. Whether it’s troubleshooting, guidance, or general inquiries, we’re here to provide prompt and reliable solutions. Reach out to us today—we’re happy to help!</p>
                         <Form className='py-5' onSubmit={handleSubmit}>
                             <Row>
                                 {['firstName', 'middleName', 'lastName'].map((field, idx) => (
@@ -114,7 +156,11 @@ function ServiceProvider() {
                                                     placeholder={`Enter ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`}
                                                     value={formData[field]}
                                                     onChange={handleChange}
+                                                    isInvalid={!!errors[field]}
                                                 />
+                                                <Form.Control.Feedback type="invalid">
+                                                    {errors[field]}
+                                                </Form.Control.Feedback>
                                             </Form.Group>
                                         </motion.div>
                                     </Col>
@@ -129,7 +175,11 @@ function ServiceProvider() {
                                                 placeholder="name@example.com"
                                                 value={formData.email}
                                                 onChange={handleChange}
+                                                isInvalid={!!errors.email}
                                             />
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.email}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -143,7 +193,11 @@ function ServiceProvider() {
                                                 placeholder="Enter phone number"
                                                 value={formData.phoneNumber}
                                                 onChange={handleChange}
+                                                isInvalid={!!errors.phoneNumber}
                                             />
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.phoneNumber}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -159,7 +213,11 @@ function ServiceProvider() {
                                                 placeholder="Enter address"
                                                 value={formData.address}
                                                 onChange={handleChange}
+                                                isInvalid={!!errors.address}
                                             />
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.address}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -171,6 +229,7 @@ function ServiceProvider() {
                                                 name="module"
                                                 value={formData.module}
                                                 onChange={handleChange}
+                                                isInvalid={!!errors.module}
                                             >
                                                 <option value="">Select Modules</option>
                                                 <option value="Onboarding">Onboarding</option>
@@ -183,6 +242,9 @@ function ServiceProvider() {
                                                 <option value="Finance Services">Finance Services</option>
                                                 <option value="Franchise">Franchise</option>
                                             </Form.Select>
+                                            <Form.Control.Feedback type="invalid">
+                                                {errors.module}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </motion.div>
                                 </Col>
@@ -211,7 +273,11 @@ function ServiceProvider() {
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
+                                        isInvalid={!!errors.message}
                                     />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </motion.div>
                             <Button

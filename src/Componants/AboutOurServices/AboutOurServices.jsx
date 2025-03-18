@@ -32,7 +32,10 @@ function AboutOurServices() {
     { icon: servicessicon8, title: "Finance Services" },
     { icon: servicessicon9, title: "Franchise" },
   ];
-
+  const scrollVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
     <div className="bg-white" id="about-services">
       <div className="div-bg py-5">
@@ -41,9 +44,10 @@ function AboutOurServices() {
           <Row className="align-items-center">
             <Col xs={12} md={6} ref={ref}>
               <motion.div
-                initial={{ x: -100, opacity: 0 }}
-                animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: false, amount: 0.2 }}
               >
                 <Row>
                   {services.map((service, index) => (
