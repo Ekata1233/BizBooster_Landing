@@ -1,9 +1,12 @@
 import React from 'react'
 import Hero from "../../assets/gallery.png";
 import AwardsandCertifications from '../AwardandCertifications/AwardsandCertifications'
+import SEO from '../SEO';
 function Gallery() {
   return (
     <div>
+                         <SEO title=" Gallery " description="This is Gallery Page." />
+
     <div className="position-relative">
       <img
         src={Hero}

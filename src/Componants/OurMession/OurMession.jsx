@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import '../OurMession/OurMession.css'; // Importing the CSS file
 import Testimonial from '../Testimonial/Testimonial';
 import { motion } from 'framer-motion';
+import SEO from '../SEO';
 
 function OurMession() {
   const [data, setData] = useState([]);
@@ -66,6 +67,7 @@ function OurMession() {
 
   return (
     <div className="our-mession-section">
+      <SEO title=" Our Mession & Our Vision " description="This is Our Misson & Our Vision Page." />
       <div className='our-mession-div'>
         <Container>
           {/* Our Mission Section */}

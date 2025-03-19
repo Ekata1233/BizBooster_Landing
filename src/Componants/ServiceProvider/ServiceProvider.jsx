@@ -3,7 +3,8 @@ import Hero from "../../assets/service-provider.jpg";
 import { Container, Button, Col, Row, Form } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import '../ServiceProvider/ServiceProvider.css';
-
+import SEO from '../SEO';
+  
 function ServiceProvider() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -126,6 +127,7 @@ function ServiceProvider() {
 
     return (
         <div>
+            <SEO title=" Service Provider " description="This is Service Provider Page." />
             <div className="position-relative">
                 <img
                     src={Hero}

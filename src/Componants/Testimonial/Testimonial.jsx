@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../Testimonial/Testimonial.css";
+import SEO from "../SEO";
 
 function Testimonial() {
   const [testimonials, setTestimonials] = useState([]);
@@ -63,6 +64,7 @@ function Testimonial() {
 
   return (
     <div className="testi pb-5 bg-white">
+      <SEO title=" Testimonial " description="This is Testimonial Page." />
       <Container>
         <h4 className="colorBlue pt-5 pb-2 text-center">
           ----- Testimonial -----

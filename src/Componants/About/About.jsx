@@ -4,10 +4,12 @@ import { Container } from 'react-bootstrap';
 import Header from '../Header/Header';
 import WelcomeBizBooster from '../WelcomeBizbooster/WelcomeBizBooster';
 import OurMession from '../OurMession/OurMession';
+import SEO from '../SEO';
 
 function About() {
   return (
     <div>
+       <SEO title=" About Page " description="This is About Page." />
       <div className="position-relative">
         <img
           src={Hero}

@@ -4,6 +4,7 @@ import investment from '../../assets/investnment11.png';
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../SEO';
 
 function OurPartner() {
     const [isVisible, setIsVisible] = useState(false);
@@ -45,6 +46,7 @@ function OurPartner() {
 
     return (
         <div className="bg-white">
+            <SEO title=" Our Partner " description="This is Our Partner Page." />
             <Container>
                 <Row className="py-5">
                     <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>

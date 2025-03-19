@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from "../../assets/business-success-1.png";
 import { Container } from 'react-bootstrap';
 import { motion } from "framer-motion"
+import SEO from '../SEO';
 const scrollVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
@@ -9,6 +10,7 @@ const scrollVariants = {
 function PrivacyPolicy() {
   return (
     <div>
+      <SEO title=" Privacy Policy " description="This is Privacy Policy Page." />
          <div className="position-relative">
                 <img
                   src={Hero}

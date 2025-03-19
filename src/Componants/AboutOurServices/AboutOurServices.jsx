@@ -15,6 +15,7 @@ import servicessicon6 from "../../assets/it _services_icon.png";
 import servicessicon7 from "../../assets/education_icon.png";
 import servicessicon8 from "../../assets/finance_icon.png";
 import servicessicon9 from "../../assets/franchise_icon.png";
+import SEO from "../SEO";
 
 function AboutOurServices() {
   const ref = useRef(null);
@@ -38,6 +39,7 @@ function AboutOurServices() {
   };
   return (
     <div className="bg-white" id="about-services">
+       <SEO title=" About Our Services " description="This is About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
           <h2 className="fw-bold text-center mb-5">About Our Services</h2>
@@ -52,8 +54,8 @@ function AboutOurServices() {
                 <Row>
                   {services.map((service, index) => (
                     <Col key={index} xs={6} md={4}>
-                      <div className="hover-card position-relative rounded rounded-4 mb-2">
-                        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
+                      <div className="hover-card position-relative rounded rounded-4 mb-2"  onClick={()=>navigate("/moduledescription")}>
+                        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay"/>
                         <img
                           src={service.icon}
                           className="img-fluid position-relative"

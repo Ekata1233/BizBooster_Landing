@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import { motion } from "framer-motion";
+import SEO from '../SEO';
 
 function Benifits() {
     const [benefits, setBenefits] = useState([]); // Initialize as an empty array
@@ -33,6 +34,8 @@ function Benifits() {
 
     return (
         <div className='bg-white text-dark w-100 py-5'>
+                   <SEO title=" Benifits " description="This is Benifits Page." />
+
             <h3 className='fw-bold blue text-center'>Benefits of</h3>
             <h2 className='fw-bold text-center mb-5'>Becoming a Profinity Partner</h2>
 

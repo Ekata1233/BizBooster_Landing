@@ -13,11 +13,13 @@ import PrivacyPolicy from './Componants/PrivacyPolicy/PrivacyPolicy';
 import ReturnandRefundPolicy from './Componants/ReturnandRefundPolicy/ReturnandRefundPolicy';
 import Termsandcondition from './Componants/TermsandCondition/Termsandcondition';
 import ModuleSecriptions from './Componants/ModuleDescriptions/ModuleSecriptions';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
 
   return (
     <>
+    <HelmetProvider>
       <BrowserRouter>
 
         <Header/>
@@ -42,6 +44,7 @@ function App() {
         
     <Footer/>
     </BrowserRouter>
+    </HelmetProvider>
     </>
   )
 }

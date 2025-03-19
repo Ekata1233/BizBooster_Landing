@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from "../../assets/business-success-1.png";
 import { Container } from 'react-bootstrap';
 import { motion } from "framer-motion";
+import SEO from '../SEO';
 function Termsandcondition() {
   const scrollVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -10,6 +11,7 @@ function Termsandcondition() {
 
   return (
     <div>
+      <SEO title=" Terms & Consitions " description="This is Terms & Conditions Page." />
     <div className="position-relative">
            <motion.img
              src={Hero}

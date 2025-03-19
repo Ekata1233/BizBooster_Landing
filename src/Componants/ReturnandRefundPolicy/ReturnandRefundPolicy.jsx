@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from "../../assets/business-success-1.png";
 import { Container } from 'react-bootstrap';
 import { motion } from "framer-motion"
+import SEO from '../SEO';
 function ReturnandRefundPolicy() {
   const scrollVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -9,6 +10,7 @@ function ReturnandRefundPolicy() {
   };
   return (
      <div>
+        <SEO title=" Return & Refund Policy " description="This is Return & Refund Policy Page." />
              <div className="position-relative">
                     <img
                       src={Hero}

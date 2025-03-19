@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Offcanvas, Container } from "react-bootstrap";
 import '../Header/Header.css';
 import { FaHome, FaInfoCircle, FaConciergeBell, FaUsers, FaImages, FaPhone } from "react-icons/fa";
+import SEO from "../SEO";
 function Header() {
     // Offcanvas state management
     const [show, setShow] = useState(false);
@@ -34,6 +35,7 @@ function Header() {
                 transition: "background-color 0.3s ease-in-out",
             }}
         >
+            <SEO title=" Navbar " description="This is Navbar Page." />
             <Container>
                 {/* Brand Name */}
                 <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600", color: "#E5EAEE" }}>BizBooster</Navbar.Brand>

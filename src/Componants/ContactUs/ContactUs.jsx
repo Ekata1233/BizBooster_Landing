@@ -8,6 +8,7 @@ import axios from 'axios'; // For making API requests
 import { FaLocationArrow } from 'react-icons/fa';
 import { MdCall } from 'react-icons/md';
 import { IoMdMail } from 'react-icons/io';
+import SEO from '../SEO';
 
 function ContactUs() {
     // State for form inputs
@@ -72,6 +73,8 @@ function ContactUs() {
 
     return (
         <div>
+                   <SEO title=" COntact Us " description="This is Contact Us Page." />
+
             <div className="position-relative">
                 <img
                     src={Hero}

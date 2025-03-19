@@ -10,9 +10,12 @@ import { TbWorld } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import playstrore from '../../assets/Google Play (1).png'
+import SEO from '../SEO';
 function Footer() {
     return (
         <div className='text-white bg-dark pb-2'>
+                               <SEO title=" Footer " description="This is Footer Page." />
+
             <Container className='text-white bg-dark py-5'>
                 <Row >
 

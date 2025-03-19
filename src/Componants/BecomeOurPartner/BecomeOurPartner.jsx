@@ -4,6 +4,7 @@ import BecomePartnerContact from './BecomePartnerConatct/BecomePartnerContact';
 import { Col, Container, Row } from 'react-bootstrap';
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { motion } from "framer-motion";
+import SEO from '../SEO';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -36,6 +37,7 @@ function BecomeOurPartner() {
   return (
     <div>
       <div className="position-relative">
+      <SEO title=" Become Our Partner " description="This is Become Our Partner Page." />
         <motion.img
           src={Hero}
           className="w-100"

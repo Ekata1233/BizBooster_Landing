@@ -11,10 +11,12 @@ import StepsEarning from "../StepsEarning/StepsEarning";
 import Testimonial from "../Testimonial/Testimonial";
 import Contact from "../Contact/Contact"
 import NationWide from "../NationWide/NationWide";
+import SEO from "../SEO";
 
 function Home() {
   return (
     <div className="">
+      <SEO title=" Home " description="This is Home Page." />
       <Container fluid className="position-relative p-0">
         {/* Header positioned absolutely on top */}
         <div className="position-absolute top-0 start-0 w-100 z-3">

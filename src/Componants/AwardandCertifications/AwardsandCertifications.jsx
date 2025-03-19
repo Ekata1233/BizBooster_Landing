@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import '../AwardandCertifications/AwardsandCertifications.css';
+import SEO from '../SEO';
 
 const animationProps = {
   initial: { opacity: 0, y: 50 },
@@ -56,6 +57,7 @@ function AwardsandCertifications() {
 
   return (
     <div className='awards-container'>
+       <SEO title=" Award And Certification " description="This is Award And Certification." />
       <div className='awards-background'></div>
       <div className='awards-overlay'>
         {/* Awards Section */}

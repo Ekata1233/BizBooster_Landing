@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { motion } from 'framer-motion';
+import SEO from '../SEO';
 
 function WelcomeBizBooster() {
   const [data, setData] = useState(null);
@@ -41,6 +42,7 @@ function WelcomeBizBooster() {
 
   return (
     <div className='my-5 py-lg-5'>
+      <SEO title=" WelComeBizBooster " description="This is Welcome BizBooster Page." />
       <Container>
         <h1 className='fw-bold text-center double-underline'>{data.Heading}</h1>
         <h5 className='blue fw-bold text-center mt-4'>{data.Subheading}</h5>

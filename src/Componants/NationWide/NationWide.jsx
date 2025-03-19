@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import SEO from '../SEO';
 
 const NationWide = () => {
     const [data, setData] = useState(null);
@@ -33,6 +34,7 @@ const NationWide = () => {
 
     return (
         <div className='text-white py-5' style={{ backgroundColor: "rgba(7, 33, 58, 0.74)" }}>
+            <SEO title=" NationWide " description="This is NationWide Page." />
             <Container>
                 <Row>
                     <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>

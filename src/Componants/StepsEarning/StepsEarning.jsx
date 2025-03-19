@@ -3,6 +3,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Col, Container, Row } from "react-bootstrap";
 import playstrore from "../../assets/Google Play (2).png";
+import SEO from "../SEO";
 
 const StepsEarning = () => {
   const [videoUrl, setVideoUrl] = useState("");
@@ -60,6 +61,7 @@ const StepsEarning = () => {
 
   return (
     <div className="bg-white">
+      <SEO title=" Steps Earning " description="This is Steps Earning Page." />
       <Container className="flex flex-col items-center py-5">
         <h1 className="text-center fw-bold blue pb-4">
           Start your Step towards Earning

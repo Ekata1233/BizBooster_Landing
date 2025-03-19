@@ -4,6 +4,7 @@ import "../Contact/Contact.css";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { motion } from "framer-motion";
+import SEO from "../SEO";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -59,6 +60,8 @@ const Contact = () => {
 
   return (
     <div className="contact-container">
+             <SEO title=" Contact " description="This is Contact Page." />
+
       <div className="contact-background"></div>
       <div className="count-overlay ">
         <Container className="py-5">

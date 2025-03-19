@@ -6,6 +6,7 @@ import Stack from "react-bootstrap/Stack";
 import { motion } from "framer-motion";
 import NationWide from "../../NationWide/NationWide";
 import { useLocation } from "react-router-dom";
+import SEO from "../../SEO";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -22,6 +23,7 @@ function BecomePartnerContact() {
   }, [location]);
     return (
         <div className="contact-container">
+           <SEO title=" Become Our Partner Contact " description="This is Become Our Partner Contact." />
         <div className="contact-background"></div>
         <NationWide/>
         <div className="count-overlay">

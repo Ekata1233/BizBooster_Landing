@@ -5,6 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import image1 from '../../assets/onboarding_icon.png'
 import image2 from '../../assets/onboarding_icon.png'
 import image3 from '../../assets/onboarding_icon.png'
+import SEO from '../SEO';
 const categories = [
     { id: 1, title: "Category 1", description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.", image: image1 },
     { id: 2, title: "Category 2", description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.", image: image1 },
@@ -22,6 +23,7 @@ function ModuleSecriptions() {
       }, []);
     return (
         <div>
+            <SEO title=" Module Description " description="This is Module Description Page." />
             <div className="position-relative">
                 <img
                     src={Hero}
