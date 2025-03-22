@@ -70,7 +70,7 @@ function ModuleSecriptions() {
                                                 </div>
                                                 <h3 className='text-center fw-bold'>{category.title}</h3>
                                                 <p className='text p'>{category.description}</p>
-                                            </div>
+                                            </div>   
                                         </Col>
                                     ))}
                                 </Row>

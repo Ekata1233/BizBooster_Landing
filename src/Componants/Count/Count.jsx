@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Partner from "../Partner/Partner";
-import { motion } from "framer-motion"; // Import motion
+import { motion } from "framer-motion"; 
 import '../Count/count.css'
 import SEO from "../SEO";
 
@@ -11,8 +11,8 @@ function Counter({ endValue }) {
 
   useEffect(() => {
     let start = 0;
-    const duration = 6000; // Animation duration (2 seconds)
-    const incrementTime = 50; // Update every 50ms
+    const duration = 6000; 
+    const incrementTime = 50; 
     const steps = duration / incrementTime;
     const stepSize = endValue / steps;
 
