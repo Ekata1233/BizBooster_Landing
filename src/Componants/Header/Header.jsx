@@ -3,14 +3,32 @@ import { Navbar, Nav, NavDropdown, Offcanvas, Container } from "react-bootstrap"
 import '../Header/Header.css';
 import { FaHome, FaInfoCircle, FaConciergeBell, FaUsers, FaImages, FaPhone } from "react-icons/fa";
 import SEO from "../SEO";
+
 function Header() {
     // Offcanvas state management
     const [show, setShow] = useState(false);
     const [scrolling, setScrolling] = useState(false);
+    const [services, setServices] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // Fetch services from API
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await fetch("https://biz-booster-landingpage-backend.vercel.app/api/page/get");
+                const data = await response.json();
+                setServices(data.data);
+            } catch (error) {
+                console.error("Error fetching services:", error);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
+    // Handle scroll event
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -59,23 +77,21 @@ function Header() {
                     style={{ width: "280px" }}
                 >
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title id="offcanvasNavbarLabel"> <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600", color: "" }}>BizBooster</Navbar.Brand></Offcanvas.Title>
+                        <Offcanvas.Title id="offcanvasNavbarLabel"> 
+                            <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600", color: "" }}>BizBooster</Navbar.Brand>
+                        </Offcanvas.Title>
                     </Offcanvas.Header>
 
                     <Offcanvas.Body>
-                    <Nav className="justify-content-end flex-grow-1 pe-3 my-2">
+                        <Nav className="justify-content-end flex-grow-1 pe-3 my-2">
                             <Nav.Link href="/" className='nav-link-animated me-3 ' style={{ fontWeight: "600", color: "#E5EAEE" }}><FaHome  className="me-3 blue d-lg-none"/> Home</Nav.Link>
                             <Nav.Link href="/about" className="nav-link-animated me-3" style={{ fontWeight: "600", color: "#E5EAEE" }}><FaInfoCircle className="me-3 blue  d-lg-none" /> About Us</Nav.Link>
                             <NavDropdown style={{ fontWeight: "600", color: "#E5EAEE" }} title={<span><FaConciergeBell  className="me-3 blue d-lg-none"/> Services</span>} id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown ">
-                                <NavDropdown.Item href="/moduledescription">Onboarding</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Business</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Branding/Marketing</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Legal Services</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Home Services</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">IT Services</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Education</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Finance Services</NavDropdown.Item>
-                                <NavDropdown.Item href="/moduledescription">Franchise</NavDropdown.Item>
+                                {services.map(service => (
+                                    <NavDropdown.Item key={service._id} href={`/moduledescription/${service._id}`}>
+                                        {service.servicetitle}
+                                    </NavDropdown.Item>
+                                ))}
                             </NavDropdown>
                             <NavDropdown title={<span><FaUsers  className="me-3 blue d-lg-none"/> Join Us</span>} id="offcanvasNavbarDropdown" className="nav-link-animated me-3 custom-dropdown ">
                                 <NavDropdown.Item href="/serviceprovider">Service Provider</NavDropdown.Item>
