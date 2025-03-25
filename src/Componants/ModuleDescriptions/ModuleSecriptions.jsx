@@ -100,17 +100,18 @@ function ModuleDescriptions() {
                         <Container>
                             <Row>
                                 {serviceData.categoryname.map((category) => (
-                                    <Col key={category._id} xs={12} sm={12} md={6} lg={4} xl={4} xxl={4} className='category-overlay my-4'>
-                                        <div className='border border-1 px-4 rounded rounded-4 category-card'>
-                                            <div className="d-flex justify-content-center align-items-center py-3">
-                                                <img src={category.image} className='img-fluid w-100' 
-                                                // style={{height:"350px"}} 
-                                                alt={category.title} />
-                                            </div>
-                                            <h3 className='text-center fw-bold'>{category.title}</h3>
-                                            <p className='text p'>{category.description}</p>
-                                        </div>
-                                    </Col>
+                                   <Col key={category._id} xs={12} sm={12} md={6} lg={4} xl={4} xxl={4} className='category-overlay my-4'>
+                                   <div className='h-100 d-flex flex-column border border-1 px-4 rounded-4 category-card' style={{ minHeight: "100%", height: "100%" }}>
+                                     <div className="d-flex justify-content-center align-items-center flex-grow-1" style={{ minHeight: "250px" }}>
+                                       <img src={category.image} className='img-fluid' alt={category.title} />
+                                     </div>
+                                     <div className="text-center mt-3">
+                                       <h3 className='fw-bold'>{category.title}</h3>
+                                       <p className='text p'>{category.description}</p>
+                                     </div>
+                                   </div>
+                                 </Col>
+                                 
                                 ))}
                             </Row>
                         </Container>
