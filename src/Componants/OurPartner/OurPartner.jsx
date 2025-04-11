@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../SEO';
+import { motion } from "framer-motion"; 
 
 function OurPartner() {
     const [isVisible, setIsVisible] = useState(false);
