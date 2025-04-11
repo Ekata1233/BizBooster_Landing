@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import investment from '../../assets/investnment11.png';
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../SEO';
 
