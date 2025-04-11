@@ -19,12 +19,10 @@ function ModuleDescriptions() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                const data = await response.json();
-                console.log("API Response:", data); // Debugging: Log the API response
+                const data = await response.json(); 
 
                 // Find the service with the matching `id`
                 const selectedService = data.data.find(service => service._id === id);
-                console.log("Selected Service:", selectedService); // Debugging: Log the selected service
 
                 if (!selectedService) {
                     throw new Error(`Service with id ${id} not found`);
@@ -56,12 +54,20 @@ function ModuleDescriptions() {
     }
 
     if (error) {
-        return <div>Error: {error}</div>; // Show an error message if something went wrong
+        return (
+            <div>
+                <p>Error: {error}</p>
+                <button onClick={() => window.location.reload()}>Retry</button>
+            </div>
+        );
     }
 
     if (!serviceData) {
         return <div>No data found for the selected service.</div>; // Handle case where no data is found
     }
+
+    // ✅ Fix: Use categoryname instead of categories
+    const categories = serviceData?.categoryname || [];
 
     return (
         <div>
@@ -86,8 +92,8 @@ function ModuleDescriptions() {
                 <div className='bg-white py-5'>
                     <Container>
                         <div>
-                            <h1 className='fw-bold blue'>{serviceData.titleDescArray[0].title}</h1>
-                            <p className='text-secondary text py-3'>{serviceData.titleDescArray[0].description}</p>
+                            <h1 className='fw-bold blue'>{serviceData?.titleDescArray?.[0]?.title || "Default Title"}</h1>
+                            <p className='text-secondary text py-3'>{serviceData?.titleDescArray?.[0]?.description || "No description available."}</p>
                         </div>
                     </Container>
                 </div>
@@ -97,13 +103,12 @@ function ModuleDescriptions() {
                         <h1 className='text-white fw-bold text-center py-lg-5 double-underline'>
                             Type Of Category
                         </h1>
-                        <div>
 
-
-                            <Container>
-                                <Row>
-                                    {categories.map((category) => (
-                                        <Col key={category.id} xs={12} sm={12} md={6} lg={4} xl={4} xxl={4} className='category-overlay  my-4'>
+                        <Container>
+                            <Row>
+                                {categories.length > 0 ? (
+                                    categories.map((category) => (
+                                        <Col key={category._id} xs={12} sm={12} md={6} lg={4} xl={4} xxl={4} className='category-overlay my-4'>
                                             <div className='border border-1 px-4 rounded rounded-4 category-card'>
                                                 <div className="d-flex justify-content-center align-items-center py-3">
                                                     <img src={category.image} className='img-fluid' alt={category.title} />
@@ -112,41 +117,36 @@ function ModuleDescriptions() {
                                                 <p className='text p'>{category.description}</p>
                                             </div>
                                         </Col>
-                                    ))}
-                                </Row>
-                            </Container>
-                            <div className='full-width-bg  mt-5 py-5' style={{backgroundColor:"rgb(255, 255, 255)"}}>
+                                    ))
+                                ) : (
+                                    <p className="text-center text-white">No categories available.</p>
+                                )}
+                            </Row>
+                        </Container>
+
+                        {/* Title-Description Sections */}
+                        {[1, 2, 3].map((index) => (
+                            <div
+                                key={index}
+                                className='full-width-bg py-5'
+                                style={{
+                                    backgroundColor: index === 2 ? "rgba(0, 81, 157, 0.62)" : "rgb(255, 255, 255)",
+                                }}
+                            >
                                 <Container className='py-5'>
-                                <h1 className='blue fw-bold text-start mb-5 double-underline'>
-                                    {serviceData.titleDescArray[1].title}
-                                </h1>
-                                <p className='text-secondary text'>
-                                    {serviceData.titleDescArray[1].description}
-                                </p>
-                            </Container>
-                        </div>
-
-                        <div className='full-width-bg py-5' style={{ backgroundColor: "rgba(0, 81, 157, 0.62)" }}>
-                            <Container className='py-5'>
-                                <h1 className='text-white fw-bold text-end mb-5 double-underline'>
-                                    {serviceData.titleDescArray[2].title}
-                                </h1>
-                                <p className='text-white text'>
-                                    {serviceData.titleDescArray[2].description}
-                                </p>
-                            </Container>
-                        </div>
-
-                        <div className='full-width-bg py-5' style={{ backgroundColor: "rgb(255, 255, 255)" }}>
-                            <Container className='py-5'>
-                                <h1 className='text-dark fw-bold text-center mb-5 double-underline'>
-                                    {serviceData.titleDescArray[3].title}
-                                </h1>
-                                <p className='text-secondary text'>
-                                    {serviceData.titleDescArray[3].description}
-                                </p>
-                            </Container>
-                        </div>
+                                    <h1
+                                        className={`${index === 2 ? "text-white" : "blue"} fw-bold text-${
+                                            index === 1 ? "start" : index === 2 ? "end" : "center"
+                                        } mb-5 double-underline`}
+                                    >
+                                        {serviceData?.titleDescArray?.[index]?.title || "Default Section Title"}
+                                    </h1>
+                                    <p className={`text${index === 2 ? "-white" : "-secondary"} text`}>
+                                        {serviceData?.titleDescArray?.[index]?.description || "No description available."}
+                                    </p>
+                                </Container>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
