@@ -24,10 +24,10 @@
 }
 @media (min-width: 376px) and (max-width: 425px) 
 {
-   .count-overlay {
+   /* .count-overlay {
      
-      height: 160vh;
-   }
+      height: 260vh;
+   } */
 }
 @media (min-width: 426px) and (max-width: 768px) 
 {
