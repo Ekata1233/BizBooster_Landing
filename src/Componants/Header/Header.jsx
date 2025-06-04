@@ -56,7 +56,7 @@ function Header() {
             <SEO title=" Navbar " description="This is Navbar Page." />
             <Container>
                 {/* Brand Name */}
-                <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600", color: "#E5EAEE" }}>BizBooster</Navbar.Brand>
+                <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600", color: "#E5EAEE" }}>FetchTrue.</Navbar.Brand>
 
                 {/* Offcanvas Toggle Button */}
                 <Navbar.Toggle 
