@@ -7,7 +7,7 @@ const scrollVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
-function PrivacyPolicy() {
+function PolicyPage() {
   return (
     <div>
       <SEO title=" Privacy Policy " description="This is Privacy Policy Page." />
@@ -183,4 +183,4 @@ function PrivacyPolicy() {
   )
 }
 
-export default PrivacyPolicy
+export default PolicyPage

@@ -56,29 +56,30 @@ function AboutOurServices() {
                 viewport={{ once: false, amount: 0.2 }}
               >
                 <Row>
-                  {services.map((service, index) => (
-                    <Col key={index} xs={6} md={4}>
-                      <div
-                        className="hover-card position-relative rounded rounded-4 mb-2"
-                        onClick={() => handleServiceClick(service._id)} // Navigate on click
-                      >
-                        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
-                        <img
-                          src={service.serviceImage} // Use serviceImage from API
-                          className="img-fluid position-relative"
-                          alt={service.servicetitle} // Use servicetitle from API
-                          style={{ zIndex: 2 }}
-                        />
-                        <p
-                          className="text-center position-relative"
-                          style={{ fontWeight: "600", zIndex: 2 }}
-                        >
-                          {service.servicetitle} {/* Use servicetitle from API */}
-                        </p>
-                      </div>
-                    </Col>
-                  ))}
-                </Row>
+  {services.map((service, index) => (
+    <Col key={index} xs={6} md={4}>
+      <div
+        className="hover-card position-relative rounded rounded-4 mb-2 equal-box"
+        onClick={() => handleServiceClick(service._id)}
+      >
+        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
+        <img
+          src={service.serviceImage}
+          className="img-fluid position-absolute top-0 start-0 object-cover rounded rounded-4"
+          alt={service.servicetitle}
+          style={{ zIndex: 2 }}
+        />
+        <p
+          className="text-center position-relative"
+          style={{ fontWeight: "600", zIndex: 2 }}
+        >
+          {service.servicetitle}
+        </p>
+      </div>
+    </Col>
+  ))}
+</Row>
+
               </motion.div>
             </Col>
 

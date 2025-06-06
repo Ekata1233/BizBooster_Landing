@@ -29,6 +29,18 @@ body {
 }
 
 
+.equal-box {
+  position: relative;
+  width: 100%;
+  max-width: 200px;       /* Optional: limits max size */
+  margin: 0 auto;          /* Center in column */
+  padding-top: 100%;       /* Makes it square */
+  overflow: hidden;
+}
+
+.object-cover {
+  object-fit: cover;
+}
 
 
 
