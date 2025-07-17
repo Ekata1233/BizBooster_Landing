@@ -1,5 +1,5 @@
 .custom-shadow {
-    background:color(srgb 0 0.0352941 0.0627451 / 0.7);
+background-color: color(srgb 0.678 0.847 0.902 / 0.3);
   }
  /* Prevent horizontal scrolling */
 html, body {

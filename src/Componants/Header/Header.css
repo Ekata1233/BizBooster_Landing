@@ -1,110 +1,171 @@
-.custom-dropdown .nav-link {
-    color: #E5EAEE !important; /* Ensure it overrides Bootstrap styles */
-    font-weight: 600;
+/* --------------------------
+   Navbar Scroll Styles
+--------------------------- */
+.custom-navbar {
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
 }
+
+.custom-navbar.scrolled {
+  background-color: rgba(24, 154, 253, 0.7); /* Navbar background on scroll */
+}
+
+/* --------------------------
+   Brand Styling
+--------------------------- */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+
+/* --------------------------
+   Toggler Icon Styling
+--------------------------- */
+.custom-toggler {
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  margin-right: 20px;
+}
+
+.custom-toggler .toggler-icon {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --------------------------
+   Nav Link Animated Underline
+--------------------------- */
+.nav-link-animated {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+.nav-link-animated::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+/* --------------------------
+   Scroll-Based Dropdown Text Color
+--------------------------- */
+.navbar.scrolled .dropdown-toggle {
+  color: white !important;
+}
+
+.navbar:not(.scrolled) .dropdown-toggle {
+  color: black !important;
+}
+
+/* Allow nav link color to inherit from class */
+.custom-dropdown .nav-link {
+  color: inherit;
+}
+
+/* --------------------------
+   Offcanvas Styling
+--------------------------- */
+.custom-offcanvas {
+  background-color: white !important;
+  width: 300px !important;
+}
+
 .offcanvas-link {
   position: relative;
-  color: #000;
+  font-weight: 400;
+  color: black !important;
+  margin-right: 15px;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
 .offcanvas-link:hover {
-  color: white !important; /* Text color changes to white */
+  color: #007bff !important;
 }
 
 .offcanvas-link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -3px; /* Adjust bottom position */
+  bottom: -3px;
   width: 0%;
-  height: 2px; /* Border height */
-  background-color: white; /* Border color */
+  height: 2px;
+  background-color: #007bff;
   transition: width 0.3s ease-in-out;
 }
 
 .offcanvas-link:hover::after {
-  width: 100%; /* Expands width from left to right */
- 
+  width: 100%;
 }
 
-.nav-link-animated {
-    position: relative;
-    text-decoration: none;
-    display: inline-block;
+/* --------------------------
+   Dropdown Menu & Items
+--------------------------- */
+.navbar .dropdown-menu {
+  background-color: white !important;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* White Navbar Toggler Icon (3 Lines) */
-.custom-toggler {
-    border: none !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 24px;
-    background: transparent;
-    margin-right: 20px; /* Adds space on the right side */
-  }
-  
-  .custom-toggler .toggler-icon {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  /* Navbar Background Change on Scroll */
-  .custom-navbar {
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .custom-navbar.scrolled {
-    background-color: rgba(0, 9, 16, 0.7);
-  }
-  
-  /* Big Screen Nav Links (White) */
+.navbar .dropdown-item {
+  color: black !important;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  /* Offcanvas Styling */
-  .custom-offcanvas {
-    background-color: white !important;
-    width: 300px !important;
-  }
-  
-  /* Offcanvas Links (Dark Text) */
-  .offcanvas-link {
-    font-weight: 400;
-    color: black !important;
-    margin-right: 15px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .offcanvas-link:hover {
-    color: #007bff !important; /* Blue on hover */
-  }
-  
-  /* Dropdown items also in dark color */
-  .navbar .dropdown-menu {
-    background-color: white !important;
-  }
-  
-  .navbar .dropdown-item {
+.navbar .dropdown-item:hover {
+  background-color: #f8f9fa !important;
+  color: #007bff !important;
+}
+
+/* --------------------------
+   Responsive Tweaks
+--------------------------- */
+@media (max-width: 991px) {
+  .offcanvas .nav-link {
     color: black !important;
   }
-  
-  .navbar .dropdown-item:hover {
+
+  .offcanvas .nav-link:hover {
+    color: #007bff !important;
+  }
+
+  .offcanvas .dropdown-toggle {
+    color: black !important;
+  }
+
+  .offcanvas .dropdown-item {
+    color: black !important;
+  }
+
+  .offcanvas .dropdown-item:hover {
     background-color: #f8f9fa !important;
     color: #007bff !important;
   }
-  @media (max-width: 991px) { 
-    .offcanvas .nav-link {
-        color: black !important;
-    }
-    
-    .offcanvas .nav-link:hover {
-        color: #333 !important;
-    }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
 }

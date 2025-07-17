@@ -1,5 +1,6 @@
 import Header from "../Header/Header";
 import Hero from "../../assets/hero-bg.jpg";
+// import BlueSky from "../../assets/blue_sky.jpeg"
 import Container from "react-bootstrap/esm/Container";
 import "../Home/Home.css";
 import OurPartner from "../OurPartner/OurPartner";
