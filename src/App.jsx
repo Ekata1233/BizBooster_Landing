@@ -14,6 +14,7 @@ import Termsandcondition from './Componants/TermsandCondition/Termsandcondition'
 import ModuleSecriptions from './Componants/ModuleDescriptions/ModuleSecriptions';
 import { HelmetProvider } from 'react-helmet-async';
 import PolicyPage from './Componants/PrivacyPolicy/PolicyPage';
+import WhatsAppButton from './Componants/WhatsappIcon/WhatsAppButton';
 
 function App() {
 
@@ -41,7 +42,7 @@ function App() {
           <Route path='/termsandcondition' element={<Termsandcondition   /> } />
 
         </Routes>
-        
+        <WhatsAppButton/>
     <Footer/>
     </BrowserRouter>
     </HelmetProvider>
