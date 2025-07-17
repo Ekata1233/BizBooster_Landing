@@ -7,7 +7,9 @@
 }
 
 .custom-navbar.scrolled {
-  background-color: rgba(24, 154, 253, 0.7); /* Navbar background on scroll */
+  background-color: #2164F4
+
+; /* Navbar background on scroll */
 }
 
 /* --------------------------

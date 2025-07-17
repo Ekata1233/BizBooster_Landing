@@ -39,7 +39,7 @@ function Partner() {
     return (
         <div className='bg-white text-dark w-100 py-4'>
             <SEO title=" Partner " description="This is Partner Page." />
-            <h3 className='fw-bold blue text-center'>Partners</h3>
+            <h3 className='fw-bold  text-center' style={{color:"#2164F4"}}>Partners</h3>
             <h2 className='fw-bold text-center'>Our Esteemed Business Partners</h2>
             <div className="w-full max-w-7xl mx-auto py-8">
                 <Container>

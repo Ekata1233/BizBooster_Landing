@@ -63,7 +63,7 @@ const StepsEarning = () => {
     <div className="bg-white">
       <SEO title=" Steps Earning " description="This is Steps Earning Page." />
       <Container className="flex flex-col items-center py-5">
-        <h1 className="text-center fw-bold blue pb-4">
+        <h1 className="text-center fw-bold blue pb-4" style={{color:'#2164F4'}}>
           Start your Step towards Earning
         </h1>
         <Row>
@@ -89,7 +89,7 @@ const StepsEarning = () => {
                     style={{
                       border: "1px solid #00509D",
                       width: "50px",
-                      backgroundColor: "#00509D",
+                      backgroundColor: "#2164F4",
                     }}
                   >
                     <h1 className="text-3xl font-bold text-white">{step.id}</h1>

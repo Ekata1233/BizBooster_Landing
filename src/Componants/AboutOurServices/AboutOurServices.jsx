@@ -46,7 +46,7 @@ function AboutOurServices() {
       <SEO title="About Our Services" description="This is the About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
-          <h2 className="fw-bold text-center mb-5">About Our Services</h2>
+          <h2 className="fw-bold text-center mb-5" >About Our Services</h2>
           <Row className="align-items-center">
             <Col xs={12} md={6} ref={ref}>
               <motion.div

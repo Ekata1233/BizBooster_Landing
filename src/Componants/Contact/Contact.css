@@ -1,38 +1,96 @@
-.count-overlay {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 120vh;
+/* Container holds everything */
+.contact-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
 }
 
+/* Background image setup */
+.contact-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url("../../assets/contactform.jpeg"); */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  /* opacity: 0.9;  */
+}
+
+/* Overlay to hold the form and content */
+.contact-overlay {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  /* background-color: rgba(58, 117, 235, 0.436); */
+  z-index: 1;
+}
+
+/* Optional heading/text styling */
 .count-text {
-   color: white;
+  color: white;
+  font-weight: bold;
+  text-align: center;
 }
-@media (max-width: 320px){
-   .count-overlay {
-     
-      height: 160vh;
-   }
 
+/* Bootstrap form override for white placeholder text on dark background */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.8);
 }
-@media (min-width: 321px) and (max-width: 375px) 
-{
-   .count-overlay {
-     
-      height: 160vh;
-   }
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(38, 35, 35, 0.427);
+  color: white;
 }
-@media (min-width: 376px) and (max-width: 425px) 
-{
-   /* .count-overlay {
-     
-      height: 260vh;
-   } */
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: rgb(240, 229, 229);
+  border-color: #fff;
+  box-shadow: none;
 }
-@media (min-width: 426px) and (max-width: 768px) 
-{
-   .count-overlay {
-     
-      height: 120vh;
-   }
+
+/* Radio buttons styling */
+.form-check-label {
+  color: white;
+}
+
+/* Remarks and text note */
+.text-white {
+  color: white !important;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .count-overlay {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    align-items: flex-start;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 16px;
+    padding: 10px;
+  }
 }

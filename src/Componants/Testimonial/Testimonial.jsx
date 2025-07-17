@@ -26,7 +26,6 @@ function Testimonial() {
       const response = await fetch(
         "https://biz-booster-landingpage-backend.vercel.app/api/testimonial/get"
       );
-
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -38,7 +37,7 @@ function Testimonial() {
         src: testimonial.image,
         title: testimonial.name,
         text1: testimonial.location,
-        rating: index === 0 ? 3.5 : index === 1 ? 4.5 : testimonial.rating, // First card 3.5, second card 4.5
+        rating: index === 0 ? 3.5 : index === 1 ? 4.5 : testimonial.rating,
       }));
 
       setTestimonials(formattedTestimonials);
@@ -47,16 +46,15 @@ function Testimonial() {
     }
   };
 
-  // Function to render stars correctly (full, half, empty)
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= Math.floor(rating)) {
-        stars.push(<FaStar key={i} style={{ color: "#00509D", fontSize: "18px" }} />); // Full Star
+        stars.push(<FaStar key={i} style={{ color: "#00509D", fontSize: "18px" }} />);
       } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-        stars.push(<FaStarHalfAlt key={i} style={{ color: "#00509D", fontSize: "18px" }} />); // Half Star
+        stars.push(<FaStarHalfAlt key={i} style={{ color: "#00509D", fontSize: "18px" }} />);
       } else {
-        stars.push(<FaStar key={i} style={{ color: "#ccc", fontSize: "18px" }} />); // Empty Star
+        stars.push(<FaStar key={i} style={{ color: "#ccc", fontSize: "18px" }} />);
       }
     }
     return stars;
@@ -64,12 +62,10 @@ function Testimonial() {
 
   return (
     <div className="testi pb-5 bg-white">
-      <SEO title=" Testimonial " description="This is Testimonial Page." />
+      <SEO title="Testimonial" description="This is Testimonial Page." />
       <Container>
-        <h4 className="colorBlue pt-5 pb-2 text-center">
-          ----- Testimonial -----
-        </h4>
-        <h1 className="text-center">Our Client Say!!!</h1>
+        <h4 className="colorBlue pt-5 pb-2 text-center">----- Testimonial -----</h4>
+        <h1 className="text-center mb-4">What Our Clients Say</h1>
 
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -93,35 +89,25 @@ function Testimonial() {
         >
           {testimonials.map((testi, index) => (
             <SwiperSlide key={index}>
-              <Card className="packCard1 mx-3 my-5 " style={{ border: "none" }}>
-                <Card.Body>
-                  <div className="testiDiv text pb-5 rounded rounded-4">
+              <Card className="packCard1 mx-auto my-4">
+                <Card.Body className="d-flex flex-column align-items-center text-center">
+
+                  {/* 1. User Image */}
+                  <Card.Img variant="top" src={testi.src} className="card-img" />
+
+                  {/* 2. Name */}
+                  <Card.Title className="mt-3">{testi.title}</Card.Title>
+
+                  {/* 3. Location */}
+                  <Card.Text className="text-muted">{testi.text1}</Card.Text>
+
+                  {/* 4. Star Rating */}
+                  <div className="mb-2" style={{color:'#2164F4'}}>{renderStars(testi.rating)}</div>
+
+                  {/* 5. Testimonial Text */}
+                  <div className="testiDiv mt-2 rounded-4 w-100">
                     <Card.Text className="p-3">{testi.para}</Card.Text>
                   </div>
-                  <Card.Img
-                    variant="top"
-                    src={testi.src}
-                    className="rounded-circle img-fluid card-img"
-                    style={{
-                      width: "120px", // Adjust size (change 100px to your preference)
-                      height: "120px", // Ensures it remains circular
-                      borderRadius: "50%", // Ensures perfect circle
-                      objectFit: "cover", // Prevents stretching
-                      border: "2px dotted #000", // Keeps dotted border
-                      padding: "15px",
-                      display: "block",
-                      margin: "auto", // Centers it
-                    }}
-                  />
-                  <Card.Title className="mt-5 pt-5 text-center">
-                    {testi.title}
-                  </Card.Title>
-                  <Card.Text className="text-center pt-0">
-                    {testi.text1}
-                  </Card.Text>
-
-                  {/* ⭐⭐⭐✨⚪  or ⭐⭐⭐⭐✨ */}
-                  <Card.Text className="text-center">{renderStars(testi.rating)}</Card.Text>
                 </Card.Body>
               </Card>
             </SwiperSlide>

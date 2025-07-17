@@ -62,8 +62,8 @@ const Contact = () => {
     <div className="contact-container">
              <SEO title=" Contact " description="This is Contact Page." />
 
-      <div className="contact-background"></div>
-      <div className="count-overlay ">
+      {/* <div className="contact-background"></div> */}
+      <div className="contact-overlay ">
         <Container className="py-5">
           <motion.h2
             className="text-center text-white fw-bold py-5"

@@ -36,7 +36,7 @@ function Benifits() {
         <div className='bg-white text-dark w-100 py-5'>
                    <SEO title=" Benifits " description="This is Benifits Page." />
 
-            <h3 className='fw-bold blue text-center'>Benefits of</h3>
+            <h3 className='fw-bold  text-center' style={{color:'#2164F4'}}>Benefits of</h3>
             <h2 className='fw-bold text-center mb-5'>Becoming a Profinity Partner</h2>
 
             <Container>
