@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Partner from "../Partner/Partner";
-import { motion } from "framer-motion"; 
-import '../Count/count.css'
+import { motion } from "framer-motion";
+import '../Count/count.css';
 import SEO from "../SEO";
 
-// Counter Component
+// Counter animation
 function Counter({ endValue }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let start = 0;
-    const duration = 6000; 
-    const incrementTime = 50; 
+    const duration = 6000;
+    const incrementTime = 50;
     const steps = duration / incrementTime;
     const stepSize = endValue / steps;
 
@@ -32,31 +31,25 @@ function Counter({ endValue }) {
   return <h1>{count}+</h1>;
 }
 
-// Count Component
 function Count() {
   const [boxData, setBoxData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API
     fetch("https://biz-booster-landingpage-backend.vercel.app/api/box/get")
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("API Response:", response); // Log the API response for debugging
-
-        // Extract the `data` array from the response
-        const dataArray = response.data;
-
-        // Validate and filter out invalid entries
+      .then((res) => res.json())
+      .then((res) => {
+        const dataArray = res.data || [];
         const validData = dataArray.filter(
           (item) =>
-            item && item.count !== undefined && item.title && item.description
+            item &&
+            item.count !== undefined &&
+            item.title &&
+            item.description
         );
-
-        // Sort the data based on boxNo to ensure correct mapping
         const sortedData = validData.sort((a, b) => a.boxNo - b.boxNo);
         setBoxData(sortedData);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((err) => console.error("Error fetching data:", err));
   }, []);
 
   const scrollVariants = {
@@ -66,14 +59,16 @@ function Count() {
 
   return (
     <div className="count-container">
-                         <SEO title=" Counter " description="This is Counter Page." />
+      <SEO title="Counter" description="This is Counter Page." />
 
-      {/* Fixed Background */}
-      <div className="count-background"></div>
+      <div className="count-background" />
 
-      {/* Overlay Content */}
+      {/* Sticky Title */}
+      <h2 className="count-title-sticky">Behind Your Successful Careers</h2>
+
+      {/* Content Overlay */}
       <div className="count-overlay">
-        <Container className="py-5">
+        <Container className="py-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -81,41 +76,30 @@ function Count() {
             transition={{ duration: 1 }}
             viewport={{ once: false }}
           >
-            <h2 className="text-center text-white fw-bold mb-5">
-              Behind Your Successful Careers
-            </h2>
-          </motion.div>
-
-          <div className="count-text py-3">
-            <Row>
+            <Row className="g-3 justify-content-center">
               {boxData.map((box, index) => (
-                <Col key={index} xs={12} sm={12} md={6} lg={3} xl={3} xxl={3} >
+                <Col key={index} xs={12} sm={6} md={6} lg={3}>
                   <motion.div
                     initial="hidden"
                     whileInView="visible"
                     variants={scrollVariants}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 0.8 }}
                     viewport={{ once: false }}
-
                   >
-                    <div className="blue-bg-transpernt text-center py-2 py-lg-5 my-3 custom-responsive-div">
-                      <Counter
-                        endValue={parseInt((box.count || "0").replace("+", ""))}
-                      />
-                      <p className="text">{box.title || "N/A"}</p>
+                    <div className="custom-responsive-div text-center">
+                      <Counter endValue={parseInt((box.count || "0").replace("+", ""))} />
+                      <p className="fw-bold text">{box.title || "N/A"}</p>
                       <p className="text">{box.description || "N/A"}</p>
                     </div>
-
                   </motion.div>
                 </Col>
               ))}
             </Row>
-          </div>
+          </motion.div>
         </Container>
       </div>
     </div>
   );
 }
-//code ends
 
 export default Count;

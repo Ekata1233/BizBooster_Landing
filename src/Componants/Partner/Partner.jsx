@@ -52,9 +52,10 @@ function Partner() {
                         freeMode={true}
                         breakpoints={{
                             320: { slidesPerView: 1 },
-                            425: { slidesPerView: 1 },
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 5 },
+                            425: { slidesPerView: 2 },
+                            768: { slidesPerView: 3 },
+                            1024: { slidesPerView: 4 },
+                            1200: {slidesPerView: 4}
                         }}
                         className="py-3"
                     >
