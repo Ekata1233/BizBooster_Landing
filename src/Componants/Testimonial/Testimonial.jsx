@@ -24,7 +24,7 @@ function Testimonial() {
   const fetchTestimonials = async () => {
     try {
       const response = await fetch(
-        "https://biz-booster-landingpage-backend.vercel.app/api/testimonial/get"
+        "https://landing-page-backend-alpha.vercel.app/api/testimonial/get"
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
