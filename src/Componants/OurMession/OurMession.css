@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: color(srgb 0 0.0352941 0.0627451 / 0.7); /* Overlay color */
+    background: color(srgb 0 0.0352941 0.0627451 / 0.5); /* Overlay color */
     box-shadow: inset 0 0 100px rgb(0, 0, 0); /* Inner shadow */
     z-index: 1; /* Lower layer */
     pointer-events: none;

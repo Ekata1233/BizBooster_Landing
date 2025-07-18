@@ -1,141 +1,140 @@
-import React from 'react'
-import { Col, Container, Nav, Row } from 'react-bootstrap'
-import { FaFacebookF, FaPhoneAlt, FaVoicemail } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Nav, Row } from 'react-bootstrap';
+import {
+  FaPhoneAlt,
+  FaInstagram,
+  FaWhatsapp,
+  FaYoutube,
+  FaLinkedinIn,
+  FaFacebookF,
+} from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-import playstrore from '../../assets/Google Play (1).png'
+import axios from 'axios';
 import SEO from '../SEO';
+
 function Footer() {
-    return (
-        <div className='text-white bg-dark pb-2'>
-                               <SEO title=" Footer " description="This is Footer Page." />
+  const [footerData, setFooterData] = useState(null);
 
-            <Container className='text-white bg-dark py-5'>
-                <Row >
+  useEffect(() => {
+    const fetchFooter = async () => {
+      try {
+        const res = await axios.get(`https://landing-page-backend-alpha.vercel.app/api/footer/get`);
+        setFooterData(res.data);
+      } catch (err) {
+        console.error('Error fetching footer:', err);
+      }
+    };
 
-                    <Col className=''>
-                        <div>
-                            <h1>BizBooster</h1>
-                            <p>
-                                Welcome to BozBooster Group! We are dedicated to helping you build a secure financial future and make smart investment decisions. Join us on the path to financial success!
-                            </p>
-                            <h4>Our Social</h4>
-                            <div className='d-flex mb-3'>
-    <div className='me-4 fs-4'>
-        <a
-            href="https://www.facebook.com/share/1BXEeQnmYF/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#1877F2' }} // Facebook Blue
-        >
-            <FaFacebookF />
-        </a>
+    fetchFooter();
+  }, []);
+
+  // Filter social icons
+  const socialIcons = {
+    facebook: <FaFacebookF style={{ color: '#1877F2' }} />,
+    instagram: <FaInstagram style={{ color: '#e44095ff' }} />,
+    linkedin: <FaLinkedinIn style={{ color: '#0A66C2' }} />,
+    whatsapp: <FaWhatsapp style={{ color: '#25D366' }} />,
+    youtube: <FaYoutube style={{ color: '#FF0000' }} />
+  };
+
+  const renderSocialIcons = footerData?.socialLinks?.filter(link =>
+    ["facebook", "instagram", "linkedin", "whatsapp", "youtube"].includes(link.type)
+  );
+
+  const renderDownloadLinks = footerData?.socialLinks?.filter(link =>
+    ["playstore", "appstore"].includes(link.type)
+  );
+
+  return (
+    <div className='text-white bg-dark pb-2'>
+      <SEO title="Footer" description="This is Footer Page." />
+      <Container className='text-white bg-dark py-5'>
+        <Row>
+          {/* Company Info */}
+          <Col>
+            <div>
+              <h1>{footerData?.companyName || "FetchTrue"}</h1>
+              <p>{footerData?.description || "Welcome to FetchTrue Group..."}</p>
+              <h4>Our Social</h4>
+              <div className='d-flex mb-3'>
+                {renderSocialIcons?.map((item, idx) => (
+                  <div key={idx} className='me-4 fs-4'>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {socialIcons[item.type]}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Col>
+
+          {/* Official Info */}
+          <Col>
+            <div>
+              <h4>Official info:</h4>
+              <p>{footerData?.address}</p>
+              <p><FiMail className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.email}</p>
+              <p><FaPhoneAlt className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.phone}</p>
+              <p><TbWorld className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.website}</p>
+            </div>
+          </Col>
+
+          {/* Quick Links (static) */}
+          <Col>
+            <div>
+              <h4>Quick Links</h4>
+              <Nav className="flex-column text-start">
+                <Nav.Link href="/contactus" className="text-white">
+                  <MdOutlineKeyboardDoubleArrowRight /> Contact Us
+                </Nav.Link>
+                <Nav.Link href="/privacypolicy" className="text-white">
+                  <MdOutlineKeyboardDoubleArrowRight /> Privacy Policy
+                </Nav.Link>
+                <Nav.Link href="/refund&returnpolicy" className="text-white">
+                  <MdOutlineKeyboardDoubleArrowRight /> Return & Refund Policy
+                </Nav.Link>
+                <Nav.Link href="/termsandcondition" className="text-white">
+                  <MdOutlineKeyboardDoubleArrowRight /> Terms & Conditions
+                </Nav.Link>
+              </Nav>
+            </div>
+          </Col>
+
+          {/* Download Buttons (Play Store & App Store) */}
+          <Col>
+            <div>
+              <h4>Download</h4>
+              {renderDownloadLinks?.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='d-block mb-2'
+                >
+                  <img
+                    src={item.image}
+                    alt={item.type}
+                    className='img-fluid'
+                    style={{ maxWidth: '180px' }}
+                  />
+                </a>
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* Footer Bottom */}
+      <p className='text-center'>2023 © All rights Reserved | FetchTrue</p>
     </div>
-
-    <div className='me-4 fs-4'>
-        <a
-            href="https://www.instagram.com/biz.booster.2x?igsh=MXRmcmViYWVjNXE2YQ=="
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#E4405F' }} // Instagram Pink
-        >
-            <FaInstagram />
-        </a>
-    </div>
-
-    <div className='me-4 fs-4'>
-        <a
-            href="https://www.linkedin.com/company/ftfl-technology-pvt-ltd/posts?lipi=urn%3Ali%3Apage%3Ad_flagship3_company_admin%3B74v7ipTfSPiXlWl47Q2SSw%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#0A66C2' }} // LinkedIn Blue
-        >
-            <FaLinkedinIn />
-        </a>
-    </div>
-
-    <div className='me-4 fs-4'>
-        <a
-            href="https://wa.me/919309517500"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#25D366' }} // WhatsApp Green
-        >
-            <FaWhatsapp />
-        </a>
-    </div>
-
-    <div className='me-4 fs-4'>
-        <a
-            href="https://youtube.com/@bizbooster2x?si=jAlIAVgAD1A80oLu"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#FF0000' }} // YouTube Red
-        >
-            <FaYoutube />
-        </a>
-    </div>
-
-    <div className='me-4 fs-4'> </div>
-</div>
-
-
-
-                           
-                        </div>
-                    </Col>
-
-                    <Col>
-                        <div>
-                            <h4>Official info:</h4>
-                            <p>Office no.307, 3rd Floor, Amanora Chamber,  Amanora Mall, Hadapsar, Pune- 411028</p>
-                            <p className=""> <FiMail className="me-2" style={{ width: "20px", height: "20px" }} />info@bizbooster2x.com</p>
-                            <p className=""> <FaPhoneAlt className="me-2" style={{ width: "20px", height: "20px" }} />+91 9309517500</p>
-
-                            <p className=""> <TbWorld className="me-2" style={{ width: "20px", height: "20px" }} /> www.bizbooster2x.com.</p>
-
-                        </div>
-                    </Col>
-                    <Col>
-                        <div className=''>
-
-                            <Nav className="flex-column text-start">
-                                <h4>Quick Links</h4>
-                                <Nav.Link href="/contactus" className="text-white">
-                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Contact Us
-                                </Nav.Link>
-                                <Nav.Link href="/privacypolicy" className="text-white">
-                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Privacy Policy
-                                </Nav.Link>
-                                <Nav.Link href="/refund&returnpolicy" className="text-white">
-                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Return & Refund Policy
-                                </Nav.Link>
-                                <Nav.Link href="/termsandcondition" className="text-white">
-                                    <MdOutlineKeyboardDoubleArrowRight className="" /> Terms & Conditions
-                                </Nav.Link>
-                            </Nav>
-
-                        </div>
-                    </Col>
-                    <Col> <div>
-                        <h4>Download</h4>
-                        <img src={playstrore} className=' img-fluid my-3' />
-                        {/* <img src={appstore}/> */}
-                    </div>
-                    </Col>
-                   
-                </Row>
-                
-            </Container>
-            <p className='text-center'>2023 © All rights Reserved | BizBooster2X</p>
-        </div>
-    )
+  );
 }
 
-export default Footer
+export default Footer;
