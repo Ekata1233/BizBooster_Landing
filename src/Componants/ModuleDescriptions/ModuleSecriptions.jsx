@@ -47,7 +47,7 @@ function ModuleDescriptions() {
     useEffect(() => {
         const fetchBanner = async () => {
             try {
-                const res = await axios.get('https://landing-page-backend-alpha.vercel.app/api/banner/get/AboutUs');
+                const res = await axios.get('https://landing-page-backend-alpha.vercel.app/api/banner/get/Services');
                 if (res.data.length > 0) {
                     setBanner(res.data[0]);
                 }
