@@ -15,7 +15,7 @@ function Gallery() {
         style={{ height: "400px" }}
       />
       <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-        <h1 className="text-white fw-bold text-start">Gallery...</h1>
+        {/* <h1 className="text-white fw-bold text-start">Gallery...</h1> */}
    
       </div>
     </div>         

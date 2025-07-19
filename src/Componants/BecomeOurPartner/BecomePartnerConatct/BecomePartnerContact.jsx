@@ -96,14 +96,14 @@ function BecomePartnerContact() {
   ];
 
   return (
-    <div className="contact-container">
+    <div className="contact-container" >
       <SEO title="Become Our Partner Contact" description="This is Become Our Partner Contact." />
       <div className="contact-background"></div>
       <NationWide/>
-      <div className="count-overlay">
+      <div className="count-overlay" style={{backgroundColor:'rgba(38, 62, 135, 0.38)'}}>
         <Container id="contact-form">
           <motion.h2
-            className="text-center text-white fw-bold py-5"
+            className="text-center text-black fw-bold py-5"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.5 }}
@@ -112,8 +112,8 @@ function BecomePartnerContact() {
             Apply Now and Start Earning
           </motion.h2>
 
-          <Form onSubmit={handleSubmit}>
-            <Row className="">
+          <Form onSubmit={handleSubmit}  >
+            <Row className="" style={{border:''}}>
               <Col xs={12} sm={6} md={4}>
                 <motion.div
                   initial="hidden"

@@ -1,0 +1,87 @@
+.become-contactForm-container {
+  position: relative;
+  overflow: hidden;
+  /* background: linear-gradient(to right, #00519d5e, #6fabfa4d); */
+}
+
+.become-contactForm-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* .become-count-overlay {
+    background-color: #003f7f58;
+  position: relative;
+  z-index: 2;
+} */
+
+.become-contact-container form {
+  background-color: rgba(15, 14, 14, 0.241);
+  width: 100%;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: rgb(235, 221, 221);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #f7f0f0;
+}
+
+.become-contact-container form .form-control {
+  background-color: rgba(241, 236, 236, 0.627);
+  border: 1px solid rgb(25, 23, 23);
+  color: rgb(20, 18, 18);
+  font-size: 15px;
+}
+
+.become-contact-container form .form-control:focus {
+  background-color: rgba(226, 217, 217, 0.236);
+  color: rgb(233, 225, 225);
+  border: 1px solid #00bfff;
+  box-shadow: none;
+}
+
+.become-contact-container form .form-check-input {
+  background-color: transparent;
+  border: 1px solid #f2e8e8;
+}
+
+.become-contact-container form .form-check-label {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.become-contact-container form .form-check-input:checked {
+  background-color: #00bfff;
+  border-color: #00bfff;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.become-contact-container button[type="submit"] {
+  background-color: #00509D !important;
+  border: none;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #003F7F !important;
+}
+
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
+  }
+}

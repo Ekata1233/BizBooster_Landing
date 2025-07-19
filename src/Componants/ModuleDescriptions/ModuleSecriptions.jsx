@@ -77,11 +77,11 @@ function ModuleDescriptions() {
                         alt="Module Banner"
                         style={{ height: "400px", objectFit: 'cover' }}
                     />
-                    <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
+                    {/* <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
                         <p className="text-white fw-bold text-end w-75">
                             We streamline processes, drive growth, enhance branding, ensure legal compliance, provide home and IT solutions, foster education, offer financial planning, and support franchise expansion.
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             )}
 

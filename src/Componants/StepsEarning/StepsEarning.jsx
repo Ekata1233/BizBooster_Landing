@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Col, Container, Row } from "react-bootstrap";
-import playstrore from "../../assets/Google Play (2).png";
 import SEO from "../SEO";
 
 const StepsEarning = () => {
   const [videoUrl, setVideoUrl] = useState("");
+  const [socialLinks, setSocialLinks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,54 +16,57 @@ const StepsEarning = () => {
     { id: 3, title: "Start your Earning" },
   ];
 
+  const renderDownloadLinks = socialLinks.filter(link =>
+    ["playstore", "appstore"].includes(link.type?.toLowerCase())
+  );
+
   useEffect(() => {
     const fetchVideoUrl = async () => {
       try {
         const response = await fetch(
           "https://biz-booster-landingpage-backend.vercel.app/api/videos/get"
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch video URL");
-        }
         const data = await response.json();
-        console.log("API Response:", data); // Debugging: Log the entire API response
 
-        // Check if the response is an array and has at least one item
-        if (!Array.isArray(data) || data.length === 0) {
-          throw new Error("No video data found in the API response");
+        if (!Array.isArray(data) || data.length === 0 || !data[0].video) {
+          throw new Error("No video data found");
         }
 
-        // Access the first item in the array and get the video URL
-        const videoData = data[0];
-        if (!videoData.video) {
-          throw new Error("Video URL not found in the API response");
-        }
-
-        setVideoUrl(videoData.video);
+        setVideoUrl(data[0].video);
       } catch (error) {
-        console.error("Error fetching video URL:", error); // Debugging: Log the error
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
+    const fetchFooterLinks = async () => {
+      try {
+        const response = await fetch(
+          "https://landing-page-backend-alpha.vercel.app/api/footer/get"
+        );
+        const data = await response.json();
+
+        if (Array.isArray(data.socialLinks)) {
+          setSocialLinks(data.socialLinks);
+        }
+      } catch (error) {
+        console.error("Error fetching footer links:", error);
+      }
+    };
+
     fetchVideoUrl();
+    fetchFooterLinks();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="bg-white">
-      <SEO title=" Steps Earning " description="This is Steps Earning Page." />
+      <SEO title="Steps Earning" description="This is Steps Earning Page." />
       <Container className="flex flex-col items-center py-5">
-        <h1 className="text-center fw-bold blue pb-4" style={{color:'#2164F4'}}>
+        <h1 className="text-center fw-bold pb-4" style={{ color: "#2164F4" }}>
           Start your Step towards Earning
         </h1>
         <Row>
@@ -99,12 +102,26 @@ const StepsEarning = () => {
                   </h5>
                   <p className="text-sm mt-1 text-black">{step.description}</p>
 
+                  {/* Render Play Store and App Store buttons on last step */}
                   {index === 2 && (
-                    <img
-                      src={playstrore}
-                      alt="Download on Play Store"
-                      className="mx-auto img-fluid mt-3"
-                    />
+                    <div className="d-flex justify-content-center flex-wrap gap-3 mt-3">
+                      {renderDownloadLinks.map((item, idx) => (
+                        <a
+                          key={idx}
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="d-block mb-2"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.type}
+                            className="img-fluid"
+                            style={{ maxWidth: "180px" }}
+                          />
+                        </a>
+                      ))}
+                    </div>
                   )}
 
                   {index < steps.length - 1 && (

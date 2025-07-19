@@ -83,7 +83,7 @@ function ContactUs() {
                     style={{ height: "400px" }}
                 />
                 <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-                    <h1 className="text-white fw-bold text-start">Contact Us...</h1>
+                    {/* <h1 className="text-white fw-bold text-start">Contact Us...</h1> */}
                 </div>
             </div>
             <div className='contact-container'>
@@ -101,7 +101,7 @@ function ContactUs() {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6}>
+                            {/* <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6}>
                                 <div className="custom-margin d-flex align-items-start gap-3">
                                     <span
                                         className='p-4'
@@ -153,9 +153,9 @@ function ContactUs() {
                                         <p>info@bizbooster.com</p>
                                     </span>
                                 </div>
-                            </Col>
+                            </Col> */}
 
-                            <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6}>
+                            <Col >
                                 <Form onSubmit={handleSubmit}>
                                     <Row>
                                         <Col xs={12} sm={6} md={12} lg={6} xl={6} xxl={6} className="mb-4">

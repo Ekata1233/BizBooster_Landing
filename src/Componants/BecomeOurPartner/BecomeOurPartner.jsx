@@ -45,7 +45,7 @@ function BecomeOurPartner() {
           style={{ height: "400px" }}
         />
         <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-          <h1 className="text-white fw-bold text-start">Become Our Partner...</h1>
+          {/* <h1 className="text-white fw-bold text-start">Become Our Partner...</h1> */}
         </div>
       </div>
       <div className='py-5 my-5'>

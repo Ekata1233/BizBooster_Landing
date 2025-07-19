@@ -1,186 +1,84 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Hero from "../../assets/business-success-1.png";
-import { Container } from 'react-bootstrap';
-import { motion } from "framer-motion"
+import { Container, Spinner } from 'react-bootstrap';
+import { motion } from "framer-motion";
 import SEO from '../SEO';
+
 const scrollVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
+
 function PolicyPage() {
+  const [policyData, setPolicyData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://biz-booster.vercel.app/api/privacypolicy/get')
+      .then((res) => res.json())
+      .then((data) => {
+        setPolicyData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching privacy policy:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <Container className="text-center py-5">
+        <Spinner animation="border" variant="primary" />
+      </Container>
+    );
+  }
+
   return (
     <div>
-      <SEO title=" Privacy Policy " description="This is Privacy Policy Page." />
-         <div className="position-relative">
-                <img
-                  src={Hero}
-                  className="w-100"
-                  alt="Hero"
-                  style={{ height: "200px" }}
-                />
-                <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-                </div>
-              </div>
-              <Container>
-              <motion.h1  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='blue fw-bold text-center py-5'>Privacy Policy...</motion.h1>
-                <div>
-                <motion.div className='mb-5'>
-                    <motion.p  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Disclaimer:</motion.p>
-                    <motion.p  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                   
-                </motion.div>
-                <motion.div  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Quality Policy:</motion.p>
-                    <motion.p  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                   
-                </motion.div>
-                <motion.div  initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Information Collection:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>How Information is used:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Data Sharing:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Protecting Your Information:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Privacy in Personal Images and Financial Services:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Online Safety Tips:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                <motion.div initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='mb-5'>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='fw-bold text'>Policy Review and Your Consent:</motion.p>
-                    <motion.p initial="hidden"
-                    whileInView="visible"
-                    variants={scrollVariants}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }} className='text text-secondary'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint impedit aspernatur perferendis quia, rem omnis corrupti sed odit repellat dolore quasi nihil quam quo officiis aliquid, facilis amet aperiam voluptate quas, repudiandae voluptatum non mollitia beatae. Ut ipsam porro corrupti veniam maxime, tempore quis illo earum alias deserunt minus ad.</motion.p>
-                    
-                </motion.div>
-                </div>
-              </Container>
+      <SEO title="Privacy Policy" description="This is Privacy Policy Page." />
+
+      {/* Hero Image */}
+      <div className="position-relative">
+        <img
+          src={Hero}
+          className="w-100"
+          alt="Hero"
+          style={{ height: "200px" }}
+        />
+        <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center" />
+      </div>
+
+      {/* Content */}
+      <Container>
+        <motion.h1
+          initial="hidden"
+          whileInView="visible"
+          variants={scrollVariants}
+          transition={{ duration: 1 }}
+          viewport={{ once: false }}
+          className="blue fw-bold text-center py-5"
+        >
+          Privacy Policy
+        </motion.h1>
+
+        {policyData?.sections?.map((section, index) => (
+          <motion.div
+            key={index}
+            className="mb-5"
+            initial="hidden"
+            whileInView="visible"
+            variants={scrollVariants}
+            transition={{ duration: 1 }}
+            viewport={{ once: false }}
+          >
+            <motion.p className="fw-bold text">{section.title}</motion.p>
+            <motion.p className="text text-secondary">{section.description}</motion.p>
+          </motion.div>
+        ))}
+      </Container>
     </div>
-  )
+  );
 }
 
-export default PolicyPage
+export default PolicyPage;
