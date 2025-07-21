@@ -10,7 +10,7 @@ function Gallery() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const response = await axios.get(`https://landing-page-backend-alpha.vercel.app/api/banner/get/Gallery`);
+        const response = await axios.get('https://landing-page-backend-alpha.vercel.app/api/banner/get/Gallery');
         if (response.data && response.data.length > 0) {
           setHeroImage(response.data[0].imageUrl);
         }
