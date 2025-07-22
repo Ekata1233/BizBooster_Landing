@@ -52,7 +52,7 @@ function BecomePartnerContact() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://biz-booster-landingpage-backend.vercel.app/api/business/create", {
+      const response = await fetch("https://landingpagebackend-nine.vercel.app/api/earning/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
