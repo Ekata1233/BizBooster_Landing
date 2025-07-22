@@ -43,7 +43,7 @@ const StepsEarning = () => {
     const fetchFooterLinks = async () => {
       try {
         const response = await fetch(
-          "https://landing-page-backend-alpha.vercel.app/api/footer/get"
+          "https://landingpagebackend-nine.vercel.app/api/footer/get"
         );
         const data = await response.json();
 

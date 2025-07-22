@@ -16,7 +16,7 @@ function ModuleDescriptions() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://biz-booster-landingpage-backend.vercel.app/api/page/get");
+                const response = await fetch("https://landingpagebackend-nine.vercel.app/api/page/get");
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -47,7 +47,7 @@ function ModuleDescriptions() {
     useEffect(() => {
         const fetchBanner = async () => {
             try {
-                const res = await axios.get('https://landing-page-backend-alpha.vercel.app/api/banner/get/Services');
+                const res = await axios.get('https://landingpagebackend-nine.vercel.app/api/banner/get/Services');
                 if (res.data.length > 0) {
                     setBanner(res.data[0]);
                 }

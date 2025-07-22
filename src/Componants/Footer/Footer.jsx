@@ -20,7 +20,7 @@ function Footer() {
   useEffect(() => {
     const fetchFooter = async () => {
       try {
-        const res = await axios.get(`https://landing-page-backend-alpha.vercel.app/api/footer/get`);
+        const res = await axios.get(`https://landingpagebackend-nine.vercel.app/api/footer/get`);
         setFooterData(res.data);
       } catch (err) {
         console.error('Error fetching footer:', err);

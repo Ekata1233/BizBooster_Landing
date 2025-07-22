@@ -13,7 +13,7 @@ function About() {
   useEffect(() => {
     const fetchAboutBanners = async () => {
       try {
-        const res = await axios.get('https://landing-page-backend-alpha.vercel.app/api/banner/get/AboutUs');
+        const res = await axios.get('https://landingpagebackend-nine.vercel.app/banner/get/AboutUs');
         setBanners(res.data);
       } catch (error) {
         console.error('Error fetching About banners:', error);

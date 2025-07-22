@@ -17,7 +17,7 @@ function AwardsandCertifications() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://landing-page-backend-alpha.vercel.app/api/gallery/get')
+    fetch('https://landingpagebackend-nine.vercel.app/api/gallery/get')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
