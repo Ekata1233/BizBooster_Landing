@@ -21,7 +21,7 @@ function Home() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await axios.get("https://landingpagebackend-nine.vercel.app/api/banner/get/Home"); // Adjust base URL if needed
+        const response = await axios.get("https://landingpagebackend-nine.vercel.app/api/banner/page/Home"); // Adjust base URL if needed
         setBanners(response.data);
       } catch (error) {
         console.error("Error fetching banners:", error);

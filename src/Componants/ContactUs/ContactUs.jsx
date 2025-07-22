@@ -20,7 +20,7 @@ function ContactUs() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const res = await axios.get('https://landingpagebackend-nine.vercel.app/api/banner/get/Contactus');
+        const res = await axios.get('https://landingpagebackend-nine.vercel.app/api/banner/page/Contactus');
         if (res.data?.length > 0) {
           setHeroImage(res.data[0].imageUrl);
         }

@@ -26,7 +26,7 @@ function ServiceProvider() {
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const res = await axios.get(`https://landingpagebackend-nine.vercel.app/api/banner/get/Serviceprovider`);
+        const res = await axios.get(`https://landingpagebackend-nine.vercel.app/api/banner/page/Serviceprovider`);
         if (res.data && res.data.length > 0) {
           setBannerImage(res.data[0].imageUrl);
         }
