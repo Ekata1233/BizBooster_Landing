@@ -52,8 +52,8 @@ function OurMession() {
   };
 
   // Filter data based on category - only if data is an array
-  const missionData = Array.isArray(data) ? data.find(item => item?.category === 'mission') : null;
-  const visionData = Array.isArray(data) ? data.find(item => item?.category === 'vision') : null;
+  const missionData = Array.isArray(data) ? data.find(item => item?.category === 'our mission') : null;
+  const visionData = Array.isArray(data) ? data.find(item => item?.category === 'our vision') : null;
 
   // Display loading state while data is being fetched
   if (loading) {
