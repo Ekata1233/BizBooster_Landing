@@ -19,29 +19,16 @@
   z-index: -1;
 }
 
-/* Sticky Title */
 .count-title-sticky {
   position: sticky;
-  /* top: -40; */
   z-index: 10;
-  /* background-color: rgba(26, 124, 235, 0.7); */
-  /* padding: 20px 15px; */
   font-size: 40px !important;
   font-weight: 700;
-  color: rgb(15, 14, 14);
+  color: #0f0e0e;
   text-align: center;
   width: 100%;
   margin-top: 150px;
   margin-bottom: -20px;
-}
-
-/* Overlay container */
-.count-overlay {
-  position: relative;
-  padding: 20px 15px;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 1;
 }
 
 /* Card Box */
@@ -50,30 +37,44 @@
   max-width: 280px;
   height: 270px;
   padding: 20px;
-  border-radius: 10px;
-  background-color: rgba(22, 132, 243, 0.623);
-  color: white;
+  border-radius: 12px;
+  background-color: #e6f0ff; /* light blue */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  color: #222;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  border: 2px solid #1684f3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Font sizes inside the card */
-.custom-responsive-div h1 {
+.custom-responsive-div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  background-color: #d6e8ff;
+}
+
+/* Fonts inside the card */
+.counter-value {
   font-size: 32px;
+  color: #1684f3;
+  font-weight: bold;
 }
 
-.custom-responsive-div p {
+.counter-title {
   font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #222;
 }
 
-/* === RESPONSIVENESS === */
+.counter-description {
+  font-size: 14px;
+  color: #555;
+}
 
-/* Mobile (default): already handled */
-
-/* Tablets & Small Desktops */
+/* RESPONSIVENESS */
 @media (min-width: 768px) {
   .custom-responsive-div {
     max-width: 320px;
@@ -81,16 +82,19 @@
     padding: 25px;
   }
 
-  .custom-responsive-div h1 {
+  .counter-value {
     font-size: 36px;
   }
 
-  .custom-responsive-div p {
+  .counter-title {
     font-size: 17px;
+  }
+
+  .counter-description {
+    font-size: 15px;
   }
 }
 
-/* Laptops & Large Screens */
 @media (min-width: 1200px) {
   .custom-responsive-div {
     max-width: 360px;
@@ -98,20 +102,23 @@
     padding: 30px;
   }
 
-  .custom-responsive-div h1 {
+  .counter-value {
     font-size: 40px;
   }
 
-  .custom-responsive-div p {
+  .counter-title {
     font-size: 18px;
   }
 
+  .counter-description {
+    font-size: 16px;
+  }
+
   .count-title-sticky {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     padding: 25px;
   }
-  
 }
 
 @media (max-width: 576px) {
