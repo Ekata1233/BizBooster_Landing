@@ -8,40 +8,28 @@ import { useEffect, useState } from "react";
 import SEO from "../SEO";
 
 function Partner() {
-    const [items, setItems] = useState([]);
+    const [partners, setPartners] = useState([]);
 
     useEffect(() => {
-        // Fetch images from the API
-        fetch("https://biz-booster-landingpage-backend.vercel.app/api/images/get")
-            .then(response => response.json())
+        fetch("https://landingpagebackend-nine.vercel.app/api/partners/get")
+            .then(res => res.json())
             .then(data => {
-                console.log("API Response:", data); // Log the API response for debugging
-
-                // Check if the response is an array and has at least one object
-                if (Array.isArray(data) && data.length > 0) {
-                    // Extract the images array from the first object
-                    const images = data[0].images;
-
-                    // Map the images to the required format
-                    const partnerImages = images.map((image, index) => ({
-                        id: index + 1,
-                        title: `Item ${index + 1}`,
-                        image: image
-                    }));
-                    setItems(partnerImages);
+                if (data.data && Array.isArray(data.data)) {
+                    const validPartners = data.data.filter(p => p.fileType === "image");
+                    setPartners(validPartners);
                 } else {
-                    console.error("Unexpected API response structure:", data);
+                    console.error("Unexpected partner data structure:", data);
                 }
             })
-            .catch(error => console.error("Error fetching images:", error));
+            .catch(error => console.error("Error fetching partner data:", error));
     }, []);
 
     return (
-        <div className='bg-white text-dark w-100 py-4'>
-            <SEO title=" Partner " description="This is Partner Page." />
-            <h3 className='fw-bold  text-center' style={{color:"#2164F4"}}>Partners</h3>
-            <h2 className='fw-bold text-center'>Our Esteemed Business Partners</h2>
-            <div className="w-full max-w-7xl mx-auto py-8">
+        <div className="bg-white text-dark w-100 py-4">
+            <SEO title="Partner" description="This is the Partner Page." />
+            <h3 className="fw-bold text-center" style={{ color: "#2164F4" }}>Partners</h3>
+            <h2 className="fw-bold text-center">Our Esteemed Business Partners</h2>
+            <div className="w-full max-w-7xl mx-auto py-4">
                 <Container>
                     <Swiper
                         modules={[Autoplay, FreeMode]}
@@ -55,19 +43,32 @@ function Partner() {
                             425: { slidesPerView: 2 },
                             768: { slidesPerView: 3 },
                             1024: { slidesPerView: 4 },
-                            1200: {slidesPerView: 4}
+                            1200: { slidesPerView: 4 }
                         }}
                         className="py-3"
                     >
-                        {items.map((item) => (
-                            <SwiperSlide key={item.id}>
+                        {partners.map((partner) => (
+                            <SwiperSlide key={partner._id}>
                                 <div className="card text-center py-lg-4 mx-2" style={{ border: "none" }}>
-                                    <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="rounded d-block img-fluid"
-                                        style={{ height: "100px" }}
-                                    />
+                                    <div
+                                        className="d-flex align-items-center justify-content-center"
+                                        style={{
+                                            width: "100%",
+                                            height: "120px",
+                                            padding: "10px"
+                                        }}
+                                    >
+                                        <img
+                                            src={partner.fileUrl}
+                                            alt={partner.name}
+                                            className="rounded img-fluid"
+                                            style={{
+                                                maxHeight: "100px",
+                                                maxWidth: "100%",
+                                                objectFit: "contain"
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             </SwiperSlide>
                         ))}
