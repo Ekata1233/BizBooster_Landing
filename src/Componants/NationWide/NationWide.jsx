@@ -8,7 +8,7 @@ const NationWide = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://biz-booster-landingpage-backend.vercel.app/api/item/get');
+                const response = await fetch('https://landingpagebackend-nine.vercel.app/api/item/get');
                 const result = await response.json();
                 console.log('API Response:', result); // Log the API response for debugging
 
