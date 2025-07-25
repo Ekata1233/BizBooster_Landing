@@ -28,14 +28,21 @@
 
   }
   .category-card {
-    background: rgba(255, 255, 255, 0.692);
-    background-size: 0% 0%; 
-    background-position: center;
-    transition: background-size 2s ease, background-position 2s ease, background 2s ease;
-  }
+  background: rgba(255, 255, 255, 0.692);
+  background-size: 0% 0%;
+  background-position: center;
+  transition: background-size 2s ease, background-position 2s ease, background 2s ease;
+  height: 250px; /* Add this line */
+  max-width: 400px; /* Optional: controls width uniformity */
+  margin: auto; /* Center align */
+}
   .category-card .p{
     color: #074177;
   }
+  .category-card img {
+  max-height: 90px; /* Reduce image size */
+  object-fit: contain;
+}
   .category-card:hover {
     background: linear-gradient(135deg, rgba(0, 80, 157, 0.6), rgba(0, 120, 200, 0.377));
     background-size: 300% 300%; 

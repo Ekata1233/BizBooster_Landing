@@ -21,6 +21,7 @@ function Header() {
   const [show, setShow] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [services, setServices] = useState([]);
+  const [error, setError] = useState(null); // ✅ Fix added
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,13 +29,15 @@ function Header() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(
-          "https://biz-booster-landingpage-backend.vercel.app/api/page/get"
-        );
+        const response = await fetch('https://landingpagebackend-nine.vercel.app/api/servicepage/getAll-titles');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
-        setServices(data.data);
-      } catch (error) {
-        console.error("Error fetching services:", error);
+        setServices(data.data || []);
+      } catch (err) {
+        console.error("Error fetching titles:", err);
+        setError("Failed to load services.");
       }
     };
 
@@ -43,16 +46,10 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
+      setScrolling(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -60,11 +57,9 @@ function Header() {
       expand="lg"
       fixed="top"
       className={`mb-3 custom-navbar ${scrolling ? "scrolled" : ""}`}
-      style={{
-        transition: "all 0.3s ease-in-out",
-      }}
+      style={{ transition: "all 0.3s ease-in-out" }}
     >
-      <SEO title=" Navbar " description="This is Navbar Page." />
+      <SEO title="Navbar" description="This is Navbar Page." />
       <Container>
         <Navbar.Brand
           href="/"
@@ -98,11 +93,7 @@ function Header() {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel">
-              <Navbar.Brand
-                href="/"
-                className="fs-1"
-                style={{ fontWeight: "600" }}
-              >
+              <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600" }}>
                 BizBooster
               </Navbar.Brand>
             </Offcanvas.Title>
@@ -136,6 +127,14 @@ function Header() {
                 id="offcanvasNavbarDropdown"
                 className="nav-link-animated me-3 custom-dropdown"
               >
+                {error && (
+                  <NavDropdown.Item disabled>{error}</NavDropdown.Item>
+                )}
+
+                {services.length === 0 && !error && (
+                  <NavDropdown.Item disabled>Loading...</NavDropdown.Item>
+                )}
+
                 {services.map((service) => (
                   <NavDropdown.Item
                     key={service._id}
@@ -156,9 +155,9 @@ function Header() {
                 className="nav-link-animated me-3 custom-dropdown"
                 style={{ fontWeight: "600" }}
               >
-                <NavDropdown.Item href="/serviceprovider">
-                  Service Provider
-                </NavDropdown.Item>
+                <NavDropdown.Item href="https://biz-booster-provider-panel.vercel.app/signup" target="_blank" rel="noopener noreferrer">
+  Service Provider
+</NavDropdown.Item>
                 <NavDropdown.Item href="/becomeourpartner">
                   Become Our Partner
                 </NavDropdown.Item>

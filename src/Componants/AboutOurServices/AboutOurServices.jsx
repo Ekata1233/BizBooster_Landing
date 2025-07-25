@@ -16,7 +16,7 @@ function AboutOurServices() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch("https://biz-booster-landingpage-backend.vercel.app/api/page/get");
+        const response = await fetch("https://landingpagebackend-nine.vercel.app/api/servicepage/get");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -67,7 +67,7 @@ function AboutOurServices() {
           src={service.serviceImage}
           className="img-fluid position-absolute top-0 start-0 object-cover rounded rounded-4"
           alt={service.servicetitle}
-          style={{ zIndex: 2 }}
+          style={{ zIndex: 2, }}
         />
         <p
           className="text-center position-relative"

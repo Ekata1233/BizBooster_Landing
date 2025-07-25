@@ -10,23 +10,17 @@ function ModuleDescriptions() {
     const [serviceData, setServiceData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [banner, setBanner] = useState(null); // 🆕
+    const [banner, setBanner] = useState(null);
 
-    // Fetch service data
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://biz-booster-landingpage-backend.vercel.app/api/page/get");
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                const response = await fetch(`https://landingpagebackend-nine.vercel.app/api/servicepage/get/${id}`);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
-
-                const selectedService = data.data.find(service => service._id === id);
-                if (!selectedService) throw new Error(`Service with id ${id} not found`);
-
-                setServiceData(selectedService);
-                setError(null);
+                console.log("Fetched service data:", data.data);
+                if (data.data) setServiceData(data.data);
+                else throw new Error(`Service with id ${id} not found.`);
             } catch (error) {
                 console.error("Error fetching service data:", error);
                 setError(error.message);
@@ -34,16 +28,13 @@ function ModuleDescriptions() {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [id]);
 
-    // Scroll to top on mount
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
 
-    // 🆕 Fetch banner for this page
     useEffect(() => {
         const fetchBanner = async () => {
             try {
@@ -68,7 +59,6 @@ function ModuleDescriptions() {
         <div>
             <SEO title="Module Description" description="This is the Module Description Page." />
 
-            {/* 🆕 Dynamic Banner */}
             {banner && (
                 <div className="position-relative">
                     <img
@@ -77,11 +67,6 @@ function ModuleDescriptions() {
                         alt="Module Banner"
                         style={{ height: "400px", objectFit: 'cover' }}
                     />
-                    {/* <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-                        <p className="text-white fw-bold text-end w-75">
-                            We streamline processes, drive growth, enhance branding, ensure legal compliance, provide home and IT solutions, foster education, offer financial planning, and support franchise expansion.
-                        </p>
-                    </div> */}
                 </div>
             )}
 
@@ -99,33 +84,63 @@ function ModuleDescriptions() {
 
                 <div className="desc-overlay">
                     <div>
-                        <h1 className='text-white fw-bold text-center py-lg-5 double-underline'>
-                            Type Of Category
-                        </h1>
-
+                        <h1 className='text-white fw-bold text-center py-lg-5 double-underline'>Type Of Category</h1>
                         <Container>
-                            <Row>
-                                {categories.length > 0 ? (
-                                    categories.map((category) => (
-                                        <Col key={category._id} xs={12} sm={12} md={6} lg={4} xl={4} xxl={4} className='category-overlay my-4'>
-                                            <div className='h-100 d-flex flex-column border border-1 px-4 rounded-4 category-card' style={{ minHeight: "100%", height: "100%" }}>
-                                                <div className="d-flex justify-content-center align-items-center flex-grow-1" style={{ minHeight: "250px" }}>
-                                                    <img src={category.image} className='img-fluid' alt={category.title} />
-                                                </div>
-                                                <div className="text-center mt-3">
-                                                    <h3 className='fw-bold'>{category.title}</h3>
-                                                    <p className='text p'>{category.description}</p>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                    ))
-                                ) : (
-                                    <p className="text-center text-white">No categories available.</p>
-                                )}
-                            </Row>
+                        <Row>
+                        {categories.length > 0 ? (
+                            categories.map((category, index) => {
+                            // Safely extract image
+                            let imageSrc = "https://via.placeholder.com/250x180?text=No+Image";
+
+                            if (Array.isArray(category.image) && category.image.length > 0) {
+                                const firstImage = category.image[0];
+                                imageSrc = firstImage.startsWith("http")
+                                ? firstImage
+                                : `https://landingpagebackend-nine.vercel.app${firstImage}`;
+                            } else if (serviceData.serviceImage) {
+                                imageSrc = serviceData.serviceImage;
+                            }
+
+                            return (
+                                <Col
+                                key={`${category._id}-${index}`}
+                                xs={12}
+                                sm={12}
+                                md={6}
+                                lg={4}
+                                xl={4}
+                                xxl={4}
+                                className="category-overlay my-4"
+                                >
+                                <div className="h-100 d-flex flex-column border border-1 px-4 rounded-4 category-card">
+                                    <div
+                                    className="d-flex justify-content-center align-items-center flex-grow-1"
+                                    style={{ minHeight: "250px" }}
+                                    >
+                                    <img
+                                        src={imageSrc}
+                                        alt={category.title}
+                                        className="img-fluid"
+                                        style={{ maxHeight: "220px", objectFit: "contain" }}
+                                    />
+                                    </div>
+                                    <div className="text-center mt-3">
+                                    <h3 className="fw-bold">{category.title}</h3>
+                                    <p className="text p">{category.description}</p>
+                                    </div>
+                                </div>
+                                </Col>
+                            );
+                            })
+                        ) : (
+                            <p className="text-center text-white">No categories available.</p>
+                        )}
+                        </Row>
+
+
+
                         </Container>
 
-                        {/* Dynamic Title-Description Sections */}
                         {[1, 2, 3].map((index) => (
                             <div
                                 key={index}
