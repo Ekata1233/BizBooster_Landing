@@ -1,28 +1,90 @@
 .hover-card {
-    border: 1px solid #D9D9D9;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .background-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(0, 80, 157, 0.1); /* Faint color with 10% opacity */
-    border-radius: 50%;
-    z-index: 1;
-    transition: width 1.2s ease, height 1.2s ease, top 1.2s ease, left 1.2s ease;
-  }
-  
-  .hover-card:hover .background-overlay {
-    width: 300%;
-    height: 300%;
-    top: -100%;
-    left: -100%;
-    background: rgba(0, 80, 157, 0.3); /* Slightly darker on hover for visibility */
+  overflow: hidden;
+  cursor: pointer;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.hover-card:hover {
+  transform: scale(1.03);
+}
+
+.hover-card img {
+  max-height: 100px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.hover-card p {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  z-index: 2;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 80, 157, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+  transition: width 1.2s ease, height 1.2s ease, top 1.2s ease, left 1.2s ease;
+}
+
+.hover-card:hover .background-overlay {
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: rgba(0, 80, 157, 0.3);
+}
+
+/* ✅ Media Queries */
+@media (max-width: 768px) {
+  .hover-card {
+    height: 180px;
+    padding: 15px;
   }
 
-  /* Ensure all icons have the same height and width */
+  .hover-card img {
+    max-height: 100px;
+    margin-bottom: 8px;
+    /* max-width: 100% !important; */
+  }
 
+  .hover-card p {
+    font-size: 0.9rem;
+  }
+  
+}
+
+@media (max-width: 576px) {
+  .hover-card {
+    height: 160px;
+    padding: 12px;
+  }
+
+  .hover-card img {
+    max-height: 70px;
+    margin-bottom: 6px;
+  }
+
+  .hover-card p {
+    font-size: 0.85rem;
+  }
+}

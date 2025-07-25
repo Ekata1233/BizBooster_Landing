@@ -70,7 +70,7 @@ const StepsEarning = () => {
           Start your Step towards Earning
         </h1>
         <Row>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+          <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
             <motion.div
               className="relative flex flex-col items-center w-full max-w-4xl overflow-y-auto max-h-[80vh]"
               initial={{ opacity: 0, y: 50 }}
@@ -142,7 +142,7 @@ const StepsEarning = () => {
           <Col
             xs={12}
             sm={12}
-            md={6}
+            md={12}
             lg={6}
             xl={6}
             xxl={6}

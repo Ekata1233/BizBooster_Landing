@@ -48,7 +48,7 @@ function AboutOurServices() {
         <Container>
           <h2 className="fw-bold text-center mb-5" >About Our Services</h2>
           <Row className="align-items-center">
-            <Col xs={12} md={6} ref={ref}>
+            <Col xs={12} md={12} lg={6} ref={ref}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -65,9 +65,9 @@ function AboutOurServices() {
         <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
         <img
           src={service.serviceImage}
-          className="img-fluid position-absolute top-0 start-0 object-cover rounded rounded-4"
+          className="img-fluid"
           alt={service.servicetitle}
-          style={{ zIndex: 2, }}
+          // style={{ zIndex: 2, }}
         />
         <p
           className="text-center position-relative"
@@ -83,7 +83,7 @@ function AboutOurServices() {
               </motion.div>
             </Col>
 
-            <Col xs={12} md={6} ref={ref}>
+            <Col xs={12} md={12} lg={6} ref={ref}>
               <motion.div
                 initial={{ x: 100, opacity: 0 }}
                 animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
