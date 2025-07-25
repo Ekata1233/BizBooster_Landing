@@ -141,26 +141,32 @@ function ModuleDescriptions() {
 
                         </Container>
 
-                        {[1, 2, 3].map((index) => (
-                            <div
-                                key={index}
-                                className='full-width-bg py-5'
-                                style={{
-                                    backgroundColor: index === 2 ? "rgba(0, 81, 157, 0.62)" : "rgb(255, 255, 255)",
-                                }}
-                            >
-                                <Container className='py-5'>
-                                    <h1
-                                        className={`${index === 2 ? "text-white" : "blue"} fw-bold text-${index === 1 ? "start" : index === 2 ? "end" : "center"} mb-5 double-underline`}
-                                    >
-                                        {serviceData?.titleDescArray?.[index]?.title || "Default Section Title"}
-                                    </h1>
-                                    <p className={`text${index === 2 ? "-white" : "-secondary"} text`}>
-                                        {serviceData?.titleDescArray?.[index]?.description || "No description available."}
-                                    </p>
-                                </Container>
-                            </div>
-                        ))}
+  {serviceData?.titleDescArray?.slice(1).map((item, idx) => {
+    const isEven = idx % 2 === 0;
+
+    return (
+        <div
+            key={idx}
+            className='full-width-bg py-5'
+            style={{
+                backgroundColor: isEven ? "rgba(0, 81, 157, 0.62)" : "rgb(255, 255, 255)",
+            }}
+        >
+            <Container className='py-5'>
+                <h1
+                    className={`${isEven ? "text-white" : "blue"} fw-bold text-${isEven ? "end" : "start"} mb-5 double-underline`}
+                >
+                    {item.title || "Default Section Title"}
+                </h1>
+                <p className={`text${isEven ? "-white" : "-secondary"} text`}>
+                    {item.description || "No description available."}
+                </p>
+            </Container>
+        </div>
+    );
+})}
+
+
                     </div>
                 </div>
             </div>
