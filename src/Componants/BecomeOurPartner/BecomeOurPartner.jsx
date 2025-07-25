@@ -32,7 +32,7 @@ function BecomeOurPartner() {
 
     fetchBanner();
   
-    fetch('https://biz-booster-landingpage-backend.vercel.app/api/item/get')
+    fetch('https://landingpagebackend-nine.vercel.app/api/item/get')
       .then((response) => response.json())
       .then((response) => {
         if (response.data && Array.isArray(response.data)) {
@@ -46,9 +46,9 @@ function BecomeOurPartner() {
 
   // Extract data for each category
   const disclaimerData = data.find((item) => item.category === 'disclaimer') || {};
-  const gpData = data.find((item) => item.category === 'gp') || {};
-  const sgpData = data.find((item) => item.category === 'sgp') || {};
-  const pgpData = data.find((item) => item.category === 'pgp') || {};
+  const gpData = data.find((item) => item.category === 'fetchtrue-growth-partner') || {};
+  const sgpData = data.find((item) => item.category === 'super-growth-partner') || {};
+  const pgpData = data.find((item) => item.category === 'premium-growth-partner') || {};
 
   return (
     <div>
@@ -64,7 +64,6 @@ function BecomeOurPartner() {
           variants={fadeInUp}
         />
         <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
-          {/* Optional Heading or Overlay Content */}
         </div>
       </div>
 

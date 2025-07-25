@@ -1,8 +1,8 @@
 .become-contactForm-container {
   position: relative;
   overflow: hidden;
-  /* background: linear-gradient(to right, #00519d5e, #6fabfa4d); */
 }
+
 
 .become-contactForm-background {
   position: absolute;
@@ -14,7 +14,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0.6;
-  z-index: 1;
+  z-index: 1;  
 }
 
 /* .become-count-overlay {
@@ -45,7 +45,7 @@ form textarea::placeholder {
 }
 
 .become-contact-container form .form-control:focus {
-  background-color: rgba(226, 217, 217, 0.236);
+  background-color: rgba(226, 217, 217, 0.667);
   color: rgb(233, 225, 225);
   border: 1px solid #00bfff;
   box-shadow: none;

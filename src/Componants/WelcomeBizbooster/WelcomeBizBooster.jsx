@@ -7,7 +7,7 @@ function WelcomeBizBooster() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('https://biz-booster-landingpage-backend.vercel.app/api/content/get')
+    fetch('https://landingpagebackend-nine.vercel.app/api/contentsection/get')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
