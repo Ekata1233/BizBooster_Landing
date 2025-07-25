@@ -67,11 +67,11 @@ function Count() {
             viewport={{ once: false }}
           >
             <Row className="g-3 justify-content-center">
-              {boxData.length === 0 && (
+              {/* {boxData.length === 0 && (
                 <p style={{ color: "red", textAlign: "center" }}>
                   No data found from API.
                 </p>
-              )}
+              )} */}
 
               {boxData.map((box, index) => {
                 console.log("Rendering box:", box);

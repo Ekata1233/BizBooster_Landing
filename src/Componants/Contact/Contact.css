@@ -40,17 +40,17 @@
 
 /* Bootstrap form override for white placeholder text on dark background */
 .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(9, 7, 7, 0.8);
 }
 
 .form-control {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.315);
   border: 1px solid rgba(38, 35, 35, 0.427);
   color: white;
 }
 
 .form-control:focus {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.412);
   color: rgb(240, 229, 229);
   border-color: #fff;
   box-shadow: none;

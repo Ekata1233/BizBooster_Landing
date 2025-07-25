@@ -62,7 +62,6 @@ function BecomePartnerContact() {
 
       if (response.ok) {
         alert("Form submitted successfully!");
-        // Reset form
         setFormData({
           firstName: "",
           middleName: "",
@@ -96,274 +95,236 @@ function BecomePartnerContact() {
   ];
 
   return (
-    <div className="contact-container" >
-      <SEO title="Become Our Partner Contact" description="This is Become Our Partner Contact." />
-      <div className="contact-background"></div>
-      <NationWide/>
-      <div className="count-overlay" style={{backgroundColor:'rgba(38, 62, 135, 0.38)'}}>
-        <Container id="contact-form">
-          <motion.h2
-            className="text-center text-black fw-bold py-5"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
-            variants={fadeInUp}
-          >
-            Apply Now and Start Earning
-          </motion.h2>
-
-          <Form onSubmit={handleSubmit}  >
-            <Row className="" style={{border:''}}>
-              <Col xs={12} sm={6} md={4}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="firstName"
-                    placeholder="First Name" 
-                    className="rounded-3 py-2 my-3" 
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                </motion.div>
-              </Col>
-              <Col xs={12} sm={6} md={4}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="middleName"
-                    placeholder="Middle Name" 
-                    className="rounded-3 py-2 my-3" 
-                    value={formData.middleName}
-                    onChange={handleChange}
-                  />
-                </motion.div>
-              </Col>
-              <Col xs={12} sm={6} md={4}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="lastName"
-                    placeholder="Last Name" 
-                    className="rounded-3 py-2 my-3" 
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </motion.div>
-              </Col>
-            </Row>
-
-            <Row className="">
-              <Col xs={12} sm={8} md={6}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="phoneNumber"
-                    placeholder="Phone/Mobile No" 
-                    className="rounded-3 py-2 my-4" 
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    required
-                  />
-                </motion.div>
-              </Col>
-              <Col xs={12} sm={8} md={6}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="email" 
-                    name="email"
-                    placeholder="name@example.com" 
-                    className="rounded-3 py-2 my-4" 
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </motion.div>
-              </Col>
-            </Row>
-
-            <Row className="">
-              <Col xs={12} sm={8} md={6}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="city"
-                    placeholder="City" 
-                    className="rounded-3 py-2 my-4" 
-                    value={formData.city}
-                    onChange={handleChange}
-                  />
-                </motion.div>
-              </Col>
-              <Col xs={12} sm={8} md={6}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="stateProvince"
-                    placeholder="State/Province" 
-                    className="rounded-3 py-2 my-4" 
-                    value={formData.stateProvince}
-                    onChange={handleChange}
-                  />
-                </motion.div>
-              </Col>
-            </Row>
-
-            <Row className="">
-              <Col xs={12} sm={8} md={6}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.5 }}
-                  variants={fadeInUp}
-                >
-                  <Form.Control 
-                    type="text" 
-                    name="pincodeZipcode"
-                    placeholder="Pincode/Zipcode" 
-                    className="rounded-3 py-2 my-4" 
-                    value={formData.pincodeZipcode}
-                    onChange={handleChange}
-                  />
-                </motion.div>
-              </Col>
-            </Row>
-
-            <Form.Group className="mb-4">
-              <motion.p
-                className="text-white fw-bold mt-3"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={fadeInUp}
-              >
-                Interested In 
-              </motion.p>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={fadeInUp}
-              >
-                <Stack gap={2} className="mt-2">
-                  {businessModels.map((model, index) => (
-                    <Form.Check 
-                      key={index}
-                      type="radio" 
-                      id={`radio-${index}`} 
-                      label={model} 
-                      name="businessModel"
-                      checked={formData.businessModel === model}
-                      onChange={() => setFormData(prev => ({
-                        ...prev,
-                        businessModel: model
-                      }))}
-                      required
-                      className="text-white"
-                    />
-                  ))}
-                </Stack>
-              </motion.div>
-            </Form.Group>
-
-            <Row>
-              <motion.p
-                className="text-white fw-bold my-3"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={fadeInUp}
-              >
-                Remarks
-              </motion.p>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={fadeInUp}
-              >
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                  <Form.Control 
-                    as="textarea" 
-                    rows={3} 
-                    placeholder="Enter remark" 
-                    className="rounded-3" 
-                    name="remark"
-                    value={formData.remark}
-                    onChange={handleChange}
-                    maxLength={1000}
-                  />
-                </Form.Group>
-                <p className="my-2 text-white">{charCount} of 1000 max characters.</p>
-              </motion.div>
-            </Row>
-
-            <motion.div
+    <>
+      <div className="contact-container">
+        <NationWide />
+        <SEO title="Become Our Partner Contact" description="This is Become Our Partner Contact." />
+        <div className="contact-background"></div>
+        <div className="count-overlay" style={{ backgroundColor: 'rgba(230, 236, 249, 0.94)' }}>
+          <Container id="contact-form">
+            <motion.h2
+              className="text-center  fw-bold py-5"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               variants={fadeInUp}
             >
-              <Button 
-                type="submit"
-                className="rounded-3 px-3 my-lg-5 w-100 fw-bold py-2 text-white" 
-                style={{backgroundColor:" #00509D"}}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                      className="me-2"
+              Apply Now and Start Earning
+            </motion.h2>
+
+            <Form onSubmit={handleSubmit}>
+              <Row>
+                <Col xs={12} sm={6} md={4}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="firstName"
+                      placeholder="First Name"
+                      className="rounded-3 py-2 my-3 "
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      style={{border:'1px solid black'}}
+                      required
                     />
-                    Submitting...
-                  </>
-                ) : "Submit"}
-              </Button>
-            </motion.div>
-          </Form>
-        </Container>
+                  </motion.div>
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="middleName"
+                      placeholder="Middle Name"
+                      className="rounded-3 py-2 my-3 "
+                      value={formData.middleName}
+                      onChange={handleChange}
+                    />
+                  </motion.div>
+                </Col>
+                <Col xs={12} sm={6} md={4}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="lastName"
+                      placeholder="Last Name"
+                      className="rounded-3 py-2 my-3"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </motion.div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} sm={8} md={6}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="phoneNumber"
+                      placeholder="Phone/Mobile No"
+                      className="rounded-3 py-2 my-4"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      required
+                    />
+                  </motion.div>
+                </Col>
+                <Col xs={12} sm={8} md={6}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="name@example.com"
+                      className="rounded-3 py-2 my-4"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </motion.div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} sm={8} md={6}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="city"
+                      placeholder="City"
+                      className="rounded-3 py-2 my-4"
+                      value={formData.city}
+                      onChange={handleChange}
+                    />
+                  </motion.div>
+                </Col>
+                <Col xs={12} sm={8} md={6}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="stateProvince"
+                      placeholder="State/Province"
+                      className="rounded-3 py-2 my-4"
+                      value={formData.stateProvince}
+                      onChange={handleChange}
+                    />
+                  </motion.div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={12} sm={8} md={6}>
+                  <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                    <Form.Control
+                      type="text"
+                      name="pincodeZipcode"
+                      placeholder="Pincode/Zipcode"
+                      className="rounded-3 py-2 my-4"
+                      value={formData.pincodeZipcode}
+                      onChange={handleChange}
+                    />
+                  </motion.div>
+                </Col>
+              </Row>
+
+              <Form.Group className="mb-4">
+                <motion.p className="text-black fw-bold mt-3" variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                  Interested In
+                </motion.p>
+                <motion.div  variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }} className="text-black">
+                  <Stack gap={2} className="mt-2 text-black">
+                    {businessModels.map((model, index) => (
+                      <Form.Check
+                        key={index}
+                        type="radio"
+                        id={`radio-${index}`}
+                        label={<span style={{color:'black'}}>{model}</span>}
+                        name="businessModel"
+                        checked={formData.businessModel === model}
+                        onChange={() =>
+                          setFormData(prev => ({
+                            ...prev,
+                            businessModel: model
+                          }))
+                        }
+                        required
+                        className="text-black"
+                       
+                      />
+                    ))}
+                  </Stack>
+                </motion.div>
+              </Form.Group>
+
+              <Row>
+                <motion.p className="text-black fw-bold my-3" variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                  Remarks
+                </motion.p>
+                <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.5 }}>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      placeholder="Enter remark"
+                      className="rounded-3"
+                      name="remark"
+                      value={formData.remark}
+                      onChange={handleChange}
+                      maxLength={1000}
+                    />
+                  </Form.Group>
+                  <p className="my-2 text-black">{charCount} of 1000 max characters.</p>
+                </motion.div>
+              </Row>
+
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={fadeInUp}
+              >
+                <Button
+                  type="submit"
+                  className="rounded-3 px-3 my-lg-5 w-100 fw-bold py-2"
+                  style={{
+                    backgroundColor: "#00509D",
+                    border: "2px solid #ffffff",
+                    color: "#ffffff",
+                    fontSize: "1.1rem",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#0071e3";
+                    e.target.style.transform = "scale(1.02)";
+                    e.target.style.boxShadow = "0 6px 16px rgba(0, 0, 0, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#00509D";
+                    e.target.style.transform = "scale(1)";
+                    e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+                  }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        className="me-2"
+                      />
+                      Submitting...
+                    </>
+                  ) : "Submit"}
+                </Button>
+              </motion.div>
+            </Form>
+          </Container>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

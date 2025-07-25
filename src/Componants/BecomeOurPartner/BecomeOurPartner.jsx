@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import axios from 'axios';
 
 import SEO from '../SEO';
+import NationWide from '../NationWide/NationWide';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -167,7 +168,7 @@ function BecomeOurPartner() {
           </Row>
         </Container>
       </div>
-
+      {/* <NationWide/> */}
       <BecomePartnerContact />
     </div>
   );

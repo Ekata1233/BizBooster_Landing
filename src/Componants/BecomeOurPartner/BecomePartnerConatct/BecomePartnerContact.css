@@ -2,6 +2,9 @@
   position: relative;
   overflow: hidden;
 }
+/* .growthcontact-background{
+  background-color: #00509D;
+} */
 
 
 .become-contactForm-background {
@@ -34,12 +37,12 @@
 
 form input::placeholder,
 form textarea::placeholder {
-  color: #f7f0f0;
+  color: #1b1212;
 }
 
 .become-contact-container form .form-control {
   background-color: rgba(241, 236, 236, 0.627);
-  border: 1px solid rgb(25, 23, 23);
+  border: 1px solid rgb(232, 225, 225);
   color: rgb(20, 18, 18);
   font-size: 15px;
 }
