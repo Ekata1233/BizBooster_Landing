@@ -1,179 +1,134 @@
 import React, { useEffect, useState } from "react";
-import { FaArrowDown } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Col, Container, Row } from "react-bootstrap";
-import SEO from "../SEO";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import { useInView } from "react-intersection-observer";
+import { Container, Row, Col } from "react-bootstrap";
+import "./StepsEarning.css";
+
+const steps = [
+  { id: 1, title: "Download the App" },
+  { id: 2, title: "Complete your KYC" },
+  { id: 3, title: "Get Started" },
+];
 
 const StepsEarning = () => {
-  const [videoUrl, setVideoUrl] = useState("");
   const [socialLinks, setSocialLinks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [previewImages, setPreviewImages] = useState([]);
+  const { ref: buttonRef, inView: showButtons } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
-  const steps = [
-    { id: 1, title: "Download the App" },
-    { id: 2, title: "Complete your KYC" },
-    { id: 3, title: "Start your Earning" },
-  ];
-
-  const renderDownloadLinks = socialLinks.filter(link =>
-    ["playstore", "appstore"].includes(link.type?.toLowerCase())
-  );
-
+  // ✅ Fetch Social Links
   useEffect(() => {
-    const fetchVideoUrl = async () => {
+    const fetchSocialLinks = async () => {
       try {
-        const response = await fetch(
-          "https://biz-booster-landingpage-backend.vercel.app/api/videos/get"
-        );
-        const data = await response.json();
-
-        if (!Array.isArray(data) || data.length === 0 || !data[0].video) {
-          throw new Error("No video data found");
-        }
-
-        setVideoUrl(data[0].video);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchFooterLinks = async () => {
-      try {
-        const response = await fetch(
-          "https://landingpagebackend-nine.vercel.app/api/footer/get"
-        );
-        const data = await response.json();
-
+        const res = await fetch("https://landingpagebackend-nine.vercel.app/api/footer/get");
+        const data = await res.json();
         if (Array.isArray(data.socialLinks)) {
           setSocialLinks(data.socialLinks);
         }
       } catch (error) {
-        console.error("Error fetching footer links:", error);
+        console.error("Error fetching social links:", error);
       }
     };
 
-    fetchVideoUrl();
-    fetchFooterLinks();
+    fetchSocialLinks();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  // ✅ Fetch Preview Images from other backend
+  useEffect(() => {
+    const fetchPreviewImages = async () => {
+      try {
+        const res = await fetch("https://landingpagebackend-nine.vercel.app/api/item/get");
+        const data = await res.json();
+        if (Array.isArray(data.data)) {
+          const filtered = data.data.filter(
+            (item) => item.category === "preview" || item.category === "animation"
+          );
+          setPreviewImages(filtered);
+        }
+      } catch (error) {
+        console.error("Error fetching preview images:", error);
+      }
+    };
+
+    fetchPreviewImages();
+  }, []);
+
+  const playLink = socialLinks.find((l) => l.type === "playstore");
+  const appLink = socialLinks.find((l) => l.type === "appstore");
+
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
 
   return (
-    <div className="bg-white">
-      <SEO title="Steps Earning" description="This is Steps Earning Page." />
-      <Container className="flex flex-col items-center py-5">
-        <h1 className="text-center fw-bold pb-4" style={{ color: "#2164F4" }}>
-          Start your Step towards Earning
-        </h1>
-        <Row>
-          <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
-            <motion.div
-              className="relative flex flex-col items-center w-full max-w-4xl overflow-y-auto max-h-[80vh]"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              {steps.map((step, index) => (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.3 }}
-                  className="flex flex-col items-center text-center p-3 bg-[#00509D] text-black rounded-2xl shadow-lg w-64 mb-6 relative"
-                >
-                  <div
-                    className="flex items-center text-center mx-auto rounded-full"
-                    style={{
-                      border: "1px solid #00509D",
-                      width: "50px",
-                      backgroundColor: "#2164F4",
-                    }}
-                  >
-                    <h1 className="text-3xl font-bold text-white">{step.id}</h1>
-                  </div>
-                  <h5 className="text-lg fw-bold mt-3 text-black">
-                    {step.title}
-                  </h5>
-                  <p className="text-sm mt-1 text-black">{step.description}</p>
+    <div className="infographic-container">
+      <div className="overlay"></div>
 
-                  {/* Render Play Store and App Store buttons on last step */}
-                  {index === 2 && (
-                    <div className="d-flex justify-content-center flex-wrap gap-3 mt-3">
-                      {renderDownloadLinks.map((item, idx) => (
-                        <a
-                          key={idx}
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="d-block mb-2"
-                        >
-                          <img
-                            src={item.image}
-                            alt={item.type}
-                            className="img-fluid"
-                            style={{ maxWidth: "180px" }}
-                          />
-                        </a>
-                      ))}
-                    </div>
-                  )}
+      <Particles
+        className="particles-bg"
+        init={particlesInit}
+        options={{
+          background: { color: { value: "#0a0f2c" } },
+          fpsLimit: 60,
+          interactivity: {
+            events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+            modes: { repulse: { distance: 100, duration: 0.4 } },
+          },
+          particles: {
+            color: { value: "#00cfff" },
+            links: { enable: true, color: "#00cfff", distance: 150 },
+            move: { enable: true, speed: 1 },
+            size: { value: 3 },
+            number: { value: 80 },
+          },
+        }}
+      />
 
-                  {index < steps.length - 1 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: false }}
-                      transition={{ delay: index * 0.5 }}
-                      className="absolute bottom-[-40px]"
-                    >
-                      <FaArrowDown className="blue text-3xl" />
-                    </motion.div>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
-          </Col>
-          <Col
-            xs={12}
-            sm={12}
-            md={12}
-            lg={6}
-            xl={6}
-            xxl={6}
-            className="d-flex align-items-center justify-content-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.8 }}
-              style={{ width: "100%", height: "100%" }}
-            >
-              {videoUrl ? (
-                <video
-                  width="100%"
-                  height="auto"
-                  controls
-                  muted
-                  autoPlay
-                  loop
-                  style={{ border: "1px solid #ccc", borderRadius: "8px" }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <div className="text-center text-muted">
-                  Video not available.
+      <div className="top-bar"></div>
+      <h2 className="title mb-5">Start Your Journey to Earn</h2>
+
+      <Container>
+        <Row className="align-items-center steps-row">
+          <Col md={6} className="left-column">
+            {steps.map((step, i) => (
+              <React.Fragment key={step.id}>
+                <div className="step-block" style={{ animationDelay: `${i * 0.2}s` }}>
+                  <div className={`step-number ${i === 0 ? "hex" : "circle"}`}>{step.id}</div>
+                  <div className="step-card">{step.title}</div>
                 </div>
+                {i !== steps.length - 1 && <div className="vertical-arrow" />}
+              </React.Fragment>
+            ))}
+          </Col>
+
+          <Col md={6} className="right-column">
+            {previewImages.length > 0 && (
+              <img
+                src={previewImages[0].image}
+                alt="App Preview"
+                className="image-animated"
+              />
+            )}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <div className={`final-buttons ${showButtons ? "show" : ""}`} ref={buttonRef}>
+              {playLink && (
+                <a href={playLink.link} target="_blank" rel="noreferrer" className="store-link bounce-in">
+                  <img src={playLink.image} alt="Google Play" />
+                </a>
               )}
-            </motion.div>
+              {appLink && (
+                <a href={appLink.link} target="_blank" rel="noreferrer" className="store-link bounce-in">
+                  <img src={appLink.image} alt="App Store" />
+                </a>
+              )}
+            </div>
           </Col>
         </Row>
       </Container>
