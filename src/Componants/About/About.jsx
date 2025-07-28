@@ -34,7 +34,7 @@ function About() {
             src={banners[0].imageUrl}
             className="w-100"
             alt="About Banner"
-            style={{ height: '400px', objectFit: 'cover' }}
+            style={{ height: '400px', objectFit:'initial' }}
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center">
             {/* <h1 className="text-white fw-bold text-start">About...</h1> */}

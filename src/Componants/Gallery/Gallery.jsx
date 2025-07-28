@@ -41,7 +41,7 @@ function Gallery() {
             src={heroImage}
             className="w-100"
             alt="Gallery Banner"
-            style={{ height: '400px', objectFit: 'cover' }}
+            style={{ height: '400px', objectFit: 'inherit' }}
           />
         ) : (
           <div

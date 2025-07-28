@@ -59,7 +59,7 @@ function BecomeOurPartner() {
           src={heroImage} // fallback image if not found
           className="w-100"
           alt="Hero"
-          style={{ height: "400px", objectFit: "cover" }}
+          style={{ height: "400px", objectFit: "inherit" }}
           initial="hidden"
           animate="visible"
           variants={fadeInUp}

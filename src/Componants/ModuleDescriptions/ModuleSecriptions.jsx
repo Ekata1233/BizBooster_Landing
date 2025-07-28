@@ -60,12 +60,12 @@ function ModuleDescriptions() {
             <SEO title="Module Description" description="This is the Module Description Page." />
 
             {banner && (
-                <div className="position-relative">
+                <div className="position-relative module-banner">
                     <img
                         src={banner.imageUrl}
                         className="w-100"
                         alt="Module Banner"
-                        style={{ height: "400px", objectFit: 'cover' }}
+                        style={{ height: "400px", objectFit: 'inherit' }}
                     />
                 </div>
             )}

@@ -82,10 +82,13 @@
     /* background-color: white; */
     padding: 20px 0;
 }
+@media (max-width: 768px) {
+  .module-banner{
+    object-fit: inherit;
+  }
+}
 @media (max-width: 320px){
     .desc-overlay {
-   
-   
 
         height: auto !important;
         background-color: rgba(0, 0, 0, 0.781); 

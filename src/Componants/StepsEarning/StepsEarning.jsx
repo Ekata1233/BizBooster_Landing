@@ -91,29 +91,30 @@ const StepsEarning = () => {
       <h2 className="title mb-5">Start Your Journey to Earn</h2>
 
       <Container>
-        <Row className="align-items-center steps-row">
-          <Col md={6} className="left-column">
-            {steps.map((step, i) => (
-              <React.Fragment key={step.id}>
-                <div className="step-block" style={{ animationDelay: `${i * 0.2}s` }}>
-                  <div className={`step-number ${i === 0 ? "hex" : "circle"}`}>{step.id}</div>
-                  <div className="step-card">{step.title}</div>
-                </div>
-                {i !== steps.length - 1 && <div className="vertical-arrow" />}
-              </React.Fragment>
-            ))}
-          </Col>
+        <Row className="align-items-center steps-row flex-column flex-md-row">
+  <Col xs={12} md={6} className="left-column mb-3 mb-md-0">
+    {steps.map((step, i) => (
+      <div className="step-block-wrapper" key={step.id}>
+        <div className="step-block" style={{ animationDelay: `${i * 0.2}s` }}>
+          <div className={`step-number ${i === 0 ? "hex" : "circle"}`}>{step.id}</div>
+          <div className="step-card">{step.title}</div>
+        </div>
+        {i !== steps.length - 1 && <div className="vertical-arrow" />}
+      </div>
+    ))}
+  </Col>
 
-          <Col md={6} className="right-column">
-            {previewImages.length > 0 && (
-              <img
-                src={previewImages[0].image}
-                alt="App Preview"
-                className="image-animated"
-              />
-            )}
-          </Col>
-        </Row>
+  <Col xs={12} md={6} className="right-column mt-5">
+    {previewImages.length > 0 && (
+      <img
+        src={previewImages[0].image}
+        alt="App Preview"
+        className="image-animated"
+      />
+    )}
+  </Col>
+</Row>
+
 
         <Row>
           <Col>

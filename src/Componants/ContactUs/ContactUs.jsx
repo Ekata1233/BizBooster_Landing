@@ -88,7 +88,7 @@ function ContactUs() {
             <Spinner animation="border" />
           </div>
         ) : (
-          <img src={heroImage} alt="Contact Banner" className="w-100" style={{ height: '400px', objectFit: 'cover' }} />
+          <img src={heroImage} alt="Contact Banner" className="w-100" style={{ height: '400px', objectFit: 'inherit' }} />
         )}
         <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center" />
       </div>
