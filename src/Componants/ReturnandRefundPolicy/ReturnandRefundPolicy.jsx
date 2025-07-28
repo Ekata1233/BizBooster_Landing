@@ -56,7 +56,7 @@ function ReturnandRefundPolicy() {
             src={bannerUrl}
             className="w-100"
             alt="Banner"
-            style={{ height: "300px", objectFit: "cover" }}
+            style={{ height: "300px", objectFit: "inherit" }}
             initial="hidden"
             whileInView="visible"
             variants={scrollVariants}

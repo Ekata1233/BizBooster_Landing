@@ -57,7 +57,7 @@ function Termsandcondition() {
             src={bannerUrl}
             className="w-100"
             alt="Hero"
-            style={{ height: "300px", objectFit: "cover" }}
+            style={{ height: "300px", objectFit: "inherit" }}
             initial="hidden"
             whileInView="visible"
             variants={scrollVariants}
