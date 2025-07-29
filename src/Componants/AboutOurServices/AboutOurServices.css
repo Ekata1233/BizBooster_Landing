@@ -1,10 +1,8 @@
 /* ========== Flip Card (Laptop) ========== */
-
 .flip-card {
   perspective: 1000px;
   cursor: pointer;
   height: 200px;
-  /* background-color: #0c4e806e; */
 }
 
 .flip-inner {
@@ -18,9 +16,9 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
- .flip-card:hover .flip-inner {
-    transform: rotateY(180deg);
-  }
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
 
 .flip-front,
 .flip-back {
@@ -39,7 +37,6 @@
 .flip-front {
   background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.163);
-
 }
 
 .flip-back {
@@ -69,46 +66,36 @@
   line-height: 1.4;
 }
 
-/* ========== Horizontal Card (Tablet/Mobile) ========== */
-
+/* ========== 3D Horizontal Card (Tablet/Mobile) ========== */
 .horizontal-card {
   display: flex;
   flex-direction: row;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  height: 120px;
-  width: 100%;
-  background-color: #fefefe;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.colored-hover:hover {
-  background-color: #e6f0ff;
-  transform: translateY(-3px);
-}
-
-/* ========== Horizontal Card (Tablet/Mobile Only) ========== */
-
-/* ========== Enhanced Horizontal Card (Tablet/Mobile) ========== */
-
-.horizontal-card {
-  display: flex;
-  flex-direction: row;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   height: 160px;
   width: 100%;
   position: relative;
-  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #009fff, #ec2f4b);
+
+  background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(135deg, #00c6ff, #0072ff, #ff00cc);
   background-origin: padding-box, border-box;
   background-clip: padding-box, border-box;
-  border: 2px solid transparent;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  border: 3px solid transparent;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.712),
+    0 8px 24px rgba(0, 0, 0, 0.589);
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeSlideIn 0.6s ease both;
+}
+
+.horizontal-card:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.271),
+    0 0 10px rgba(0, 174, 255, 0.3),
+    0 0 20px rgba(255, 0, 204, 0.2);
 }
 
 .horizontal-card:active {
@@ -125,11 +112,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.horizontal-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
 }
 
 .horizontal-card-image {
@@ -210,25 +192,6 @@
   -webkit-box-orient: vertical;
 }
 
-/* Badge / Tag */
-.new-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #ff4081;
-  color: white;
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 12px;
-  z-index: 3;
-  animation: popIn 0.4s ease;
-}
-
-@keyframes popIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .horizontal-card {
@@ -250,22 +213,22 @@
   }
 }
 
-/* Animate Entry */
+/* Animate Entry Wrapper */
 .card-motion-wrapper {
   width: 100%;
 }
 
-/* Optional - smooth transition if needed */
 .card-motion-wrapper .horizontal-card,
 .card-motion-wrapper .flip-card {
   transition: all 0.3s ease;
 }
+
 /* Flip Card Gradient Border - Desktop */
 @media (min-width: 1025px) {
   .flip-card.card-colored {
     border-radius: 20px;
     padding: 2px;
-    background: linear-gradient(135deg, #ff00cc9b, #3333ff92);
+    background: linear-gradient(135deg, #00c8ff8e, #0073ff8e, #ff00cc7a);
     transition: transform 0.3s ease;
   }
 
@@ -291,4 +254,3 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   }
 }
-
