@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"; // Added useRef here
+import React, { useEffect, useState, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import servicesImage from "../../assets/4.-BFSI-Services-1270x755.jpg";
 import { motion, useInView } from "framer-motion";
@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 import SEO from "../SEO";
 
 function AboutOurServices() {
-  const ref = useRef(null); // Now useRef is defined
+  const ref = useRef(null);
   const navigate = useNavigate();
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
-  const [services, setServices] = useState([]); // State to store fetched services
+  const [services, setServices] = useState([]);
+  const [flipped, setFlipped] = useState({});
 
-  // Fetch services from the API
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -21,8 +21,7 @@ function AboutOurServices() {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Fetched Services:", data.data); // Debugging: Log fetched data
-        setServices(data.data); // Set the fetched services to state
+        setServices(data.data);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
@@ -31,14 +30,18 @@ function AboutOurServices() {
     fetchServices();
   }, []);
 
-  // Handle click on a service card
-  const handleServiceClick = (id) => {
-    navigate(`/moduledescription/${id}`); // Navigate to the module description page with the service ID
-  };
-
-  const scrollVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+  const handleCardClick = (id) => {
+    if (window.innerWidth <= 1024) {
+      // On mobile/tablet: Flip on first tap, navigate on second tap
+      if (flipped[id]) {
+        navigate(`/moduledescription/${id}`);
+      } else {
+        setFlipped(prev => ({ ...prev, [id]: true }));
+      }
+    } else {
+      // On desktop: Navigate immediately
+      navigate(`/moduledescription/${id}`);
+    }
   };
 
   return (
@@ -46,7 +49,7 @@ function AboutOurServices() {
       <SEO title="About Our Services" description="This is the About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
-          <h2 className="fw-bold text-center mb-5" >About Our Services</h2>
+          <h2 className="fw-bold text-center mb-5">About Our Services</h2>
           <Row className="align-items-center">
             <Col xs={12} md={12} lg={6} ref={ref}>
               <motion.div
@@ -56,40 +59,42 @@ function AboutOurServices() {
                 viewport={{ once: false, amount: 0.2 }}
               >
                 <Row>
-  {services.map((service, index) => (
-    <Col key={index} xs={6} md={4}>
-      <div
-        className="hover-card position-relative rounded rounded-4 mb-2 equal-box"
-        onClick={() => handleServiceClick(service._id)}
-      >
-        <motion.div whileHover={{ scale: 1.1 }} className="background-overlay" />
-        <img
-          src={service.serviceImage}
-          className="img-fluid"
-          alt={service.servicetitle}
-          // style={{ zIndex: 2, }}
-        />
-        <p
-          className="text-center position-relative"
-          style={{ fontWeight: "600", zIndex: 2 }}
-        >
-          {service.servicetitle}
-        </p>
-      </div>
-    </Col>
-  ))}
-</Row>
-
+                  {services.map((service, index) => (
+                    <Col key={index} xs={12} sm={6} md={4} className="mb-4">
+                      <div
+                        className={`flip-card ${flipped[service._id] ? 'flipped' : ''}`}
+                        onClick={() => handleCardClick(service._id)}
+                      >
+                        <div className="flip-inner">
+                          <div className="flip-front">
+                            <img
+                              src={service.serviceImage}
+                              className="flip-img"
+                              alt={service.servicetitle}
+                            />
+                            <p className="flip-title">{service.servicetitle}</p>
+                          </div>
+                          <div className="flip-back">
+                            <p className="flip-title">{service.servicetitle}</p>
+                            <p className="flip-desc">
+                              {service.titleDescArray?.[0]?.description.slice(0, 120)}...
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
               </motion.div>
             </Col>
 
-            <Col xs={12} md={12} lg={6} ref={ref}>
+            <Col xs={12} md={12} lg={6}>
               <motion.div
                 initial={{ x: 100, opacity: 0 }}
                 animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <img src={servicesImage} alt="Services" className="img-fluid my-2" />
+                <img src={servicesImage} alt="Services" className="img-fluid my-2 right-service-img" />
               </motion.div>
             </Col>
           </Row>
