@@ -21,8 +21,8 @@ html, body {
 .animated-hero {
   width: 100%;
   height: 100vh;
-  object-fit: cover;
-  animation: moveHero 10s infinite alternate ease-in-out;
+  object-fit: inherit;
+  /* animation: moveHero 10s infinite alternate ease-in-out; */
 }
 
 /* Keyframes for slight movement */
