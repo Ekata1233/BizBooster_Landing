@@ -3,7 +3,19 @@
   perspective: 1000px;
   cursor: pointer;
   height: 200px;
+  border: 3px solid transparent;
+  border-radius: 16px;
+
+  background-image:
+    linear-gradient(#f55eeb9e, #87e3ed91),
+    linear-gradient(135deg, #00c8ffa5, #0073ffa0, #ff00cc95);  /* border gradient */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
+
 
 .flip-inner {
   position: relative;
@@ -37,6 +49,8 @@
 .flip-front {
   background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.163);
+    /* border: linear-gradient(135deg, #00c8ff8e, #0073ff8e, #ff00cc7a); */
+
 }
 
 .flip-back {
@@ -188,7 +202,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  /* -webkit-line-clamp: 3; */
   -webkit-box-orient: vertical;
 }
 
@@ -209,7 +223,7 @@
 
   .horizontal-card-desc {
     font-size: 0.9rem;
-    -webkit-line-clamp: 2;
+    /* -webkit-line-clamp: 2; */
   }
 }
 
@@ -224,7 +238,7 @@
 }
 
 /* Flip Card Gradient Border - Desktop */
-@media (min-width: 1025px) {
+/* @media (min-width: 1025px) {
   .flip-card.card-colored {
     border-radius: 20px;
     padding: 2px;
@@ -253,4 +267,4 @@
     object-fit: cover;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   }
-}
+} */

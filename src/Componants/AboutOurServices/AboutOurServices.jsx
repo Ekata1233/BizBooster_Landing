@@ -51,11 +51,11 @@ function AboutOurServices() {
   };
 
   return (
-    <div className="bg-white" id="about-services">
+    <div className="bg-white" id="about-services" style={{backgroundColor:''}}>
       <SEO title="About Our Services" description="This is the About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
-          <h2 className="fw-bold text-center mb-5">About Our Services</h2>
+          <h2 className="fw-bold text-center mb-5 " style={{color:'blue'}}>About Our Services</h2>
           <Row className="align-items-center">
             <Col xs={12} md={12} lg={6} ref={ref}>
               <Row>
