@@ -13,6 +13,7 @@ import { FiMail } from "react-icons/fi";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import axios from 'axios';
 import SEO from '../SEO';
+import './Footer.css'; // Import the CSS file
 
 function Footer() {
   const [footerData, setFooterData] = useState(null);
@@ -30,7 +31,6 @@ function Footer() {
     fetchFooter();
   }, []);
 
-  // Filter social icons
   const socialIcons = {
     facebook: <FaFacebookF style={{ color: '#1877F2' }} />,
     instagram: <FaInstagram style={{ color: '#e44095ff' }} />,
@@ -50,73 +50,67 @@ function Footer() {
   return (
     <div className='text-white bg-dark pb-2'>
       <SEO title="Footer" description="This is Footer Page." />
-      <Container className='text-white bg-dark py-5'>
-        <Row>
+      <Container className='py-5'>
+        <Row className="gy-4">
           {/* Company Info */}
-          <Col>
-            <div>
-              <h1>{footerData?.companyName || "FetchTrue"}</h1>
-              <p>{footerData?.description || "Welcome to FetchTrue Group..."}</p>
-              <h4>Our Social</h4>
-              <div className='d-flex mb-3'>
-                {renderSocialIcons?.map((item, idx) => (
-                  <div key={idx} className='me-4 fs-4'>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {socialIcons[item.type]}
-                    </a>
-                  </div>
-                ))}
-              </div>
+          <Col xs={12} md={6} lg={3} className="footer-col">
+            <h1>{footerData?.companyName || "FetchTrue"}</h1>
+            <p>{footerData?.description || "Welcome to FetchTrue Group..."}</p>
+            <h4>Our Social</h4>
+            <div className='d-flex flex-wrap gap-3'>
+              {renderSocialIcons?.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='fs-4'
+                >
+                  {socialIcons[item.type]}
+                </a>
+              ))}
             </div>
           </Col>
 
           {/* Official Info */}
-          <Col>
-            <div>
-              <h4>Official info:</h4>
-              <p>{footerData?.address}</p>
-              <p><FiMail className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.email}</p>
-              <p><FaPhoneAlt className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.phone}</p>
-              <p><TbWorld className="me-2" style={{ width: "20px", height: "20px" }} />{footerData?.website}</p>
-            </div>
+          <Col xs={12} md={6} lg={3} className="footer-col">
+            <h4>Official Info:</h4>
+            <p>{footerData?.address}</p>
+            <p><FiMail className="me-2" />{footerData?.email}</p>
+            <p><FaPhoneAlt className="me-2" />{footerData?.phone}</p>
+            <p><TbWorld className="me-2" />{footerData?.website}</p>
           </Col>
 
-          {/* Quick Links (static) */}
-          <Col>
-            <div>
-              <h4>Quick Links</h4>
-              <Nav className="flex-column text-start">
-                <Nav.Link href="/contactus" className="text-white">
-                  <MdOutlineKeyboardDoubleArrowRight /> Contact Us
-                </Nav.Link>
-                <Nav.Link href="/privacypolicy" className="text-white">
-                  <MdOutlineKeyboardDoubleArrowRight /> Privacy Policy
-                </Nav.Link>
-                <Nav.Link href="/refund&returnpolicy" className="text-white">
-                  <MdOutlineKeyboardDoubleArrowRight /> Return & Refund Policy
-                </Nav.Link>
-                <Nav.Link href="/termsandcondition" className="text-white">
-                  <MdOutlineKeyboardDoubleArrowRight /> Terms & Conditions
-                </Nav.Link>
-              </Nav>
-            </div>
+          {/* Quick Links */}
+          <Col xs={12} md={6} lg={3} className="footer-col">
+            <h4>Quick Links</h4>
+            <Nav className="flex-column">
+              <Nav.Link href="/contactus" className="text-white mb-2">
+                <MdOutlineKeyboardDoubleArrowRight /> Contact Us
+              </Nav.Link>
+              <Nav.Link href="/privacypolicy" className="text-white mb-2">
+                <MdOutlineKeyboardDoubleArrowRight /> Privacy Policy
+              </Nav.Link>
+              <Nav.Link href="/refund&returnpolicy" className="text-white mb-2">
+                <MdOutlineKeyboardDoubleArrowRight /> Return & Refund Policy
+              </Nav.Link>
+              <Nav.Link href="/termsandcondition" className="text-white mb-2">
+                <MdOutlineKeyboardDoubleArrowRight /> Terms & Conditions
+              </Nav.Link>
+            </Nav>
           </Col>
 
-          {/* Download Buttons (Play Store & App Store) */}
-          <Col>
-            <div>
-              <h4>Download</h4>
+          {/* Download Section */}
+          <Col xs={12} md={6} lg={3} className="footer-col">
+            <h4>Download</h4>
+            <div className="d-flex flex-column align-items-start">
               {renderDownloadLinks?.map((item, idx) => (
                 <a
                   key={idx}
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className='d-block mb-2'
+                  className='mb-2'
                 >
                   <img
                     src={item.image}
@@ -132,7 +126,9 @@ function Footer() {
       </Container>
 
       {/* Footer Bottom */}
-      <p className='text-center'>2023 © All rights Reserved | FetchTrue</p>
+      <div className='text-center mt-4 px-2'>
+        <p className='mb-0'>2023 © All rights Reserved | FetchTrue</p>
+      </div>
     </div>
   );
 }

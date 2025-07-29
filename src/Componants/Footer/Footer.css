@@ -1,0 +1,13 @@
+.footer-col {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+}
+
+@media (max-width: 576px) {
+  .footer-col {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: left;
+  }
+}

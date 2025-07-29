@@ -11,14 +11,14 @@ function OurPartner() {
   const [loading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
   const navigate = useNavigate();
 
+  // Fetch data on mount
   useEffect(() => {
     fetch('https://landingpagebackend-nine.vercel.app/api/item/get')
       .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!res.ok) throw new Error('Network response was not ok');
         return res.json();
       })
       .then(resData => {
@@ -35,13 +35,24 @@ function OurPartner() {
       });
   }, []);
 
+  // Handle scroll animation visibility only for desktop
   useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 992);
+
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      if (isDesktop) {
+        setIsVisible(window.scrollY > 300);
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isDesktop]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading data: {error}</div>;
@@ -53,35 +64,50 @@ function OurPartner() {
       <Container>
         <Row className="py-5">
           <Col lg={6}>
-            <motion.img
+            {/* Remove animation from image */}
+            <img
               src={partnerData.image}
-              fluid
               className="w-100 h-100 invest-img"
               alt="Our Partner"
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
             />
           </Col>
           <Col lg={6}>
-            <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-              <h1 className="text-start blue fw-semibold mb-5">{partnerData.heading}</h1>
-              {partnerData.features?.map((feature, index) => (
-                <p key={index} className="text text-secondary">
-                  <MdOutlineKeyboardDoubleArrowRight /> {feature}
-                </p>
-              ))}
-              <Button
-                className="btn-border bg-white text-dark rounded rounded-pill px-5 mt-5 py-2"
-                onClick={() => navigate("/becomeourpartner#contact-form")}
+            {/* Animate text only on desktop */}
+            {isDesktop ? (
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                Apply Now
-              </Button>
-            </motion.div>
+                <h1 className="text-start blue fw-semibold mb-5">{partnerData.heading}</h1>
+                {partnerData.features?.map((feature, index) => (
+                  <p key={index} className="text text-secondary">
+                    <MdOutlineKeyboardDoubleArrowRight /> {feature}
+                  </p>
+                ))}
+                <Button
+                  className="btn-border bg-white text-dark rounded rounded-pill px-5 mt-5 py-2"
+                  onClick={() => navigate("/becomeourpartner#contact-form")}
+                >
+                  Apply Now
+                </Button>
+              </motion.div>
+            ) : (
+              <div>
+                <h1 className="text-start blue fw-semibold mb-5">{partnerData.heading}</h1>
+                {partnerData.features?.map((feature, index) => (
+                  <p key={index} className="text text-secondary">
+                    <MdOutlineKeyboardDoubleArrowRight /> {feature}
+                  </p>
+                ))}
+                <Button
+                  className="btn-border bg-white text-dark rounded rounded-pill px-5 mt-5 py-2"
+                  onClick={() => navigate("/becomeourpartner#contact-form")}
+                >
+                  Apply Now
+                </Button>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
