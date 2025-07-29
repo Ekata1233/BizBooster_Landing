@@ -10,9 +10,11 @@ function AboutOurServices() {
   const ref = useRef(null);
   const navigate = useNavigate();
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
+
   const [services, setServices] = useState([]);
   const [flipped, setFlipped] = useState({});
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const isMobileTablet = screenWidth <= 1024;
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -37,7 +39,7 @@ function AboutOurServices() {
   }, []);
 
   const handleCardClick = (id) => {
-    if (screenWidth <= 1024) {
+    if (isMobileTablet) {
       if (flipped[id]) {
         navigate(`/moduledescription/${id}`);
       } else {
@@ -50,50 +52,26 @@ function AboutOurServices() {
 
   return (
     <div className="bg-white" id="about-services">
-      <SEO
-        title="About Our Services"
-        description="This is the About Our Services Page."
-      />
+      <SEO title="About Our Services" description="This is the About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
           <h2 className="fw-bold text-center mb-5">About Our Services</h2>
           <Row className="align-items-center">
             <Col xs={12} md={12} lg={6} ref={ref}>
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <Row>
-                  {services.map((service, index) => (
-                    <Col key={index} xs={12} sm={6} md={6} lg={4} className="mb-4">
-                      {screenWidth > 1024 ? (
-                        <div
-                          className={`flip-card ${flipped[service._id] ? "flipped" : ""}`}
-                          onClick={() => handleCardClick(service._id)}
-                        >
-                          <div className="flip-inner">
-                            <div className="flip-front card-colored">
-                              <img
-                                src={service.serviceImage}
-                                className="flip-img"
-                                alt={service.servicetitle}
-                              />
-                              <p className="flip-title">{service.servicetitle}</p>
-                            </div>
-                            <div className="flip-back card-colored">
-                              <p className="flip-title">{service.servicetitle}</p>
-                              <p className="flip-desc">
-                                {service.titleDescArray?.[0]?.description.slice(0, 120)}...
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
+              <Row>
+                {services.map((service, index) => (
+                  <Col key={service._id} xs={12} sm={6} md={6} lg={4} className="mb-4">
+                    {isMobileTablet ? (
+                      <motion.div
+                        className="card-motion-wrapper"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                      >
                         <div
                           className="horizontal-card card-colored"
-                          onClick={() => navigate(`/moduledescription/${service._id}`)}
+                          onClick={() => handleCardClick(service._id)}
                         >
                           <div className="horizontal-card-image">
                             <img src={service.serviceImage} alt={service.servicetitle} />
@@ -105,11 +83,33 @@ function AboutOurServices() {
                             </p>
                           </div>
                         </div>
-                      )}
-                    </Col>
-                  ))}
-                </Row>
-              </motion.div>
+                      </motion.div>
+                    ) : (
+                      <div
+                        className={`flip-card ${flipped[service._id] ? "flipped" : ""} card-colored`}
+                        onClick={() => handleCardClick(service._id)}
+                      >
+                        <div className="flip-inner">
+                          <div className="flip-front">
+                            <img
+                              src={service.serviceImage}
+                              className="flip-img"
+                              alt={service.servicetitle}
+                            />
+                            <p className="flip-title">{service.servicetitle}</p>
+                          </div>
+                          <div className="flip-back">
+                            <p className="flip-title">{service.servicetitle}</p>
+                            <p className="flip-desc">
+                              {service.titleDescArray?.[0]?.description.slice(0, 120)}...
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </Col>
+                ))}
+              </Row>
             </Col>
 
             <Col xs={12} md={12} lg={6}>

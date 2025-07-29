@@ -48,8 +48,8 @@
 }
 
 .flip-img {
-  max-width: 90px;
-  max-height: 90px;
+  max-width: 100px;
+  max-height: 100px;
   object-fit: contain;
   margin-bottom: 8px;
 }
@@ -89,24 +89,100 @@
   transform: translateY(-3px);
 }
 
+/* ========== Horizontal Card (Tablet/Mobile Only) ========== */
+
+/* ========== Enhanced Horizontal Card (Tablet/Mobile) ========== */
+
+.horizontal-card {
+  display: flex;
+  flex-direction: row;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 160px;
+  width: 100%;
+  position: relative;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(135deg, #009fff, #ec2f4b);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  border: 2px solid transparent;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeSlideIn 0.6s ease both;
+}
+
+.horizontal-card:active {
+  transform: scale(0.97);
+  background-color: #dceeff;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.horizontal-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
 .horizontal-card-image {
-  flex: 0 0 100px;
+  flex: 0 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
 }
 
 .horizontal-card-image img {
-  max-height: 60px;
+  max-height: 100px;
   max-width: 100%;
   object-fit: contain;
+  z-index: 2;
+  animation: popZoom 0.4s ease;
+}
+
+@keyframes popZoom {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.horizontal-card-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: shine 2.5s infinite;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
 }
 
 .horizontal-card-content {
   flex: 1;
-  padding: 12px 16px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -114,41 +190,105 @@
 }
 
 .horizontal-card-title {
-  font-weight: 600;
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: #222;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #1c1c1c;
+  margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .horizontal-card-desc {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #555;
-  white-space: nowrap;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
-/* Responsive Tweaks */
-@media (max-width: 1024px) {
-  .horizontal-card {
-    height: 120px;
-    width: 100%;
-  }
+/* Badge / Tag */
+.new-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ff4081;
+  color: white;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  z-index: 3;
+  animation: popIn 0.4s ease;
 }
 
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .horizontal-card {
-    height: 100px;
+    height: 140px;
+  }
+
+  .horizontal-card-image {
+    flex: 0 0 100px;
+    padding: 12px;
   }
 
   .horizontal-card-title {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .horizontal-card-desc {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
   }
 }
+
+/* Animate Entry */
+.card-motion-wrapper {
+  width: 100%;
+}
+
+/* Optional - smooth transition if needed */
+.card-motion-wrapper .horizontal-card,
+.card-motion-wrapper .flip-card {
+  transition: all 0.3s ease;
+}
+/* Flip Card Gradient Border - Desktop */
+@media (min-width: 1025px) {
+  .flip-card.card-colored {
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #ff00cc9b, #3333ff92);
+    transition: transform 0.3s ease;
+  }
+
+  .flip-card.card-colored .flip-inner {
+    border-radius: 18px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+  }
+
+  .flip-card.card-colored .flip-front,
+  .flip-card.card-colored .flip-back {
+    border-radius: 18px;
+    padding: 1rem;
+    height: 100%;
+  }
+
+  .flip-card.card-colored .flip-img {
+    border-radius: 12px;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
