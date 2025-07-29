@@ -41,8 +41,8 @@ html, body {
 /* Ensure responsiveness on all devices */
 @media (max-width: 768px) {
   .hero-container {
-    height: 65vh;
-    min-height: 380px;
+    height: 50vh;
+    min-height: 300px;
     
   }
 
