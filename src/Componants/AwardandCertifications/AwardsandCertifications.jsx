@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { motion } from 'framer-motion';
+import Lightbox from 'yet-another-react-lightbox';
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+
+import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
+
 import '../AwardandCertifications/AwardsandCertifications.css';
 import SEO from '../SEO';
 
@@ -16,37 +22,33 @@ function AwardsandCertifications() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Lightbox state
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState([]);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
   useEffect(() => {
     fetch('https://landingpagebackend-nine.vercel.app/api/gallery/get')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
       .then(res => {
-        console.log('API response:', res);
-
         if (Array.isArray(res.data)) {
-          // Group by category
           const grouped = res.data.reduce((acc, item) => {
             const cat = item.category?.name || 'Uncategorized';
             if (!acc[cat]) acc[cat] = [];
             acc[cat].push(item);
             return acc;
           }, {});
-
-          // Convert to renderable array
           const groupedArray = Object.entries(grouped).map(([category, items]) => ({
             category,
             images: items.map(i => i.src),
           }));
-
           setData(groupedArray);
         } else {
           throw new Error('Invalid response format');
         }
-
         setLoading(false);
       })
       .catch(error => {
@@ -56,11 +58,17 @@ function AwardsandCertifications() {
       });
   }, []);
 
-  if (loading) return <div className="text-center py-5">Loading...</div>;
-  if (error) return <div className="text-center py-5">Error: {error}</div>;
-
   const formatTitle = (category) =>
     category.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
+
+  const openLightbox = (images, index) => {
+    setLightboxImages(images.map(src => ({ src })));
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  if (loading) return <div className="text-center py-5">Loading...</div>;
+  if (error) return <div className="text-center py-5">Error: {error}</div>;
 
   return (
     <div className="awards-container">
@@ -82,6 +90,8 @@ function AwardsandCertifications() {
                     alt={`${section.category} ${i + 1}`}
                     loading="lazy"
                     className="award-img"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => openLightbox(section.images, i)}
                   />
                 </Col>
               ))}
@@ -89,6 +99,16 @@ function AwardsandCertifications() {
           </Container>
         ))}
       </div>
+
+      {/* Lightbox Component */}
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        slides={lightboxImages}
+        index={lightboxIndex}
+        plugins={[Thumbnails]}
+        thumbnails={{ position: 'bottom', width: 100, height: 60 }}
+      />
     </div>
   );
 }
