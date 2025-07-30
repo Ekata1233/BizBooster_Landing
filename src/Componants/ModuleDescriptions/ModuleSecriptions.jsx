@@ -4,6 +4,8 @@ import '../ModuleDescriptions/ModuleDescription.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import SEO from '../SEO';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function ModuleDescriptions() {
     const { id } = useParams();
@@ -13,12 +15,15 @@ function ModuleDescriptions() {
     const [banner, setBanner] = useState(null);
 
     useEffect(() => {
+        AOS.init({ duration: 1000, once: true });
+    }, []);
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch(`https://landingpagebackend-nine.vercel.app/api/servicepage/get/${id}`);
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
-                console.log("Fetched service data:", data.data);
                 if (data.data) setServiceData(data.data);
                 else throw new Error(`Service with id ${id} not found.`);
             } catch (error) {
@@ -65,7 +70,7 @@ function ModuleDescriptions() {
                         src={banner.imageUrl}
                         className="w-100"
                         alt="Module Banner"
-                        style={{ height: "400px", objectFit: 'inherit' }}
+                        style={{ height: "400px", objectFit: 'cover' }}
                     />
                 </div>
             )}
@@ -82,91 +87,66 @@ function ModuleDescriptions() {
                     </Container>
                 </div>
 
-                <div className="desc-overlay">
+                <div className="desc-overlay sparkle-overlay">
+
                     <div>
-                        <h1 className='text-white fw-bold text-center py-lg-5 double-underline'>Type Of Category</h1>
+                        <h1 className='text-white fw-bold text-center py-5 display-5' data-aos="fade-up">
+                        Types of Categories
+                        </h1>
                         <Container>
-                        <Row>
-                        {categories.length > 0 ? (
-                            categories.map((category, index) => {
-                            // Safely extract image
-                            let imageSrc = "https://via.placeholder.com/250x180?text=No+Image";
+                            <Row>
+                                {categories.length > 0 ? (
+                                    categories.map((category, index) => {
+                                        let imageSrc = "https://via.placeholder.com/250x180?text=No+Image";
+                                        if (Array.isArray(category.image) && category.image.length > 0) {
+                                            const firstImage = category.image[0];
+                                            imageSrc = firstImage.startsWith("http")
+                                                ? firstImage
+                                                : `https://landingpagebackend-nine.vercel.app${firstImage}`;
+                                        } else if (serviceData.serviceImage) {
+                                            imageSrc = serviceData.serviceImage;
+                                        }
 
-                            if (Array.isArray(category.image) && category.image.length > 0) {
-                                const firstImage = category.image[0];
-                                imageSrc = firstImage.startsWith("http")
-                                ? firstImage
-                                : `https://landingpagebackend-nine.vercel.app${firstImage}`;
-                            } else if (serviceData.serviceImage) {
-                                imageSrc = serviceData.serviceImage;
-                            }
+                                        return (
+                                            <Col key={`${category._id}-${index}`} xs={12} sm={12} md={6} lg={4} className="my-4 d-flex" data-aos="zoom-in">
+                                                <div className="category-card w-100">
+                                                    <div className="text-center">
+                                                        <img src={imageSrc} alt={category.title} className="img-fluid" />
+                                                        <h3 className="fw-bold">{category.title}</h3>
+                                                        <p className="p">{category.description}</p>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                        );
+                                    })
+                                ) : (
+                                    <p className="text-center text-white">No categories available.</p>
+                                )}
+                            </Row>
 
-                            return (
-                                <Col
-                                key={`${category._id}-${index}`}
-                                xs={12}
-                                sm={12}
-                                md={6}
-                                lg={4}
-                                xl={4}
-                                xxl={4}
-                                className="category-overlay my-4"
-                                >
-                                <div className="h-100 d-flex flex-column border border-1 px-4 rounded-4 category-card">
+                            {serviceData?.titleDescArray?.slice(1).map((item, idx) => {
+                                const isEven = idx % 2 === 0;
+                                return (
                                     <div
-                                    className="d-flex justify-content-center align-items-center flex-grow-1"
-                                    style={{ minHeight: "250px" }}
+                                        key={idx}
+                                        className="full-width-bg py-5"
+                                        style={{
+                                            backgroundColor: isEven ? "rgba(0, 81, 157, 0.62)" : "#ffffff"
+                                        }}
+                                        data-aos={isEven ? "fade-left" : "fade-right"}
                                     >
-                                    <img
-                                        src={imageSrc}
-                                        alt={category.title}
-                                        className="img-fluid"
-                                        style={{ maxHeight: "220px", objectFit: "contain" }}
-                                    />
+                                        <Container className='py-5'>
+                                            <h1 className={`${isEven ? "text-white" : "blue"} fw-bold text-${isEven ? "end" : "start"} mb-5 display-6 double-underline`}>
+                                                {item.title || "Default Section Title"}
+                                            </h1>
+                                            <p className={`text${isEven ? "-white" : "-secondary"} text`}>
+                                                {item.description || "No description available."}
+                                            </p>
+                                        </Container>
                                     </div>
-                                    <div className="text-center mt-3">
-                                    <h3 className="fw-bold">{category.title}</h3>
-                                    <p className="text p">{category.description}</p>
-                                    </div>
-                                </div>
-                                </Col>
-                            );
-                            })
-                        ) : (
-                            <p className="text-center text-white">No categories available.</p>
-                        )}
-                        </Row>
-
-
-
+                                );
+                            })}
                         </Container>
-
-  {serviceData?.titleDescArray?.slice(1).map((item, idx) => {
-    const isEven = idx % 2 === 0;
-
-    return (
-        <div
-            key={idx}
-            className='full-width-bg py-5'
-            style={{
-                backgroundColor: isEven ? "rgba(0, 81, 157, 0.62)" : "rgb(255, 255, 255)",
-            }}
-        >
-            <Container className='py-5'>
-                <h1
-                    className={`${isEven ? "text-white" : "blue"} fw-bold text-${isEven ? "end" : "start"} mb-5 double-underline`}
-                >
-                    {item.title || "Default Section Title"}
-                </h1>
-                <p className={`text${isEven ? "-white" : "-secondary"} text`}>
-                    {item.description || "No description available."}
-                </p>
-            </Container>
-        </div>
-    );
-})}
-
-
                     </div>
                 </div>
             </div>
