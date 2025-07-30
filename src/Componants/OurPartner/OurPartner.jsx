@@ -79,9 +79,9 @@ function OurPartner() {
                 animate={{ x: isVisible ? 0 : 100, opacity: isVisible ? 1 : 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                <h1 className="text-start blue fw-semibold mb-5">{partnerData.heading}</h1>
+                <h1 className="text-start blue fw-bold mb-5">{partnerData.heading}</h1>
                 {partnerData.features?.map((feature, index) => (
-                  <p key={index} className="text text-secondary">
+                  <p key={index} className="text text-secondary" style={{ fontSize: '20px' }}>
                     <MdOutlineKeyboardDoubleArrowRight /> {feature}
                   </p>
                 ))}
