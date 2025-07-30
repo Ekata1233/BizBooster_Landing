@@ -94,7 +94,7 @@ function Header() {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel">
               <Navbar.Brand href="/" className="fs-1" style={{ fontWeight: "600" }}>
-                BizBooster
+                FetchTrue
               </Navbar.Brand>
             </Offcanvas.Title>
           </Offcanvas.Header>
