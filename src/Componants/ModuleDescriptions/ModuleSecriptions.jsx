@@ -15,7 +15,7 @@ function ModuleDescriptions() {
     const [banner, setBanner] = useState(null);
 
     useEffect(() => {
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1000 });
     }, []);
 
     useEffect(() => {
@@ -109,7 +109,7 @@ function ModuleDescriptions() {
 
                                         return (
                                             <Col key={`${category._id}-${index}`} xs={12} sm={12} md={6} lg={4} className="my-4 d-flex" data-aos="zoom-in">
-                                                <div className="category-card w-100">
+                                                <div className="category-card w-100" data-aos="flip-left" data-aos-delay={index * 100}>
                                                     <div className="text-center">
                                                         <img src={imageSrc} alt={category.title} className="img-fluid" />
                                                         <h3 className="fw-bold">{category.title}</h3>
