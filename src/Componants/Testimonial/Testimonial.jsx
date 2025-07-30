@@ -89,27 +89,30 @@ function Testimonial() {
         >
           {testimonials.map((testi, index) => (
             <SwiperSlide key={index}>
-              <Card className="packCard1 mx-auto my-4">
-                <Card.Body className="d-flex flex-column align-items-center text-center">
 
-                  {/* 1. User Image */}
-                  <Card.Img variant="top" src={testi.src} className="card-img" />
+              <div style={{ height: "100%", display: "flex", justifyContent: "center" }}>
+                <Card className="packCard1 mx-auto my-4">
+                  <Card.Body className="d-flex flex-column align-items-center text-center">
+                    {/* 1. User Image */}
+                    <Card.Img variant="top" src={testi.src} className="card-img" />
 
-                  {/* 2. Name */}
-                  <Card.Title className="mt-3">{testi.title}</Card.Title>
+                    {/* 2. Name */}
+                    <Card.Title className="mt-3">{testi.title}</Card.Title>
 
-                  {/* 3. Location */}
-                  <Card.Text className="text-muted">{testi.text1}</Card.Text>
+                    {/* 3. Location */}
+                    <Card.Text className="text-muted">{testi.text1}</Card.Text>
 
-                  {/* 4. Star Rating */}
-                  <div className="mb-2" style={{color:'#2164F4'}}>{renderStars(testi.rating)}</div>
+                    {/* 4. Star Rating */}
+                    <div className="mb-2" style={{ color: '#2164F4' }}>{renderStars(testi.rating)}</div>
 
-                  {/* 5. Testimonial Text */}
-                  <div className="testiDiv mt-2 rounded-4 w-100">
-                    <Card.Text className="p-3">{testi.para}</Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
+                    {/* 5. Testimonial Text */}
+                    <div className="testiDiv mt-2 rounded-4 w-100">
+                      <Card.Text className="p-3">{testi.para}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+             
             </SwiperSlide>
           ))}
         </Swiper>
