@@ -48,7 +48,7 @@ function Footer() {
   );
 
   return (
-    <div className='text-white bg-dark pb-2'>
+    <div className='text-white pb-2' style={{  background: 'linear-gradient(to right, #003f7f, #00509D, #007bbd)' }}>
       <SEO title="Footer" description="This is Footer Page." />
       <Container className='py-5'>
         <Row className="gy-4">
