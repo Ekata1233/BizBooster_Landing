@@ -55,7 +55,7 @@ function AboutOurServices() {
       <SEO title="About Our Services" description="This is the About Our Services Page." />
       <div className="div-bg py-5">
         <Container>
-          <h2 className="fw-bold text-center mb-5 " style={{color:'blue'}}>About Our Services</h2>
+          <h2 className="fw-bold text-center mb-5 " style={{background: 'linear-gradient(135deg, #1e3c72, #2a5298)', WebkitBackgroundClip: 'text', color: 'transparent'}}>About Our Services</h2>
           <Row className="align-items-center">
             <Col xs={12} md={12} lg={6} ref={ref}>
               <Row>
