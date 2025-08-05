@@ -79,7 +79,7 @@ const NationWide = () => {
 
                     <Col xs={12} sm={12} md={12} lg={7}>
                         <div className='ps-lg-4'>
-                            <h2 className='fw-bold'>{data.heading}</h2>
+                            <h2 className='fw-bold' >{data.heading}</h2>
                             <p className='text' style={{ textDecoration: 'underline' }}>
                                 {data.subheading}
                             </p>

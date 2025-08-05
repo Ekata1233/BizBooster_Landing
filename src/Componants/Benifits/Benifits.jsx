@@ -31,7 +31,7 @@ function Benifits() {
       <h3 className="fw-bold text-center" style={{ color: '#2164F4' }}>
         Benefits of
       </h3>
-      <h2 className="fw-bold text-center mb-5">Becoming a Profinity Partner</h2>
+      <h2 className="fw-bold text-center mb-5" style={{ background: 'linear-gradient(135deg, #1e3c72, #2a5298)', WebkitBackgroundClip: 'text', color: 'transparent' }}>Becoming a Profinity Partner</h2>
 
       <Container>
         <Row className="justify-content-center">
