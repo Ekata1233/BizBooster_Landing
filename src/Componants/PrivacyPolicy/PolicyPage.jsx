@@ -46,11 +46,11 @@ function PolicyPage() {
   }
 
   return (
-    <div>
+    <div className='mt-2 mb-5'>
       <SEO title="Privacy Policy" description="This is Privacy Policy Page." />
 
       {/* Hero Image */}
-      {bannerUrl && (
+      {/* {bannerUrl && (
         <div className="position-relative">
           <motion.img
             src={bannerUrl}
@@ -65,7 +65,7 @@ function PolicyPage() {
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 custom-shadow d-flex justify-content-center align-items-center" />
         </div>
-      )}
+      )} */}
 
       {/* Content */}
       <Container>
@@ -75,7 +75,7 @@ function PolicyPage() {
           variants={scrollVariants}
           transition={{ duration: 1 }}
           viewport={{ once: false }}
-          className="blue fw-bold text-center py-5"
+          className="blue fw-bold text-center py-5 mt-5"
         >
           Privacy Policy
         </motion.h1>
